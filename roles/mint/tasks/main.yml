@@ -1,0 +1,49 @@
+---
+# tasks file for mint
+- name: Instalaciones inicial
+  block:
+  - name: Borramos defaults inservibles
+    package:
+      state: absent
+      name: "{{item}}"
+    with_items:
+      - vim.tiny
+      - libreoffice-core
+      - libreoffice-common
+
+  - name: Instalamos desde apt-get
+    package:
+      name: "{{item}}"
+    with_items:
+      - vim
+      - git
+  become: true
+
+- name: Instalaciones de repos de configuraciones
+  block:
+
+
+- name: Instalaciones secundarias
+  block:
+  - name: Instalamos desde snap
+    snap:
+      name: "{{item}}"
+    with_items:
+      - mycli
+      - gitkraken
+      - chromium
+      - libreoffice
+      - simplenote
+      - whatsdesk
+      - inkscape
+      - postman
+
+  - name: Instalamos desde snap classic
+    snap:
+      name: "{{item}}"
+      classic: yes
+    with_items:
+        - code
+        - skype
+        - sublime-text
+  become: true

@@ -1,0 +1,9 @@
+---
+- name: mint setup
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  
+  tasks:
+    - import_role:
+        name: mint
