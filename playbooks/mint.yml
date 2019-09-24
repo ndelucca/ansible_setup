@@ -4,6 +4,12 @@
   connection: local
   gather_facts: no
   
+  vars_prompt:
+    - name: user
+      prompt: "User:"
+      private: no
+      default: "ndelucca"
+
   tasks:
     - import_role:
         name: mint

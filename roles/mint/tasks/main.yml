@@ -22,6 +22,9 @@
 - name: Instalaciones de repos de configuraciones
   block:
 
+  - git:
+      repo: git@github.com:ndelucca/sublime-settings.git
+      dest: "/home/{{user}}/.config/sublime-text-3/"
 
 - name: Instalaciones secundarias
   block:
@@ -43,7 +46,7 @@
       name: "{{item}}"
       classic: yes
     with_items:
-        - code
-        - skype
-        - sublime-text
+      - code
+      - skype
+      - sublime-text
   become: true
