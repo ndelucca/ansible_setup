@@ -2,13 +2,18 @@
 - name: mint setup
   hosts: localhost
   connection: local
-  gather_facts: no
+  gather_facts: yes
   
   vars_prompt:
-    - name: user
-      prompt: "User:"
+  
+    - name: "user"
+      prompt: "usuario"
       private: no
       default: "ndelucca"
+
+    - name: "become-pass"
+      prompt: "passwd"
+      private: yes
 
   tasks:
     - import_role:

@@ -1,5 +1,6 @@
 ---
 # tasks file for mint
+
 - name: Instalaciones inicial
   block:
   - name: Borramos defaults inservibles
@@ -22,10 +23,31 @@
 - name: Instalaciones de repos de configuraciones
   block:
 
-  - git:
+  - name: Settings Sublime
+    git:
       repo: git@github.com:ndelucca/sublime-settings.git
       dest: "/home/{{user}}/.config/sublime-text-3/"
 
+  - name: Settings VS Code
+    git:
+      repo: git@github.com:ndelucca/vscode-settings.git
+      dest: "/home/{{user}}/.config/Code/User/"
+  
+  - name: Extensiones VS Code
+    git:
+      repo: git@github.com:ndelucca/vscode-extensions.git
+      dest: "/home/{{user}}/.vscode/extensions/"
+  
+  - name: Bash customs
+    git:
+      repo: git@github.com:ndelucca/bash.git
+      dest: "/home/{{user}}/.bash_customs/"
+  
+  - name: Workspaces de editores
+    git:
+      repo: git@github.com:ndelucca/workspaces-projects.git
+      dest: "/home/{{user}}/workspaces/"
+  
 - name: Instalaciones secundarias
   block:
   - name: Instalamos desde snap
