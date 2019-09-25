@@ -1,0 +1,17 @@
+---
+# tasks file for soapui
+- name: Bajamos la basura esta que no tiene repo en ningun lado
+  get_url:
+    url: "{{soapui_url}}"
+    dest: "{{soapui_installer_path}}"
+    mode: 0755
+    group: "{{user}}"
+    owner: "{{user}}"
+
+- name: Corremos el install (abre UI de instalacion)
+  script: "{{soapui_installer_path}}"
+
+- name: Borramos el instalador
+  file:
+    path: "{{soapui_installer_path}}"
+    state: absent

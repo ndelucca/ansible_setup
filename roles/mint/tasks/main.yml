@@ -3,6 +3,7 @@
 
 - name: Instalaciones inicial
   block:
+
   - name: Borramos defaults inservibles
     package:
       state: absent
@@ -16,10 +17,14 @@
     package:
       name: "{{item}}"
     with_items:
-      - vim
-      - git
+      - vim # Vim the posta
+      - git # Git
+      - direnv # Environment switcher for the shell
   become: true
 
+# Lo instalamos antes, para que cuando se instalen los software que usan las config
+# ya tengan estas configs por defecto, y el repo git clonado
+# Si se hace despues se pudre la creacion de repos en carpetas con archivos existentes
 - name: Instalaciones de repos de configuraciones
   block:
 
@@ -48,27 +53,40 @@
       repo: git@github.com:ndelucca/workspaces-projects.git
       dest: "/home/{{user}}/workspaces/"
   
-- name: Instalaciones secundarias
+- name: Instalaciones de apps a gusto
   block:
+
+  - name: Instalamos a mano soapui
+    import_role:
+      name: soapui
+    when: install_soapui|bool
+
+  - name: Instalamos desde apt-get
+    package:
+      name: "{{item}}"
+    with_items:
+      - mysql-workbench # MySql graphic
+
   - name: Instalamos desde snap
     snap:
       name: "{{item}}"
     with_items:
-      - mycli
-      - gitkraken
-      - chromium
-      - libreoffice
-      - simplenote
-      - whatsdesk
-      - inkscape
-      - postman
+      - mycli # MySql command line
+      - gitkraken # Git
+      - chromium # Browser
+      - firefox # Browser
+      - libreoffice # Shit
+      - simplenote # Notepad with Sync
+      - whatsdesk # Whatsapp
+      - inkscape # Drawings in SVG
+      - postman # REST tester
 
   - name: Instalamos desde snap classic
     snap:
       name: "{{item}}"
       classic: yes
     with_items:
-      - code
-      - skype
-      - sublime-text
+      - code # Editor Visual Studio Code
+      - skype # Shit
+      - sublime-text # Editor
   become: true

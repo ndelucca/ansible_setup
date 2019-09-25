@@ -3,7 +3,7 @@
   hosts: localhost
   connection: local
   gather_facts: yes
-  
+
   vars_prompt:
   
     - name: "user"
@@ -11,9 +11,14 @@
       private: no
       default: "ndelucca"
 
-    - name: "become-pass"
+    - name: "ansible_become_pass"
       prompt: "passwd"
       private: yes
+
+    - name: "install_soapui"
+      prompt: "Instalar SoapUI"
+      private: no
+      default: false
 
   tasks:
     - import_role:
