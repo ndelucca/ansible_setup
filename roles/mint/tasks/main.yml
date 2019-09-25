@@ -12,13 +12,14 @@
       - vim.tiny
       - libreoffice-core
       - libreoffice-common
+      - redshift
 
   - name: Instalamos desde apt-get
     package:
       name: "{{item}}"
     with_items:
-      - vim # Vim the posta
-      - git # Git
+      - vim
+      - git
       - direnv # Environment switcher for the shell
   become: true
 
@@ -58,28 +59,35 @@
 
   - name: Instalamos a mano soapui
     import_role:
-      name: soapui
+      name: soapui # SOAP tester
     when: install_soapui|bool
 
   - name: Instalamos desde apt-get
     package:
       name: "{{item}}"
     with_items:
+      - vagrant # VM
+      - virtualbox # VM
       - mysql-workbench # MySql graphic
+      - samba # Dancing application?
+      - numlockx # The most important app in the world
+      - redshift
+      - redshift-gtk
 
   - name: Instalamos desde snap
     snap:
       name: "{{item}}"
     with_items:
+      - postman # REST tester
       - mycli # MySql command line
-      - gitkraken # Git
+      - gitkraken # Git - Graphic UI
+      - grv # Git - Graphic UI from Command Line
       - chromium # Browser
       - firefox # Browser
-      - libreoffice # Shit
-      - simplenote # Notepad with Sync
-      - whatsdesk # Whatsapp
+      - libreoffice # Shit sometimes necesary
       - inkscape # Drawings in SVG
-      - postman # REST tester
+      - simplenote # Notepad with Sync
+      - whatsdesk # Shit
 
   - name: Instalamos desde snap classic
     snap:
@@ -87,6 +95,15 @@
       classic: yes
     with_items:
       - code # Editor Visual Studio Code
+      - sublime-text # Editor Sublime Text
       - skype # Shit
-      - sublime-text # Editor
   become: true
+
+  # extras
+
+- name: Configuramos redshift
+  template:
+    dest: /home/{{user}}/.config/redshift.conf # required. Location to render the template to on the remote machine.
+    src: redshift.conf # required. Path of a Jinja2 formatted template on the Ansible controller. This can be a relative or absolute path.
+    force: yes # not required. the default is C(yes), which will replace the remote file when contents are different than the source.  If C(no), the file will only be transferred if the destination does not exist.
+    
