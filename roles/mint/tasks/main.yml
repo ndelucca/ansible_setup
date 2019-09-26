@@ -10,22 +10,21 @@
       name: "{{item}}"
     with_items:
       - vim.tiny
+      - firefox
+      - vlc
       - libreoffice-core
       - libreoffice-common
-      - redshift
 
-  - name: Instalamos desde apt-get
+  - name: Instalamos git primero que nada
     package:
       name: "{{item}}"
     with_items:
-      - vim
       - git
-      - direnv # Environment switcher for the shell
   become: true
 
-# Lo instalamos antes, para que cuando se instalen los software que usan las config
+# Lo instalamos antes, para que cuando se instale el software que usa las config
 # ya tengan estas configs por defecto, y el repo git clonado
-# Si se hace despues se pudre la creacion de repos en carpetas con archivos existentes
+# Si se hace despues se podria pudrir la creacion de repos en carpetas con archivos existentes
 - name: Instalaciones de repos de configuraciones
   block:
 
@@ -53,41 +52,43 @@
     git:
       repo: git@github.com:ndelucca/workspaces-projects.git
       dest: "/home/{{user}}/workspaces/"
-  
-- name: Instalaciones de apps a gusto
+  when: repos|bool
+
+- name: Instalaciones de apps a gusto e piacere
   block:
 
-  - name: Instalamos a mano soapui
-    import_role:
-      name: soapui # SOAP tester
-    when: install_soapui|bool
-
-  - name: Instalamos desde apt-get
+  - name: Instalamos con apt-get
     package:
       name: "{{item}}"
     with_items:
+      - vim # 
+      - mc # Midnight commander
+      - direnv # Environment switcher for the shell
       - vagrant # VM
       - virtualbox # VM
-      - mysql-workbench # MySql graphic
+      - mysql-workbench # MySql GUI
       - samba # Dancing application?
       - numlockx # The most important app in the world
-      - redshift
-      - redshift-gtk
+      - safeeyes # Brake reminder
+      - redshift # Bluelight filter
+      - redshift-gtk # Bluelight filter GUI
+      - snapd # External package manager
 
-  - name: Instalamos desde snap
+  # Se pueden pasar a "package" si no se quisiera usar snap
+  - name: Instalamos con snapcraft.io
     snap:
       name: "{{item}}"
     with_items:
-      - postman # REST tester
-      - mycli # MySql command line
       - gitkraken # Git - Graphic UI
       - grv # Git - Graphic UI from Command Line
+      - postman # REST tester
+      - mycli # MySql command line
       - chromium # Browser
       - firefox # Browser
-      - libreoffice # Shit sometimes necesary
       - inkscape # Drawings in SVG
       - simplenote # Notepad with Sync
       - whatsdesk # Shit
+      - libreoffice # Shit
 
   - name: Instalamos desde snap classic
     snap:
@@ -97,13 +98,65 @@
       - code # Editor Visual Studio Code
       - sublime-text # Editor Sublime Text
       - skype # Shit
+
+  - name: Chequeamos si soapui esta instalado
+    stat:
+      path: "{{soapui_bin_file}}"
+    register: soapui # Greatest shit on earth
+
+  - name: Instalamos a mano soapui por que los señores en smartbear no se les canto poner un ppa
+    block:
+
+    - name: Creamos el directorio de instalacion
+      file: 
+        state: directory
+        path: "{{ soapui_path }}"
+
+    - name: Bajamos una bolsa de basura
+      get_url: 
+        url: "{{ soapui_url }}"
+        dest: "{{soapui_installer_tar}}"
+
+    - name: Desparramamos la basura en el piso
+      unarchive:
+        src: "{{soapui_installer_tar}}"
+        dest: "{{soapui_path}}"
+
+    - name: Tener que hacer esto es increible
+      template:
+        dest: "/home/{{user}}/soapui-settings.xml"
+        src: soapui-settings.xml
+        force: yes
+
+    - name: Lo agregamos al menu
+      template:
+        dest: /usr/share/applications/soapui.desktop
+        src: soapui.desktop
+        force: yes
+      become_user: root
+
+    - name: Sacamos la basura
+      file:
+        path: "{{soapui_installer_tar}}"
+        state: absent
+
+    become_user: "{{user}}"
+
+    when: soapui.stat.exists == False|bool
   become: true
 
-  # extras
+  # extra configs
 
 - name: Configuramos redshift
   template:
-    dest: /home/{{user}}/.config/redshift.conf # required. Location to render the template to on the remote machine.
-    src: redshift.conf # required. Path of a Jinja2 formatted template on the Ansible controller. This can be a relative or absolute path.
-    force: yes # not required. the default is C(yes), which will replace the remote file when contents are different than the source.  If C(no), the file will only be transferred if the destination does not exist.
-    
+    dest: "{{redshift_config_file}}"
+    src: redshift.conf
+    force: yes
+  when: redshift_custom_config|bool
+
+- name: Configuramos safeeyes
+  template:
+    dest: "{{safeeyes_config_file}}"
+    src: safeeyes.json
+    force: yes
+  when: safeeyes_custom_config|bool

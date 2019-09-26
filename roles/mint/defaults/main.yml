@@ -1,2 +1,24 @@
 ---
 # defaults file for mint
+
+repos: true
+
+# soapui_url: https://s3.amazonaws.com/downloads.eviware/soapuios/5.5.0/SoapUI-x64-5.5.0.sh
+# soapui_installer_path: "/home/{{user}}/Downloads/soapui.sh"
+downloads_folder_path: "/home/{{user}}/Downloads"
+
+# las cosas que hago por amor
+soapui_version: "5.5.0"
+soapui_folder: "SoapUI-{{soapui_version}}"
+soapui_url: https://s3.amazonaws.com/downloads.eviware/soapuios/{{soapui_version}}/{{soapui_folder}}-linux-bin.tar.gz
+soapui_installer_tar: "{{downloads_folder_path}}/soapui_installer.tar.gz"
+soapui_path: "/home/{{user}}/soapui"
+soapui_bin_file: "{{soapui_path}}/{{soapui_folder}}/bin/soapui.sh"
+
+# redshift
+redshift_config_file: "/home/{{user}}/.config/redshift.conf"
+redshift_custom_config: false
+
+# safe eyes
+safeeyes_config_file: "/home/{{user}}/.config/safeeyes/safeeyes.json"
+safeeyes_custom_config: false
