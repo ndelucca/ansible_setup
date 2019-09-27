@@ -28,6 +28,17 @@
 - name: Instalaciones de repos de configuraciones
   block:
 
+  - name: Creamos el directorio de instalacion para los repos
+    file: 
+      state: directory
+      path: "{{item}}"
+    with_items:
+      - "/home/{{user}}/.config/sublime-text-3/"
+      - "/home/{{user}}/.config/Code/User/"
+      - "/home/{{user}}/.vscode/extensions/"
+      - "/home/{{user}}/.bash_customs/"
+      - "/home/{{user}}/workspaces/"
+
   - name: Settings Sublime
     git:
       repo: git@github.com:ndelucca/sublime-settings.git
