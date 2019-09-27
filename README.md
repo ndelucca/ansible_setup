@@ -1,4 +1,3 @@
-Configuracion por ansible de un entorno potable para linux mint 19
+Configuracion por ansible de un entorno potable para linux mint 19, aunque con algo de suerte podria andar en otras distros
 
-Aprovecha Snap para software un poco mas empaquetado y en teoria estable
-(sin ningún tipo de argumento en contra de instalar por apt-get, me pinto solamente)
+Muchas apps se instalan con snap (snapcraft.io), solo para tener encapsulado en un mismo lugar la mayor cantidad de apps.
