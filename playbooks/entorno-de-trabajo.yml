@@ -16,5 +16,6 @@
       private: yes
 
   tasks:
+
     - import_role:
         name: mint

@@ -1,0 +1,33 @@
+[user]
+	name = {{user}}
+	email = {{email}}
+[push]
+	default = simple
+[pull]
+	rebase = True
+[core]
+	autocrlf = False
+	# editor = vim
+	commentchar = ";"
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+[color]
+	ui = True
+
+# Diff Tool
+[diff]
+    tool = meld
+[difftool]
+    prompt = false
+[difftool "meld"]
+    cmd = meld "$LOCAL" "$REMOTE"
+# Merge tool
+[merge]
+    tool = meld
+[mergetool "meld"]
+    # Choose one of these 2 lines (not both!) explained below.
+    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+    cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"

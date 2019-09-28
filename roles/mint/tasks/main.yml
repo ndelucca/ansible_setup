@@ -1,6 +1,10 @@
 ---
 # tasks file for mint
 
+- name: Se corre con la siguiente config
+  debug:
+    msg: "Usuario:{{user}} - Email: {{email}}"
+
 - name: Instalaciones inicial
   block:
 
@@ -20,7 +24,13 @@
       name: "{{item}}"
     with_items:
       - git
+      - meld
   become: true
+
+- name: Configuramos git
+  template:
+      dest: "/home/{{user}}/.gitconfig"
+      src: gitconfig
 
 # Lo instalamos antes, para que cuando se instale el software que usa las config
 # ya tengan estas configs por defecto, y el repo git clonado
@@ -79,7 +89,8 @@
     package:
       name: "{{item}}"
     with_items:
-      - vim # 
+      - vim #
+      - gitk # Recomendaria grv para la consola
       - mc # Midnight commander
       - direnv # Environment switcher for the shell
       - virtualbox # VM

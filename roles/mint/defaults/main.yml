@@ -1,6 +1,11 @@
 ---
 # defaults file for mint
 
+email_local: nazadelucca@gmail.com
+email_remoto: ndelucca@educativa.com
+
+email: "{{ email_local if ansible_hostname == 'ndeluccax' else email_remoto }}"
+
 repos: true
 
 downloads_folder_path: "/home/{{user}}/Downloads"
