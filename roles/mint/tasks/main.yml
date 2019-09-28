@@ -75,7 +75,6 @@
       - vim # 
       - mc # Midnight commander
       - direnv # Environment switcher for the shell
-      - vagrant # VM
       - virtualbox # VM
       - mysql-workbench # MySql GUI
       - samba # Dancing application?
@@ -101,6 +100,38 @@
       - whatsdesk # Shit
       - libreoffice # Shit
 
+  # Vagrant esta muy desactualizado en el package manager, se instala el pkg oficial
+  - name: Chequeamos si vagrant esta instalado
+    command: dpkg-query -W vagrant | grep {{vagrant_version}}
+    register: vagrant_installed
+    failed_when: vagrant_installed.rc > 1
+    changed_when: vagrant_installed.rc == 1
+
+  - name: Instalamos vagrant
+    block:
+
+    - name: Aseguramos que no quede un vagrant con otra version
+      package:
+        state: absent
+        name: vagrant
+
+    - name: Descargamos vagrant {{vagrant_version}}
+      get_url:
+        url: "{{vagrant_url}}"
+        dest: "{{vagrant_installer_deb}}"
+      
+    - name: Instalamos Vagrant a mano
+      apt:
+        deb: "{{vagrant_installer_deb}}"
+      become: yes
+  
+    - name: Borramos instalador
+      file:
+        path: "{{vagrant_installer_deb}}"
+        state: absent
+
+    when: vagrant_installed.rc == 1
+
   - name: Instalamos desde snap classic
     snap:
       name: "{{item}}"
@@ -121,11 +152,11 @@
     - name: Creamos el directorio de instalacion
       file: 
         state: directory
-        path: "{{ soapui_path }}"
+        path: "{{soapui_path}}"
 
     - name: Bajamos una bolsa de basura
       get_url: 
-        url: "{{ soapui_url }}"
+        url: "{{soapui_url}}"
         dest: "{{soapui_installer_tar}}"
 
     - name: Desparramamos la basura en el piso
