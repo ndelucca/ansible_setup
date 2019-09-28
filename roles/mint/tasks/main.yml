@@ -89,6 +89,7 @@
     package:
       name: "{{item}}"
     with_items:
+      - tree
       - vim #
       - gitk # Recomendaria grv para la consola
       - mc # Midnight commander
