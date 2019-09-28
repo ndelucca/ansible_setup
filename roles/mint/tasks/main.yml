@@ -59,6 +59,13 @@
       repo: git@github.com:ndelucca/bash.git
       dest: "/home/{{user}}/.bash_customs/"
   
+  - name: Creamos link simbolico para settings de vim
+    file:
+        path: "/home/{{user}}/.vimrc"
+        src: "/home/{{user}}/.bash_customs/.vimrc"
+        force: yes
+        state: link
+
   - name: Workspaces de editores
     git:
       repo: git@github.com:ndelucca/workspaces-projects.git
@@ -102,10 +109,9 @@
 
   # Vagrant esta muy desactualizado en el package manager, se instala el pkg oficial
   - name: Chequeamos si vagrant esta instalado
-    command: dpkg-query -W vagrant | grep {{vagrant_version}}
+    shell: dpkg-query -W vagrant | grep -q {{vagrant_version}}
     register: vagrant_installed
-    failed_when: vagrant_installed.rc > 1
-    changed_when: vagrant_installed.rc == 1
+    ignore_errors: yes
 
   - name: Instalamos vagrant
     block:
