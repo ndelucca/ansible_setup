@@ -24,10 +24,11 @@
     prompt = false
 [difftool "meld"]
     cmd = meld "$LOCAL" "$REMOTE"
+
 # Merge tool
 [merge]
     tool = meld
 [mergetool]
 	keepBackup = false
 [mergetool "meld"]
-    cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+    cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
