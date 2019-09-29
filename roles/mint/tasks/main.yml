@@ -13,11 +13,14 @@
       state: absent
       name: "{{item}}"
     with_items:
-      - vim.tiny
-      - firefox
-      - vlc
-      - libreoffice-core
-      - libreoffice-common
+      - vim.tiny # despues instalamos el full
+      - firefox # lo instalamos con snap despues
+      - vlc # no me gusta
+      - libreoffice-core # lo instalamos con snap despues
+      - libreoffice-common # lo instalamos con snap despues
+      - mono-runtime-common # security risk
+      - gnome-orca # security risk
+      - orca # security risk
 
   - name: Instalamos git primero que nada
     package:
@@ -119,26 +122,35 @@
       - whatsdesk # Shit
       - libreoffice # Shit
 
+  - name: Instalamos desde snap classic
+    snap:
+      name: "{{item}}"
+      classic: yes
+    with_items:
+      - code # Editor Visual Studio Code
+      - sublime-text # Editor Sublime Text
+      - skype # Shit
+
   # Vagrant esta muy desactualizado en el package manager, se instala el pkg oficial
-  - name: Chequeamos si vagrant esta instalado
+  - name: Chequeamos si Vagrant esta instalado
     shell: dpkg-query -W vagrant | grep -q {{vagrant_version}}
     register: vagrant_installed
     ignore_errors: yes
 
-  - name: Instalamos vagrant
+  - name: Instalamos Vagrant
     block:
 
-    - name: Aseguramos que no quede un vagrant con otra version
+    - name: Aseguramos que no quede un Vagrant con otra version
       package:
         state: absent
         name: vagrant
 
-    - name: Descargamos vagrant {{vagrant_version}}
+    - name: Descargamos Vagrant {{vagrant_version}}
       get_url:
         url: "{{vagrant_url}}"
         dest: "{{vagrant_installer_deb}}"
       
-    - name: Instalamos Vagrant a mano
+    - name: Instalamos Vagrant
       apt:
         deb: "{{vagrant_installer_deb}}"
       become: yes
@@ -149,15 +161,6 @@
         state: absent
 
     when: vagrant_installed.rc == 1
-
-  - name: Instalamos desde snap classic
-    snap:
-      name: "{{item}}"
-      classic: yes
-    with_items:
-      - code # Editor Visual Studio Code
-      - sublime-text # Editor Sublime Text
-      - skype # Shit
 
   - name: Chequeamos si soapui esta instalado
     stat:
