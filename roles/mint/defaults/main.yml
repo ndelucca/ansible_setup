@@ -1,10 +1,11 @@
 ---
 # defaults file for mint
 
+nombre_equipo_casa: ndeluccax
 email_local: nazadelucca@gmail.com
 email_remoto: ndelucca@educativa.com
 
-email: "{{ email_local if ansible_hostname == 'ndeluccax' else email_remoto }}"
+email: "{{ email_local if ansible_hostname == nombre_equipo_casa else email_remoto }}"
 
 repos: true
 
