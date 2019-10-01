@@ -93,6 +93,7 @@
       name: "{{item}}"
     with_items:
       - tree
+      - nfs-common ·# necesario para compartir carpetas con nfs para montar con linux
       - vim #
       - gitk # Recomendaria grv para la consola
       - mc # Midnight commander
