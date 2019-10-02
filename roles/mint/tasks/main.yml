@@ -92,6 +92,7 @@
     package:
       name: "{{item}}"
     with_items:
+      - gnome-color-manager
       - tree
       - nfs-common ·# necesario para compartir carpetas con nfs para montar con linux
       - vim #
