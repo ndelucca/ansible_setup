@@ -94,7 +94,7 @@
     with_items:
       - gnome-color-manager
       - tree
-      - nfs-common ·# necesario para compartir carpetas con nfs para montar con linux
+      - nfs-common # necesario para compartir carpetas con nfs para montar con linux
       - vim #
       - gitk # Recomendaria grv para la consola
       - mc # Midnight commander
