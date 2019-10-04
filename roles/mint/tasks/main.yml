@@ -164,52 +164,6 @@
 
     when: vagrant_installed.rc == 1
 
-  - name: Chequeamos si soapui esta instalado
-    stat:
-      path: "{{soapui_bin_file}}"
-    register: soapui # Greatest shit on earth
-
-  - name: Instalamos a mano soapui por que los señores en smartbear no se les canto poner un ppa
-    block:
-
-    - name: Creamos el directorio de instalacion
-      file: 
-        state: directory
-        path: "{{soapui_path}}"
-
-    - name: Bajamos una bolsa de basura
-      get_url: 
-        url: "{{soapui_url}}"
-        dest: "{{soapui_installer_tar}}"
-
-    - name: Desparramamos la basura en el piso
-      unarchive:
-        src: "{{soapui_installer_tar}}"
-        dest: "{{soapui_path}}"
-
-    - name: Tener que hacer esto es increible
-      template:
-        dest: "/home/{{user}}/soapui-settings.xml"
-        src: soapui-settings.xml
-        force: yes
-
-    - name: Lo agregamos al menu
-      template:
-        dest: /usr/share/applications/soapui.desktop
-        src: soapui.desktop
-        force: yes
-      become_user: root
-
-    - name: Sacamos la basura
-      file:
-        path: "{{soapui_installer_tar}}"
-        state: absent
-
-    become_user: "{{user}}"
-
-    when: soapui.stat.exists == False|bool
-  become: true
-
   # extra configs
 
 - name: Configuramos redshift
