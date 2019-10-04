@@ -1,6 +1,0 @@
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Type=Application
-Name={{soapui_folder}}
-Exec="{{soapui_bin_file}}"
-Categories=Programming;

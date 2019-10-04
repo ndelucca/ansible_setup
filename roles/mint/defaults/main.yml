@@ -16,15 +16,6 @@ vagrant_version: "2.2.5"
 vagrant_url: https://releases.hashicorp.com/vagrant/{{vagrant_version}}/vagrant_{{vagrant_version}}_x86_64.deb
 vagrant_installer_deb: "{{downloads_folder_path}}/vagrant_{{vagrant_version}}.deb"
 
-
-# las cosas que hago por amor
-soapui_version: "5.5.0"
-soapui_folder: "SoapUI-{{soapui_version}}"
-soapui_url: https://s3.amazonaws.com/downloads.eviware/soapuios/{{soapui_version}}/{{soapui_folder}}-linux-bin.tar.gz
-soapui_installer_tar: "{{downloads_folder_path}}/soapui_installer.tar.gz"
-soapui_path: "/home/{{user}}/soapui"
-soapui_bin_file: "{{soapui_path}}/{{soapui_folder}}/bin/soapui.sh"
-
 # redshift
 redshift_config_file: "/home/{{user}}/.config/redshift.conf"
 redshift_custom_config: false
