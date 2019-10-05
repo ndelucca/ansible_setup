@@ -5,76 +5,41 @@
   debug:
     msg: "Usuario:{{user}} - Email: {{email}}"
 
-- name: Instalaciones inicial
-  block:
-
-  - name: Borramos defaults inservibles
-    package:
-      state: absent
-      name: "{{item}}"
-    with_items:
-      - vim.tiny # despues instalamos el full
-      - vlc # no me gusta
-      - libreoffice-core # lo instalamos con snap despues
-      - libreoffice-common # lo instalamos con snap despues
-      - mono-runtime-common # security risk
-      - gnome-orca # security risk
-      - orca # security risk
-
+- name: Borramos defaults inservibles
+  package:
+    state: absent
+    name: "{{item}}"
+  with_items:
+    - vim.tiny # despues instalamos el full
+    - vlc # no me gusta
+    - mono-runtime-common # security risk
+    - gnome-orca # security risk
+    - orca # security risk
   become: true
 
 - import_role:
     name: git
 
-# Lo instalamos antes, para que cuando se instale el software que usa las config
-# ya tengan estas configs por defecto, y el repo git clonado
-# Si se hace despues se podria pudrir la creacion de repos en carpetas con archivos existentes
-- name: Instalaciones de repos de configuraciones
-  block:
+- import_role:
+    name: bash-customs
 
-  - name: Creamos el directorio de instalacion para los repos
-    file: 
-      state: directory
-      path: "{{item}}"
-    with_items:
-      - "/home/{{user}}/.config/sublime-text-3/"
-      - "/home/{{user}}/.config/Code/User/"
-      - "/home/{{user}}/.vscode/extensions/"
-      - "/home/{{user}}/.bash_customs/"
-      - "/home/{{user}}/workspaces/"
+- import_role:
+    name: sublime
 
-  # - name: Settings Sublime
-  #   git:
-  #     repo: git@github.com:ndelucca/sublime-settings.git
-  #     dest: "/home/{{user}}/.config/sublime-text-3/"
+- import_role:
+    name: libreoffice
 
-  # - name: Settings VS Code
-  #   git:
-  #     repo: git@github.com:ndelucca/vscode-settings.git
-  #     dest: "/home/{{user}}/.config/Code/User/"
-  
-  # - name: Extensiones VS Code
-  #   git:
-  #     repo: git@github.com:ndelucca/vscode-extensions.git
-  #     dest: "/home/{{user}}/.vscode/extensions/"
-  
-  # - name: Bash customs
-  #   git:
-  #     repo: git@github.com:ndelucca/bash.git
-  #     dest: "/home/{{user}}/.bash_customs/"
-  
-  # - name: Creamos link simbolico para settings de vim
-  #   file:
-  #       path: "/home/{{user}}/.vimrc"
-  #       src: "/home/{{user}}/.bash_customs/.vimrc"
-  #       force: yes
-  #       state: link
+- import_role:
+    name: vscode
 
-  # - name: Workspaces de editores
-  #   git:
-  #     repo: git@github.com:ndelucca/workspaces-projects.git
-  #     dest: "/home/{{user}}/workspaces/"
-  # when: repos|bool
+- import_role:
+    name: chrome
+
+- import_role:
+    name: simplenote
+
+- import_role:
+    name: vagrant
 
 - name: Instalaciones de apps a gusto e piacere
   block:
@@ -97,10 +62,10 @@
     package:
       name: "{{item}}"
     with_items:
-      - gnome-color-manager
-      - tree
-      - nfs-common # necesario para compartir carpetas con nfs para montar con linux
-      - vim #
+      - nfs-common # Necesario para compartir carpetas con nfs para montar con linux
+      - gnome-color-manager # Color schemes for different monitors
+      - tree # Tree
+      - vim # Editor
       - gitk # Recomendaria grv para la consola
       - mc # Midnight commander
       - direnv # Environment switcher for the shell
@@ -108,6 +73,7 @@
       - mycli # MySql command line
       - inkscape # Drawings in SVG
       - mysql-workbench # MySql GUI
+      - libreoffice-calc # Solo me interesa el excel
       - samba # Dancing application?
       - numlockx # The most important app in the world
       - safeeyes # Brake reminder
@@ -122,27 +88,12 @@
       - postman # REST tester
       - whatsdesk # Whatsap
 
-  - name: Instalamos desde snap classic
+  - name: Instalamos snapcraft.io classic
     snap:
       name: "{{item}}"
       classic: yes
     with_items:
       - skype # Lo mantienen Oficialmente
-
-  - import_role:
-      name: sublime
-
-  - import_role:
-      name: vscode
-
-  - import_role:
-      name: chrome
-
-  - import_role:
-      name: simplenote
-
-  - import_role:
-      name: vagrant
 
   become: yes
   # extra configs

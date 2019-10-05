@@ -1,17 +1,43 @@
 ---
 
+  # Editor Visual Studio Code
+  # Lo mantienen Oficialmente en Snap
+
   - name: Instalamos vscode
     block:
 
     - name: Aseguramos que snap este instalado
       package:
         name: snapd
+    
+    - name: Configuración de repositorio config
+      block:
+
+      - name: Creamos el directorio de instalacion para los repos
+        file: 
+          state: directory
+          path: "{{item}}"
+        with_items:
+          - "{{vscode_config_path}}"
+          - "{{vscode_extension_path}}"
+      
+      - name: Settings VS Code
+        git:
+          repo: git@github.com:ndelucca/vscode-settings.git
+          dest: "{{vscode_config_path}}"
+      
+      - name: Extensiones VS Code
+        git:
+          repo: git@github.com:ndelucca/vscode-extensions.git
+          dest: "{{vscode_extension_path}}"
+
+      when: repos|bool
 
     - name: Instalamos desde snap classic
       snap:
         name: "{{item}}"
         classic: yes
       with_items:
-        - code # Editor Visual Studio Code - Lo mantienen Oficialmente
-
-    become: yes
+        - code
+      become: yes
+    

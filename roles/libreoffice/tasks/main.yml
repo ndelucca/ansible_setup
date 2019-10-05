@@ -1,0 +1,29 @@
+---
+  
+  # Es medio una chanchada esto, pero si se instala cualquier parte de libreoffice, aparecen todas las otras
+  # Las que no estan instaladas NO muestran su version ni la version de ubuntu
+  # Asumo que NUNCA jamas queremos draw instalado, pero podria ser cualquier otro no deseado
+  - name: Chequeamos si libreoffice esta instalado completo
+    shell: dpkg-query -W libreoffice-draw | grep -q ubuntu
+    register: full_libreoffice_installed
+    ignore_errors: yes
+
+  - name: Instalamos libreoffice - solo lo que queremos
+    block:
+
+    - name: Aseguramos que no quede un libreoffice con otra version
+      package:
+        state: absent
+        name: "{{item}}"
+      with_items:
+        - libreoffice-core
+        - libreoffice-common
+
+    - name: Instalacion limitada
+      package:
+        state: absent
+        name: "{{item}}"
+      with_items:
+        - libreoffice-calc
+    
+    when: full_libreoffice_installed.rc == 1
