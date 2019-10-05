@@ -1,0 +1,31 @@
+---
+  
+  - name: Chequeamos si simplenote esta instalado
+    shell: dpkg-query -W simplenote | grep -q {{simplenote_version}}
+    register: simplenote_installed
+    ignore_errors: yes
+
+  - name: Instalamos simplenote
+    block:
+
+    - name: Aseguramos que no quede un simplenote con otra version
+      package:
+        state: absent
+        name: simplenote
+
+    - name: Descargamos simplenote {{simplenote_version}}
+      get_url:
+        url: "{{simplenote_url}}"
+        dest: "{{simplenote_installer_deb}}"
+      
+    - name: Instalamos simplenote
+      apt:
+        deb: "{{simplenote_installer_deb}}"
+      become: yes
+  
+    - name: Borramos instalador
+      file:
+        path: "{{simplenote_installer_deb}}"
+        state: absent
+
+    when: simplenote_installed.rc == 1

@@ -1,0 +1,6 @@
+---
+
+# simplenote
+simplenote_version: "1.8.0"
+simplenote_url: https://github.com/Automattic/simplenote-electron/releases/download/v{{simplenote_version}}/Simplenote-linux-{{simplenote_version}}-amd64.deb
+simplenote_installer_deb: "{{downloads_folder_path}}/simplenote_{{simplenote_version}}.deb"

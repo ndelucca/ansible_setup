@@ -1,0 +1,17 @@
+---
+
+  - name: Instalamos vscode
+    block:
+
+    - name: Aseguramos que snap este instalado
+      package:
+        name: snapd
+
+    - name: Instalamos desde snap classic
+      snap:
+        name: "{{item}}"
+        classic: yes
+      with_items:
+        - code # Editor Visual Studio Code - Lo mantienen Oficialmente
+
+    become: yes

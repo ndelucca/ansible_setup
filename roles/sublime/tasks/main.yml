@@ -1,0 +1,17 @@
+---
+
+  - name: Instalamos sublime
+    block:
+
+    - name: Aseguramos que snap este instalado
+      package:
+        name: snapd
+
+    - name: Instalamos desde snap classic
+      snap:
+        name: "{{item}}"
+        classic: yes
+      with_items:
+        - sublime-text # Editor Sublime Text
+
+    become: yes

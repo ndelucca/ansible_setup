@@ -1,0 +1,14 @@
+---
+
+  - name: Instalamos git y mergetool
+    package:
+      name: "{{item}}"
+    with_items:
+      - git
+      - meld
+    become: true
+
+  - name: Configuramos git
+    template:
+      dest: "{{gitconfig_file_path}}"
+      src: gitconfig
