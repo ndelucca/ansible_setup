@@ -7,6 +7,9 @@
     with_items:
       - vim.tiny # despues instalamos el full
       - vlc # no me gusta
+      - gimp # no me gusta
+      - onboard # no me gusta
+      - thunderbird # solo lo instalare si es necesario
       - mono-runtime-common # security risk
       - gnome-orca # security risk
       - orca # security risk
@@ -16,6 +19,7 @@
     package:
       name: "{{item}}"
     with_items:
+      - dconf-editor # Programa para editar comportamientos de linux
       - nfs-common # Necesario para compartir carpetas con nfs para montar con linux
       - gnome-color-manager # Color schemes for different monitors
       - tree # Tree
@@ -27,7 +31,6 @@
       - mycli # MySql command line
       - inkscape # Drawings in SVG
       - mysql-workbench # MySql GUI
-      - libreoffice-calc # Solo me interesa el excel
       - samba # Dancing application?
       - numlockx # The most important app in the world
       - safeeyes # Brake reminder
