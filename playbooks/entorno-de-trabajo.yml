@@ -26,6 +26,8 @@
     - import_role:
         name: bash-customs
     - import_role:
+        name: fonts
+    - import_role:
         name: apps
     - import_role:
         name: snaps
