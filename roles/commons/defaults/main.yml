@@ -9,13 +9,6 @@ email: "{{ email_local if ansible_hostname == nombre_equipo_casa else email_remo
 user_home_path: /home/{{user}}
 
 repos: true
+config_apps: true
 
 downloads_folder_path: "{{user_home_path}}/Downloads"
-
-# redshift
-redshift_config_file: "{{user_home_path}}/.config/redshift.conf"
-redshift_custom_config: false
-
-# safe eyes
-safeeyes_config_file: "{{user_home_path}}/.config/safeeyes/safeeyes.json"
-safeeyes_custom_config: false

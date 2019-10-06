@@ -1,0 +1,9 @@
+---
+
+# redshift
+redshift_config_file: "{{user_home_path}}/.config/redshift.conf"
+redshift_custom_config: false
+
+# safe eyes
+safeeyes_config_file: "{{user_home_path}}/.config/safeeyes/safeeyes.json"
+safeeyes_custom_config: false

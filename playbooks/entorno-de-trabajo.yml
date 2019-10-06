@@ -17,5 +17,28 @@
 
   tasks:
 
+    - name: Se corre con la siguiente config
+      debug:
+        msg: "Usuario:{{user}} - Email: {{email}}"
+
     - import_role:
-        name: mint
+        name: git
+    - import_role:
+        name: bash-customs
+    - import_role:
+        name: apps
+    - import_role:
+        name: snaps
+    # aplicaciones que no se instalan de manera normal o tienen alguna particularidad
+    - import_role:
+        name: sublime
+    - import_role:    
+        name: vscode
+    - import_role:    
+        name: libreoffice
+    - import_role:    
+        name: chrome
+    - import_role:    
+        name: simplenote
+    - import_role:    
+        name: vagrant

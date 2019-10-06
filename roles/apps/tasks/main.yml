@@ -1,0 +1,51 @@
+---
+
+  - name: Borramos defaults inservibles
+    package:
+      state: absent
+      name: "{{item}}"
+    with_items:
+      - vim.tiny # despues instalamos el full
+      - vlc # no me gusta
+      - mono-runtime-common # security risk
+      - gnome-orca # security risk
+      - orca # security risk
+    become: true
+    
+  - name: Instalaciones de applicaciones con package manager
+    package:
+      name: "{{item}}"
+    with_items:
+      - nfs-common # Necesario para compartir carpetas con nfs para montar con linux
+      - gnome-color-manager # Color schemes for different monitors
+      - tree # Tree
+      - vim # Editor
+      - gitk # Recomendaria grv para la consola
+      - mc # Midnight commander
+      - direnv # Environment switcher for the shell
+      - virtualbox # VM
+      - mycli # MySql command line
+      - inkscape # Drawings in SVG
+      - mysql-workbench # MySql GUI
+      - libreoffice-calc # Solo me interesa el excel
+      - samba # Dancing application?
+      - numlockx # The most important app in the world
+      - safeeyes # Brake reminder
+      - redshift # Bluelight filter
+      - snapd # External package manager
+
+  # extra configs
+  - name: Configuramos aplicaciones
+    block:
+    - name: Configuramos redshift
+      template:
+        dest: "{{redshift_config_file}}"
+        src: redshift.conf
+        force: yes
+
+    - name: Configuramos safeeyes
+      template:
+        dest: "{{safeeyes_config_file}}"
+        src: safeeyes.json
+        force: yes
+    when: config_apps|bool

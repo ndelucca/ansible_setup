@@ -1,0 +1,40 @@
+---
+  
+- name: Instalaciones de Snaps
+  block:
+
+  - name: A borrarse de ansible una vez ejecutado
+    snap:
+      name: "{{item}}"
+      state: absent
+    with_items:
+      - gitkraken # Git - Graphic UI
+      - grv # Git - Graphic UI from Command Line
+      - mycli # MySql command line
+      - chromium # Browser
+      - firefox # Browser
+      - inkscape # Drawings in SVG
+      - simplenote # Notepad with Sync
+      - libreoffice # Shit
+      
+  - name: Aseguramos que snap este instalado
+    package:
+      name: "{{item}}"
+    with_items:
+      - snapd # External package manager
+
+  - name: Instalamos con snapcraft.io
+    snap:
+      name: "{{item}}"
+    with_items:
+      - postman # REST tester
+      - whatsdesk # Whatsap
+
+  - name: Instalamos snapcraft.io classic
+    snap:
+      name: "{{item}}"
+      classic: yes
+    with_items:
+      - skype # Lo mantienen Oficialmente
+
+  become: yes

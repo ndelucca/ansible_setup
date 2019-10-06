@@ -21,9 +21,9 @@
 
     - name: Instalacion limitada
       package:
-        state: absent
         name: "{{item}}"
       with_items:
         - libreoffice-calc
     
-    when: full_libreoffice_installed.rc == 1
+    become: yes
+    when: full_libreoffice_installed.rc != 1
