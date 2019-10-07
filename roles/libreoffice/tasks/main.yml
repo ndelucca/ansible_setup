@@ -24,6 +24,7 @@
         name: "{{item}}"
       with_items:
         - libreoffice-calc
+        - libreoffice-writer
     
     become: yes
     when: full_libreoffice_installed.rc != 1
