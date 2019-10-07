@@ -7,6 +7,7 @@ email_remoto: ndelucca@educativa.com
 email: "{{ email_local if ansible_hostname == nombre_equipo_casa else email_remoto }}"
 
 user_home_path: /home/{{user}}
+bin_dir_path: /usr/local/bin
 
 repos: true
 config_apps: true

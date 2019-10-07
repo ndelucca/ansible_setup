@@ -1,3 +1,8 @@
 ---
 
-    gitconfig_file_path: /home/{{user}}/.gitconfig
+    gitconfig_file_path: "{{user_home_path}}/.gitconfig"
+
+    grv_version: 0.3.2
+    grv_url: "https://github.com/rgburke/grv/releases/download/v{{grv_version}}/grv_v{{grv_version}}_linux64"
+    grv_path: "{{user_home_path}}/.grv"
+    grv_bin_file: "{{grv_path}}/grv"
