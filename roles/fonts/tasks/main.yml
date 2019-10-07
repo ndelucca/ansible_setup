@@ -3,30 +3,58 @@
   - name: Instalamos fuentes
     block:
 
-    - debug:
-        msg: "Recorda instalar a mano"
-          
-    - name: Truco para aceptar terminos y condiciones de mscorefonts
-      debconf:
-        name: ttf-mscorefonts-installer
-        question: msttcorefonts/accepted-mscorefonts-eula
-        value: "true"
-        vtype: select
+    - name: Creamos directorio de fuentes
+      file:
+        state: directory
+        path: "{{fonts_path}}"
 
-    - name: Truco para aceptar terminos y condiciones de mscorefonts
-      debconf:
-        name: ttf-mscorefonts-installer
-        question: msttcorefonts/present-mscorefonts-eula
-        value: ""
-        vtype: select
+    - name: MS-Core-Fonts
+      block:
+      - name: Truco para aceptar terminos y condiciones de mscorefonts
+        debconf:
+          name: ttf-mscorefonts-installer
+          question: msttcorefonts/accepted-mscorefonts-eula
+          value: "true"
+          vtype: select
 
-    - name: Instalamos fuentes por apt-get
-      package:
-        name: "{{item}}"
-      with_items:
-        - ttf-mscorefonts-installer
+      - name: Truco para aceptar terminos y condiciones de mscorefonts
+        debconf:
+          name: ttf-mscorefonts-installer
+          question: msttcorefonts/present-mscorefonts-eula
+          value: ""
+          vtype: select
 
-    # - name: Actualizamos cache de fuentes
-    #   command: "fc-cache -f -v"
+      - name: Instalamos fuentes por apt-get
+        package:
+          name: "{{item}}"
+        with_items:
+          - ttf-mscorefonts-installer
+          - fonts-hack
+          - fonts-noto
+
+    - name: Chequeamos si esta instalada la fuente source-code-pro
+      stat:
+        path: "{{fonts_source_code_path}}"
+      register: source_code_pro_installed
     
+    - name: SourceCodePro
+      block:
+
+      - name: Creamos directorio para SourceCodePro
+        file:
+          state: directory
+          path: "{{fonts_source_code_path}}"
+          owner: "{{user}}"
+      
+      - name: Unzip
+        unarchive:
+          src: "Source_Code_Pro.zip"
+          dest: "{{fonts_source_code_path}}"
+          remote_src: no
+          owner: "{{user}}"
+      
+      - name: Actualizamos cache de fuentes
+        command: "fc-cache -f -v"
+
+      when: source_code_pro_installed.stat.exists == False
     become: yes
