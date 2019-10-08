@@ -2,20 +2,6 @@
   
 - name: Instalaciones de Snaps
   block:
-
-  - name: A borrarse de ansible una vez ejecutado
-    snap:
-      name: "{{item}}"
-      state: absent
-    with_items:
-      - gitkraken # Git - Graphic UI
-      - grv # Git - Graphic UI from Command Line
-      - mycli # MySql command line
-      - chromium # Browser
-      - firefox # Browser
-      - inkscape # Drawings in SVG
-      - simplenote # Notepad with Sync
-      - libreoffice # Shit
       
   - name: Aseguramos que snap este instalado
     package:

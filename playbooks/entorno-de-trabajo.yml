@@ -17,9 +17,12 @@
 
   tasks:
 
-    - name: Se corre con la siguiente config
-      debug:
-        msg: "Usuario:{{user}} - Email: {{email}}"
+    # - import_role:
+    #     name: commons
+
+    # - name: Se corre con la siguiente config
+    #   debug:
+    #     msg: "Usuario:{{user}} - Email: {{email}}"
 
     - import_role:
         name: git

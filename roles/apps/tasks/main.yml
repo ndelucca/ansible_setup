@@ -23,6 +23,7 @@
       - nfs-common # Necesario para compartir carpetas con nfs para montar con linux
       - gnome-color-manager # Color schemes for different monitors
       - tree # Tree
+      - firefox # yeap
       - vim # Editor
       - gitk # Recomendaria grv para la consola
       - mc # Midnight commander
@@ -36,7 +37,7 @@
       - safeeyes # Brake reminder
       - redshift # Bluelight filter
       - snapd # External package manager
-
+    become: yes
   # extra configs
   - name: Configuramos aplicaciones
     block:
