@@ -14,6 +14,8 @@
 	ci = commit
 	st = status
 	br = branch
+	logs = log --all --graph --date=short --pretty=format:"%C(yellow)%h%x20%C(green)%ad%x20%C(red)%an%x20%C(auto)%d%s"
+	logm = log --all --graph --date=short --pretty=medium --abbrev-commit
 [color]
 	ui = True
 
