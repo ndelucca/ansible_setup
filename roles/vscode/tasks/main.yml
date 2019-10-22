@@ -26,10 +26,10 @@
           repo: git@github.com:ndelucca/vscode-settings.git
           dest: "{{vscode_config_path}}"
       
-      - name: Extensiones VS Code
-        git:
-          repo: git@github.com:ndelucca/vscode-extensions.git
-          dest: "{{vscode_extension_path}}"
+      # - name: Extensiones VS Code
+      #   git:
+      #     repo: git@github.com:ndelucca/vscode-extensions.git
+      #     dest: "{{vscode_extension_path}}"
 
       when: repos|bool
 

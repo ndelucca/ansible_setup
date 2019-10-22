@@ -12,7 +12,8 @@
       package:
         state: absent
         name: vagrant
-
+      become: yes
+      
     - name: Descargamos Vagrant {{vagrant_version}}
       get_url:
         url: "{{vagrant_url}}"
