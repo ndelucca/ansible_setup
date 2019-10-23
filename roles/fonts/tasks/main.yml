@@ -32,29 +32,16 @@
           - fonts-hack
           - fonts-noto
 
-    - name: Chequeamos si esta instalada la fuente source-code-pro
-      stat:
-        path: "{{fonts_source_code_path}}"
-      register: source_code_pro_installed
+    - name: Source-Code-Pro
+      import_tasks: source_code.yml
+
+    - name: Roboto
+      import_tasks: roboto.yml
     
-    - name: SourceCodePro
-      block:
+    - name: Nunito
+      import_tasks: nunito.yml
+    
+    - name: Actualizamos cache de fuentes
+      command: "fc-cache -f -v"
 
-      - name: Creamos directorio para SourceCodePro
-        file:
-          state: directory
-          path: "{{fonts_source_code_path}}"
-          owner: "{{user}}"
-      
-      - name: Unzip
-        unarchive:
-          src: "Source_Code_Pro.zip"
-          dest: "{{fonts_source_code_path}}"
-          remote_src: no
-          owner: "{{user}}"
-      
-      - name: Actualizamos cache de fuentes
-        command: "fc-cache -f -v"
-
-      when: source_code_pro_installed.stat.exists == False
     become: yes

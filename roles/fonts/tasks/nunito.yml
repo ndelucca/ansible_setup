@@ -1,0 +1,23 @@
+---
+- name: Chequeamos si esta instalada la fuente Nunito
+  stat:
+    path: "{{nunito_path}}"
+  register: nunito_installed
+
+- name: Nunito
+  block:
+
+  - name: Creamos directorio para Nunito
+    file:
+      state: directory
+      path: "{{nunito_path}}"
+      owner: "{{user}}"
+
+  - name: Unzip
+    unarchive:
+      src: "Nunito.zip"
+      dest: "{{nunito_path}}"
+      remote_src: no
+      owner: "{{user}}"
+
+  when: nunito_installed.stat.exists == False

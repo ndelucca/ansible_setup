@@ -3,3 +3,5 @@
 
     fonts_path: "{{user_home_path}}/.fonts"
     fonts_source_code_path: "{{fonts_path}}/source-code-pro"
+    roboto_path: "{{fonts_path}}/roboto"
+    nunito_path: "{{fonts_path}}/nunito"
