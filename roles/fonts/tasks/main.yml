@@ -31,16 +31,17 @@
           - ttf-mscorefonts-installer
           - fonts-hack
           - fonts-noto
+          - fonts-firecode
 
     - name: Source-Code-Pro
       import_tasks: source_code.yml
 
     - name: Roboto
       import_tasks: roboto.yml
-    
+
     - name: Nunito
       import_tasks: nunito.yml
-    
+
     - name: Actualizamos cache de fuentes
       command: "fc-cache -f -v"
 
