@@ -31,7 +31,7 @@
           - ttf-mscorefonts-installer
           - fonts-hack
           - fonts-noto
-          - fonts-firecode
+          - fonts-firacode
 
     - name: Source-Code-Pro
       import_tasks: source_code.yml
