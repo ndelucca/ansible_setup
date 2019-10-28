@@ -14,7 +14,7 @@
       - gnome-orca # security risk
       - orca # security risk
     become: true
-    
+
   - name: Instalaciones de applicaciones con package manager
     package:
       name: "{{item}}"
@@ -23,6 +23,7 @@
       - nfs-common # Necesario para compartir carpetas con nfs para montar con linux
       - gnome-color-manager # Color schemes for different monitors
       - tree # Tree
+      - vym # Mind Mapping
       - firefox # yeap
       - vim # Editor
       - gitk # Recomendaria grv para la consola
