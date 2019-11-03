@@ -5,7 +5,7 @@
   gather_facts: yes
 
   vars_prompt:
-  
+
     - name: "user"
       prompt: "usuario"
       private: no
@@ -26,24 +26,49 @@
 
     - import_role:
         name: git
+      tags: git
+
     - import_role:
         name: bash-customs
+      tags: bash-customs
+
     - import_role:
         name: fonts
+      tags: fonts
+
     - import_role:
         name: apps
+      tags: apps
+
     - import_role:
         name: snaps
+      tags: snaps
     # aplicaciones que no se instalan de manera normal o tienen alguna particularidad
+
     - import_role:
         name: sublime
-    - import_role:    
+      tags: sublime
+
+    - import_role:
         name: vscode
-    - import_role:    
+      tags: vscode
+
+    - import_role:
         name: libreoffice
-    - import_role:    
+      tags: libreoffice
+
+    - import_role:
         name: chrome
-    - import_role:    
+      tags: chrome
+
+    - import_role:
         name: simplenote
-    - import_role:    
+      tags: simplenote
+
+    - import_role:
         name: vagrant
+      tags: vagrant
+
+    - import_role:
+        name: xmind
+      tags: xmind

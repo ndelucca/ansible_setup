@@ -1,0 +1,4 @@
+---
+mariadb_repo: http://ftp.utexas.edu/mariadb/repo/{{mariadb_version}}/ubuntu
+#mariadb_repo: http://ftp.igh.cnrs.fr/pub/mariadb/repo/{{mariadb_version}}/ubuntu
+mariadb_version: 10.3

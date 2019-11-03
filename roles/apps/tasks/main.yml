@@ -23,9 +23,9 @@
       - nfs-common # Necesario para compartir carpetas con nfs para montar con linux
       - gnome-color-manager # Color schemes for different monitors
       - tree # Tree
-      - vym # Mind Mapping
       - firefox # yeap
       - vim # Editor
+      - guake # Desktop terminal caller
       - gitk # Recomendaria grv para la consola
       - mc # Midnight commander
       - direnv # Environment switcher for the shell

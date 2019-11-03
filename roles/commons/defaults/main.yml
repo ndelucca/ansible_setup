@@ -13,3 +13,5 @@ repos: true
 config_apps: true
 
 downloads_folder_path: "{{user_home_path}}/Downloads"
+
+custom_src_dir: /etc/apt/sources.list.d

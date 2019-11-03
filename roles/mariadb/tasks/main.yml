@@ -1,0 +1,37 @@
+---
+# sudo apt-get install software-properties-common
+# sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
+# sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://ftp.utexas.edu/mariadb/repo/10.3/ubuntu bionic main'
+- name: Instalacion MariaDB
+  block:
+
+  - name: Install MariaDB Server
+    apt:
+      name: software-properties-common
+      state: present
+    tags: install_mariadb
+
+  - name: Agregamos key del repositorio al sistema
+    shell: apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
+    tags: install_mariadb
+
+  - name: Instalamos repositorio MariaDB
+    apt_repository:
+      repo: 'deb [arch=amd64,arm64,ppc64el] {{mariadb_repo}} bionic main'
+      state: present
+    tags: install_mariadb
+
+  - name: Install MariaDB Server
+    apt:
+      name: mariadb-server
+      state: latest
+      update_cache: yes
+    tags: install_mariadb
+
+  # - name: Configuramos git
+  #   template:
+  #     dest: /etc/mysql/my.cnf
+  #     src: my.cnf
+  #   tags: config_mariadb
+
+  become: yes
