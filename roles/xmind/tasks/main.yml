@@ -4,8 +4,6 @@
     shell: dpkg-query -W -f='${Status} ${Version}\n' xmind-vana | grep -v deinstall | grep {{xmind_version}}
     register: xmind_installed
     ignore_errors: yes
-  - debug:
-      var: xmind_installed
 
   - name: Instalamos XMIND
     block:
