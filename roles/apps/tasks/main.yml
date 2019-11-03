@@ -39,6 +39,19 @@
       - redshift # Bluelight filter
       - snapd # External package manager
     become: yes
+
+  - name: Chequeamos si hay algun archivo de config de mycli
+    stat:
+      path: "{{mycli_config_file}}"
+    register: mycli_conf
+
+  - name: Configuramos Mycli
+    template:
+      dest: "{{mycli_config_file}}"
+      src: mycli.conf
+      force: yes
+    when: not mycli_conf.stat.exists
+
   # extra configs
   - name: Configuramos aplicaciones
     block:

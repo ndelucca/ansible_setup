@@ -7,3 +7,6 @@ redshift_custom_config: false
 # safe eyes
 safeeyes_config_file: "{{user_home_path}}/.config/safeeyes/safeeyes.json"
 safeeyes_custom_config: false
+
+# mycli
+mycli_config_file: "{{user_home_path}}/.my.cnf"
