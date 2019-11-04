@@ -1,0 +1,12 @@
+---
+- name: Test Playbook
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+
+
+  tasks:
+
+    - name: Start Debugging
+      debug:
+        msg: "Started test playbook"
