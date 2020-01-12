@@ -9,10 +9,11 @@
       - vlc # no me gusta
       - gimp # no me gusta
       - onboard # no me gusta
-      - thunderbird # solo lo instalare si es necesario
+      # - thunderbird
       - mono-runtime-common # security risk
       - gnome-orca # security risk
       - orca # security risk
+      - safeeyes # Brake reminder
     become: true
 
   - name: Instalaciones de applicaciones con package manager
@@ -23,7 +24,7 @@
       - nfs-common # Necesario para compartir carpetas con nfs para montar con linux
       - gnome-color-manager # Color schemes for different monitors
       - tree # Tree
-      - firefox # yeap
+      - firefox #
       - vim # Editor
       - guake # Desktop terminal caller
       - gitk # Recomendaria grv para la consola
@@ -35,7 +36,7 @@
       - mysql-workbench # MySql GUI
       - samba # Dancing application?
       - numlockx # The most important app in the world
-      - safeeyes # Brake reminder
+      # - safeeyes # Brake reminder
       - redshift # Bluelight filter
       - snapd # External package manager
     become: yes
@@ -61,9 +62,9 @@
         src: redshift.conf
         force: yes
 
-    - name: Configuramos safeeyes
-      template:
-        dest: "{{safeeyes_config_file}}"
-        src: safeeyes.json
-        force: yes
-    when: config_apps|bool
+    # - name: Configuramos safeeyes
+    #   template:
+    #     dest: "{{safeeyes_config_file}}"
+    #     src: safeeyes.json
+    #     force: yes
+    # when: config_apps|bool
