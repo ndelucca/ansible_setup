@@ -27,7 +27,6 @@
       - tree # Tree
       - firefox #
       - vim # Editor
-      - guake # Desktop terminal caller
       - gitk # Recomendaria grv para la consola
       - mc # Midnight commander
       - direnv # Environment switcher for the shell
