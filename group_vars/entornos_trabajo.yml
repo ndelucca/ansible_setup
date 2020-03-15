@@ -1,0 +1,19 @@
+---
+
+nombre_equipo_casa: ndeluccax
+email_local: nazadelucca@gmail.com
+email_remoto: ndelucca@educativa.com
+
+email: "{{ email_local if ansible_hostname == nombre_equipo_casa else email_remoto }}"
+
+user_home_path: /home/{{user}}
+bin_dir_path: /usr/local/bin
+
+repos: true
+config_apps: true
+
+downloads_folder_path: "{{user_home_path}}/Downloads"
+
+custom_src_dir: /etc/apt/sources.list.d
+
+...

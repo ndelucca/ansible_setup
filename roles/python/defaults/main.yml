@@ -1,7 +1,7 @@
 ---
-pyenv_repo: https://github.com/pyenv/pyenv.git
-pyenv_path: "{{user_home}}/.pyenv"
 
-pipenv_path: "{{user_home}}/.pipenv"
+pyenv_repo: https://github.com/pyenv/pyenv.git
+pyenv_path: "{{user_home_path}}/.pyenv"
+pipenv_path: "{{user_home_path}}/.pipenv"
 
 ...
