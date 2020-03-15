@@ -1,0 +1,14 @@
+---
+  - name: Creamos directorio para pyevn
+    file:
+        path: "{{pyenv_path}}"
+        state: directory
+        owner: "{{user}}"
+        group: "{{user}}"
+
+  - name: Crear repositorio de pyenv
+    git:
+      repo: "{{pyenv_repo}}"
+      dest: "{{pyenv_path}}"
+
+...

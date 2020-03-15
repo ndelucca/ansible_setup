@@ -13,13 +13,14 @@
       - mono-runtime-common # security risk
       - gnome-orca # security risk
       - orca # security risk
-      - safeeyes # Brake reminder
+      # - safeeyes # Brake reminder
     become: true
 
   - name: Instalaciones de applicaciones con package manager
     package:
       name: "{{item}}"
     with_items:
+      - pip3
       - dconf-editor # Programa para editar comportamientos de linux
       - nfs-common # Necesario para compartir carpetas con nfs para montar con linux
       - gnome-color-manager # Color schemes for different monitors

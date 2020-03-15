@@ -17,6 +17,11 @@
 
   tasks:
 
+    - name: Ansible instalado
+      pip:
+        name: ansible
+        state: present
+
     - import_role:
         name: git
       tags: git
