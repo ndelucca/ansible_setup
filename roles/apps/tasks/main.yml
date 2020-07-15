@@ -33,12 +33,12 @@
       - virtualbox # VM
       - mycli # MySql command line
       - inkscape # Drawings in SVG
-      - mysql-workbench # MySql GUI
+      - mysql-workbench-community # MySql GUI
       - samba # Dancing application?
       - numlockx # The most important app in the world
       # - safeeyes # Brake reminder
       - redshift # Bluelight filter
-      - snapd # External package manager
+      # - snapd # External package manager
     become: yes
 
   - name: Chequeamos si hay algun archivo de config de mycli

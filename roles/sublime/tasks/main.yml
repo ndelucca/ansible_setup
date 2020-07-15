@@ -1,38 +1,23 @@
 ---
 
   # Editor Sublime Text 3
-  # No es mantenido oficialmente en SNAP
-  # Pero parece mantenerse bien actualizado
 
   - name: Instalamos sublime
     block:
 
-    - name: Aseguramos que snap este instalado
-      package:
-        name: snapd
-    
     - name: Configuración de repositorio config
       block:
 
       - name: Creamos el directorio de instalacion para los repos
-        file: 
+        file:
           state: directory
           path: "{{item}}"
         with_items:
           - "{{user_home_path}}/.config/sublime-text-3/"
-      
+
       - name: Settings Sublime
         git:
           repo: git@github.com:ndelucca/sublime-settings.git
           dest: "{{user_home_path}}/.config/sublime-text-3/"
 
       when: repos|bool
-
-    - name: Instalamos desde snap classic
-      snap:
-        name: "{{item}}"
-        classic: yes
-      with_items:
-        - sublime-text
-      become: yes
-    

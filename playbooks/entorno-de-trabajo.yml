@@ -42,9 +42,9 @@
         name: apps
       tags: apps
 
-    - import_role:
-        name: snaps
-      tags: snaps
+    # - import_role:
+    #     name: snaps
+    #   tags: snaps
     # aplicaciones que no se instalan de manera normal o tienen alguna particularidad
 
     - import_role:
