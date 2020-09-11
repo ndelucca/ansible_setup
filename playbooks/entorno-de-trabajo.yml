@@ -1,8 +1,6 @@
 ---
 - name: Preparamos el entorno de trabajo para un linux mint
   hosts: localhost
-  connection: local
-  gather_facts: yes
 
   vars_prompt:
 

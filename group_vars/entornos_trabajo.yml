@@ -1,4 +1,7 @@
 ---
+ansible_host: localhost
+ansible_connection: local
+ansible_python_interpreter: /usr/bin/python
 
 nombre_equipo_casa: ndeluccax
 email_local: nazadelucca@gmail.com
