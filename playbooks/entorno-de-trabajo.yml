@@ -17,11 +17,6 @@
 
   tasks:
 
-    - name: Ansible instalado
-      pip:
-        name: ansible
-        state: present
-
     - import_role:
         name: git
       tags: git
@@ -41,11 +36,6 @@
     - import_role:
         name: apps
       tags: apps
-
-    # - import_role:
-    #     name: snaps
-    #   tags: snaps
-    # aplicaciones que no se instalan de manera normal o tienen alguna particularidad
 
     - import_role:
         name: sublime

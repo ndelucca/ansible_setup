@@ -1,23 +1,18 @@
 ---
 
-  # Editor Sublime Text 3
+- name: Configuración de repositorio config
+  block:
 
-  - name: Instalamos sublime
-    block:
+  - name: Creamos el directorio de instalacion para los repos
+    file:
+      state: directory
+      path: "{{item}}"
+    with_items:
+      - "{{user_home_path}}/.config/sublime-text-3/"
 
-    - name: Configuración de repositorio config
-      block:
+  - name: Settings Sublime
+    git:
+      repo: git@github.com:ndelucca/sublime-settings.git
+      dest: "{{user_home_path}}/.config/sublime-text-3/"
 
-      - name: Creamos el directorio de instalacion para los repos
-        file:
-          state: directory
-          path: "{{item}}"
-        with_items:
-          - "{{user_home_path}}/.config/sublime-text-3/"
-
-      - name: Settings Sublime
-        git:
-          repo: git@github.com:ndelucca/sublime-settings.git
-          dest: "{{user_home_path}}/.config/sublime-text-3/"
-
-      when: repos|bool
+  when: repos|bool
