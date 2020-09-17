@@ -28,12 +28,12 @@
       tags: fonts
 
     - import_role:
-        name: python
-      tags: python
-
-    - import_role:
         name: apps
       tags: apps
+
+    - import_role:
+        name: python
+      tags: python
 
     - import_role:
         name: sublime
