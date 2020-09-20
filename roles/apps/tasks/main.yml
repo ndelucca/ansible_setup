@@ -34,10 +34,10 @@
       - virtualbox # VM
       - mycli # MySql command line
       - inkscape # Drawings in SVG
-      # - mysql-workbench-community # MySql GUI
+      - skypeforlinux
       - samba # Dancing application?
       - numlockx # The most important app in the world
-      # - safeeyes # Brake reminder
+      - safeeyes # Brake reminder
       - redshift # Bluelight filter
     become: yes
 
