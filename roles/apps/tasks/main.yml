@@ -61,10 +61,3 @@
         dest: "{{redshift_config_file}}"
         src: redshift.conf
         force: yes
-
-    # - name: Configuramos safeeyes
-    #   template:
-    #     dest: "{{safeeyes_config_file}}"
-    #     src: safeeyes.json
-    #     force: yes
-    # when: config_apps|bool
