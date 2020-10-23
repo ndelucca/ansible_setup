@@ -42,6 +42,9 @@
     - name: Nunito
       import_tasks: nunito.yml
 
+    - name: Jetbrainsmono
+      import_tasks: jetbrainsmono.yml
+
     - name: Actualizamos cache de fuentes
       command: "fc-cache -f -v"
 

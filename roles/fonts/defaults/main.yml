@@ -5,3 +5,4 @@
     fonts_source_code_path: "{{fonts_path}}/source-code-pro"
     roboto_path: "{{fonts_path}}/roboto"
     nunito_path: "{{fonts_path}}/nunito"
+    jetbrainsmono_path: "{{fonts_path}}/jetbrainsmono"
