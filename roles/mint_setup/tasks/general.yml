@@ -37,6 +37,7 @@
     - redshift
     - cowsay
     - fortune-mod
+    - shellcheck
   loop_control:
     loop_var: pkg
 
