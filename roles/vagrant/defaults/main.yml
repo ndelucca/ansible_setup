@@ -1,6 +1,0 @@
----
-
-# vagrant
-vagrant_version: "2.2.14"
-vagrant_url: https://releases.hashicorp.com/vagrant/{{vagrant_version}}/vagrant_{{vagrant_version}}_x86_64.deb
-vagrant_installer_deb: "{{downloads_folder_path}}/vagrant_{{vagrant_version}}.deb"

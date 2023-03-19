@@ -1,6 +1,0 @@
----
-
-# xmind
-xmind_version: "9.0.6"
-xmind_url: http://dl2.xmind.net/xmind-downloads/XMind-ZEN-for-Linux-64bit.deb
-xmind_installer_deb: "{{downloads_folder_path}}/xmind_{{xmind_version}}.deb"

@@ -1,0 +1,26 @@
+---
+- name: Linux Mint Setup
+  hosts: my_machines
+  become: true
+
+  tasks:
+
+    - name: Importing mint_setup git.yml tasks...
+      ansible.builtin.import_role:
+        name: mint_setup
+        tasks_from: git.yml
+      tags: git
+
+    - name: Importing mint_setup general.yml tasks...
+      ansible.builtin.import_role:
+        name: mint_setup
+        tasks_from: general.yml
+      tags: general
+
+    - name: Importing mint_setup fonts.yml tasks...
+      ansible.builtin.import_role:
+        name: mint_setup
+        tasks_from: fonts.yml
+      tags: fonts
+
+...

@@ -1,0 +1,15 @@
+---
+
+user_home: /home/{{ user }}
+
+mycli_user: '{{ user }}'
+mycli_pass: '{{ ansible_become_pass }}'
+
+git_user: '{{ user }}'
+git_email: '{{ user_email }}'
+git_user_home: '{{ user_home }}'
+
+fonts_user: '{{ user }}'
+fonts_path: '{{ user_home }}/.fonts'
+
+...

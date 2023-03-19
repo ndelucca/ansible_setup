@@ -1,0 +1,55 @@
+---
+
+- name: Deleting default packages...
+  ansible.builtin.apt:
+    state: absent
+    name: '{{ pkg }}'
+  loop:
+    - vim.tiny
+    - vlc
+    - gimp
+    - onboard
+    - mono-runtime-common # security risk
+    - gnome-orca # security risk
+    - orca # security risk
+  loop_control:
+    loop_var: pkg
+
+- name: Installing packages...
+  ansible.builtin.apt:
+    name: '{{ pkg }}'
+  loop:
+    - python3-pip
+    - dconf-editor
+    - nfs-common
+    - gnome-color-manager
+    - tree
+    - firefox
+    - vim
+    - gawk
+    - mc
+    - direnv
+    - virtualbox
+    - mycli
+    - inkscape
+    - skypeforlinux
+    - numlockx
+    - redshift
+  loop_control:
+    loop_var: pkg
+
+- name: mycli setup...
+  ansible.builtin.template:
+    dest: '{{ user_home }}/.my.cnf'
+    src: mycli.conf
+    force: true
+    mode: 0644
+
+- name: redshift setup...
+  ansible.builtin.template:
+    dest: '{{ user_home }}/.config/redshift.conf'
+    src: redshift.conf
+    force: true
+    mode: 0644
+
+...

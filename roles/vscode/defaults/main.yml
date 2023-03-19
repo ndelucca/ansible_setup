@@ -1,4 +1,0 @@
----
-
-    vscode_config_path: "{{user_home_path}}/.config/Code/User/"
-    vscode_extension_path: "{{user_home_path}}/.vscode/extensions/"

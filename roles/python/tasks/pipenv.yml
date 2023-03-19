@@ -1,7 +1,0 @@
----
-
-- name: Instalamos pipenv
-  pip:
-    name: pipenv
-
-...

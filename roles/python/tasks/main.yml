@@ -1,7 +1,0 @@
----
-
-  - import_tasks: 'pyenv.yml'
-
-  - import_tasks: 'pipenv.yml'
-
-...

@@ -1,5 +1,0 @@
----
-
-  user_bash_customs_path: /home/{{user}}/.bash_customs
-
-...

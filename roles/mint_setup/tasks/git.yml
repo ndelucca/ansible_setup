@@ -1,0 +1,14 @@
+---
+
+- name: Installing git...
+  ansible.builtin.apt:
+    name: git
+    state: present
+
+- name: Creating git configuration file...
+  ansible.builtin.template:
+    dest: '{{ git_user_home }}/.gitconfig'
+    src: gitconfig
+    mode: 0644
+
+...

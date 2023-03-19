@@ -1,0 +1,59 @@
+{
+    "folders": [
+        {
+            "path": ".."
+        }
+    ],
+    "settings": {
+        "files.associations": {
+            "*.yml": "ansible",
+        },
+        "files.insertFinalNewline": true,
+        "files.trimTrailingWhitespace": true,
+        "files.eol": "\n",
+        "files.encoding": "utf8",
+        "editor.renderWhitespace": "all",
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true,
+        },
+        "editor.formatOnSave": true,
+        "editor.rulers": [
+            80,
+            120
+        ],
+        "workbench.colorCustomizations": {
+            "titleBar.activeBackground": "#b42a2a"
+        },
+        "yaml.format.enable": true,
+        "yaml.format.singleQuote": true,
+        "yaml.format.bracketSpacing": true,
+        "yaml.validate": true,
+        "yaml.hover": true,
+        "yaml.completion": true,
+        "yaml.customTags": [
+            "!encrypted/pkcs1-oaep scalar",
+            "!vault scalar"
+        ],
+        "[ansible]": {
+            "editor.autoIndent": "advanced",
+            "editor.quickSuggestions": {
+                "other": true,
+                "comments": false,
+                "strings": true
+            }
+        },
+        "ansible.ansibleLint.enabled": true,
+        "python.formatting.provider": "black",
+        "[python]": {
+            "editor.formatOnSave": true,
+            "editor.tabSize": 4,
+            "editor.codeActionsOnSave": {
+                "source.organizeImports": true,
+            }
+        },
+    },
+}
+
+
