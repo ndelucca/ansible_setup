@@ -11,6 +11,7 @@ ansible_become_pass: !vault |
   3935
 
 user: ndelucca
+group: ndelucca
 user_home: /home/ndelucca
 user_email: nazadelucca@gmail.com
 

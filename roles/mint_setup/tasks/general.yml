@@ -1,6 +1,6 @@
 ---
 
-- name: Deleting default packages...
+- name: deleting default packages...
   ansible.builtin.apt:
     state: absent
     name: '{{ pkg }}'
@@ -15,7 +15,7 @@
   loop_control:
     loop_var: pkg
 
-- name: Installing packages...
+- name: installing packages...
   ansible.builtin.apt:
     name: '{{ pkg }}'
   loop:
@@ -32,7 +32,6 @@
     - virtualbox
     - mycli
     - inkscape
-    - skypeforlinux
     - numlockx
     - redshift
     - cowsay
@@ -61,5 +60,12 @@
     src: vscode.json
     force: true
     mode: 0644
+
+- name: creating dev directory...
+  ansible.builtin.file:
+    path: '{{ dev_folder }}'
+    state: directory
+    mode: 0755
+
 
 ...
