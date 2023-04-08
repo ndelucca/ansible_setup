@@ -1,0 +1,13 @@
+---
+- name: Podman Setup
+  hosts: my_machines
+
+  tasks:
+
+    - name: importing mint_setup git.yml tasks...
+      ansible.builtin.import_role:
+        name: podman_setup
+        tasks_from: install.yml
+      tags: podman
+
+...
