@@ -29,7 +29,7 @@
     - gawk
     - mc
     - direnv
-    - virtualbox
+    - virt-manager
     - mycli
     - inkscape
     - numlockx
