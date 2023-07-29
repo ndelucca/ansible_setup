@@ -1,4 +1,8 @@
 ---
+- name: Importing user.yml tasks
+  tags: user
+  ansible.builtin.import_tasks: user.yml
+
 - name: Importing git.yml tasks
   tags: git
   ansible.builtin.import_tasks: git.yml

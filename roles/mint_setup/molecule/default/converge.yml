@@ -2,11 +2,11 @@
 - name: Converge
   hosts: all
   tasks:
-    # replace these tasks with whatever you find suitable to test
-    - name: Copy something to test use of synchronize module
-      ansible.builtin.copy:
-        src: /etc/hosts
-        dest: /tmp/hosts-from-controller
-    - name: "Include ndelucca.mint_setup"
+    - name: Include ndelucca.mint_setup
       ansible.builtin.include_role:
-        name: "ndelucca.mint_setup"
+        name: mint_setup
+      vars:
+        mint_setup_user: tester_dude
+        mint_setup_group: tester_dude
+        mint_setup_user_email: tester_dude
+        mint_setup_user_passwd: tester_dude

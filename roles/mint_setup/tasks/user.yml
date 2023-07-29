@@ -1,0 +1,10 @@
+---
+- name: Creating group
+  ansible.builtin.group:
+    name: "{{ mint_setup_group }}"
+
+- name: Creating user
+  ansible.builtin.user:
+    name: "{{ mint_setup_user }}"
+    group: "{{ mint_setup_group }}"
+    home: "{{ mint_setup_user_home }}"
