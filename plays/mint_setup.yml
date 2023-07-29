@@ -4,9 +4,9 @@
   become: true
 
   tasks:
-    - name: Importing ndelucca.mint_setup git.yml tasks
+    - name: Importing mint_setup git.yml tasks
       ansible.builtin.import_role:
-        name: ndelucca.mint_setup
+        name: mint_setup
       vars:
         mint_setup_user: "{{ user.name }}"
         mint_setup_group: "{{ user.group }}"

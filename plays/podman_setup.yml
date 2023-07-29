@@ -3,7 +3,7 @@
   hosts: my_machines
 
   tasks:
-    - name: Importing ndelucca.podman_setup role
+    - name: Importing podman_setup role
       tags: podman
       ansible.builtin.import_role:
         name: podman_setup
