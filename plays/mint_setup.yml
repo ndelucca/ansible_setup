@@ -1,28 +1,14 @@
 ---
-- name: linux mint setup
+- name: Linux mint setup
   hosts: my_machines
   become: true
 
   tasks:
-    - name: importing mint_setup git.yml tasks
+    - name: Importing ndelucca.mint_setup git.yml tasks
       ansible.builtin.import_role:
-        name: mint_setup
-        tasks_from: git.yml
-      tags: git
-
-    - name: importing mint_setup general.yml tasks
-      ansible.builtin.import_role:
-        name: mint_setup
-        tasks_from: general.yml
-      tags: general
-
-    - name: importing mint_setup bash.yml tasks
-      ansible.builtin.import_role:
-        name: mint_setup
-        tasks_from: bash.yml
-
-    - name: importing mint_setup fonts.yml tasks
-      ansible.builtin.import_role:
-        name: mint_setup
-        tasks_from: fonts.yml
-      tags: fonts
+        name: ndelucca.mint_setup
+      vars:
+        mint_setup_user: "{{ user.name }}"
+        mint_setup_group: "{{ user.group }}"
+        mint_setup_user_email: "{{ user.email }}"
+        mint_setup_user_passwd: "{{ user.passwd }}"

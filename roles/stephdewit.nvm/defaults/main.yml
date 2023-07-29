@@ -19,4 +19,4 @@ nvm_force_install: false
 nvm_install_deps: true
 
 # allow to change git url for use proxy
-nvm_git_repository: https://github.com/creationix/nvm.git
+nvm_mint_git_repository: https://github.com/creationix/nvm.git

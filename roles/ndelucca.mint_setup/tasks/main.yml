@@ -1,0 +1,15 @@
+---
+- name: Importing git.yml tasks
+  tags: git
+  ansible.builtin.import_tasks: git.yml
+
+- name: Importing general.yml tasks
+  tags: general
+  ansible.builtin.import_tasks: general.yml
+
+- name: Importing bash.yml tasks
+  ansible.builtin.import_tasks: bash.yml
+
+- name: Importing fonts.yml tasks
+  tags: fonts
+  ansible.builtin.import_tasks: fonts.yml

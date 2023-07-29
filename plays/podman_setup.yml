@@ -1,10 +1,10 @@
 ---
-- name: podman setup
+- name: Podman setup
   hosts: my_machines
 
   tasks:
-    - name: importing mint_setup git.yml tasks
+    - name: Importing ndelucca.podman_setup role
+      tags: podman
       ansible.builtin.import_role:
         name: podman_setup
         tasks_from: install.yml
-      tags: podman
