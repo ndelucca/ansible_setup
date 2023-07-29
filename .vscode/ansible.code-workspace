@@ -45,11 +45,9 @@
             }
         },
         "ansible.validation.lint.enabled": true,
-        "ansible.validation.lint.path": "/usr/bin/ansible-lint",
         "ansible.validation.enabled": true,
         "ansible.ansible.useFullyQualifiedCollectionNames": true,
-        "ansible.python.interpreterPath": "/bin/python3",
-        "ansible.ansible.path": "/usr/bin/ansible",
+        "ansible.python.interpreterPath": ".venv/bin/python",
         "python.formatting.provider": "black",
         "[python]": {
             "editor.formatOnSave": true,

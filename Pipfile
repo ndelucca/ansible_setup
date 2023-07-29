@@ -9,6 +9,7 @@ argcomplete = "==3.*"
 
 [dev-packages]
 molecule = "*"
+molecule-podman = "*"
 yamllint = "*"
 ansible-lint = "*"
 
