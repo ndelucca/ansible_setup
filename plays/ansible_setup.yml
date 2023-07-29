@@ -1,0 +1,14 @@
+---
+- name: Ansible controller setup
+  hosts: my_machines
+  become: true
+
+  tasks:
+    - name: Installing argcomplete
+      ansible.builtin.package:
+        name: python3-argcomplete
+
+    - name: Configuring argcomplete
+      ansible.builtin.command: activate-global-python-argcomplete --user
+      args:
+        creates: /root/.bash_completion
