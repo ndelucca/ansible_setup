@@ -1,7 +1,0 @@
----
-- name: Test ndelucca pipenv
-  hosts: my_machines
-
-  tasks:
-    - name: Running ndelucca.pipenv module
-      ndelucca.pipenv:
