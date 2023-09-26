@@ -1,0 +1,20 @@
+---
+# Gitea Version
+gitea_version: 1.21
+
+# Path to the Gitea binary
+gitea_bin: /home/gitea/bin/gitea
+
+# Path to the file containing the ENV configuration variables for gitea
+gitea_envfile: /etc/default/gitea
+
+# Gitea home directory
+gitea_working_dir: /home/gitea
+
+# Runtime user and group for the gitea service
+gitea_user: gitea
+gitea_group: gitea
+
+gitea_download_url: "https://dl.gitea.io/gitea/{{ gitea_version }}/gitea-{{ gitea_version }}-linux-amd64"
+
+gitea_systemd_service_file: /lib/systemd/system/gitea.service
