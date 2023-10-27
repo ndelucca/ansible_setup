@@ -1,0 +1,4 @@
+---
+- name: Restart i3
+  ansible.builtin.command: i3 restart
+  changed_when: false

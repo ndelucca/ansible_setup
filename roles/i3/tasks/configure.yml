@@ -1,0 +1,14 @@
+---
+- name: Creating configuration files
+  ansible.builtin.template:
+    src: "{{ template_file }}.j2"
+    dest: "{{ i3_config_dir }}/{{ template_file }}"
+    mode: "0644"
+    owner: "{{ i3_user_name }}"
+    group: "{{ i3_user_group }}"
+  loop:
+    - config
+  loop_control:
+    loop_var: template_file
+    label: "{{ i3_config_dir }}/{{ template_file }}"
+  notify: Restart i3
