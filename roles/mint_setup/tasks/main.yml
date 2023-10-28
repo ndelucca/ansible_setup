@@ -12,7 +12,9 @@
   ansible.builtin.import_tasks: general.yml
 
 - name: Importing tasks
-  ansible.builtin.import_tasks: bash.yml
+  tags: bash
+  ansible.builtin.import_role:
+    name: bash
 
 - name: Importing tasks
   tags: fonts

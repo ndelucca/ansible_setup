@@ -1,20 +1,14 @@
 ---
-i3_user_name: "{{ host_user.name }}"
-i3_user_group: "{{ host_user.group }}"
-i3_user_home: "{{ host_user.home }}"
-i3_user_email: "{{ host_user.email }}"
-i3_user_passwd: "{{ host_user.passwd }}"
-i3_user_config_dir: "{{ i3_user_home }}/.config"
-
-i3_config_dir: "{{ i3_user_config_dir }}/i3"
+i3_config_dir: "{{ common_user_config_dir }}/i3"
+i3_config_subdir: "{{ i3_config_dir }}/config.d"
 i3_config_font: JetBrains Mono 10
-
+i3_config_mod: Mod4
 # Feh Configuration
-i3_config_wallpaper: "{{ i3_user_home }}/Pictures/guts_wallpaper.jpg"
+i3_config_wallpaper: "{{ common_user_home }}/Pictures/guts_wallpaper.jpg"
 
 # GTK Configuration
-i3_gtk2_config_dir: "{{ i3_user_config_dir }}/gtk-2.0/"
-i3_gtk3_config_dir: "{{ i3_user_config_dir }}/gtk-3.0/"
+i3_gtk2_config_dir: "{{ common_user_config_dir }}/gtk-2.0/"
+i3_gtk3_config_dir: "{{ common_user_config_dir }}/gtk-3.0/"
 
 i3_gtk_theme_name: Mint-Y-Dark
 i3_gtk_icon_theme_name: Mint-Y
