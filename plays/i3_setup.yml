@@ -1,0 +1,7 @@
+---
+- name: Run i3 Setup
+  hosts: my_machines
+  become: true
+
+  roles:
+    - i3

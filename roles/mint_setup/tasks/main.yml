@@ -17,8 +17,3 @@
 - name: Importing tasks
   tags: fonts
   ansible.builtin.import_tasks: fonts.yml
-
-- name: Importing tasks
-  tags: i3
-  ansible.builtin.import_role:
-    name: i3

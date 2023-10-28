@@ -1,14 +1,29 @@
 ---
-- name: Creating configuration files
+- name: Creating i3 configuration files
   ansible.builtin.template:
-    src: "{{ template_file }}.j2"
-    dest: "{{ i3_config_dir }}/{{ template_file }}"
+    src: "i3/{{ item }}.j2"
+    dest: "{{ i3_config_dir }}/{{ item }}"
     mode: "0644"
     owner: "{{ i3_user_name }}"
     group: "{{ i3_user_group }}"
   loop:
     - config
   loop_control:
-    loop_var: template_file
-    label: "{{ i3_config_dir }}/{{ template_file }}"
+    label: "{{ i3_config_dir }}/{{ item }}"
+  notify: Restart i3
+
+- name: Creating gtk configuration files
+  ansible.builtin.template:
+    src: "{{ item.gtk_version }}/{{ item.gtk_file }}.j2"
+    dest: "{{ i3_user_config_dir }}/{{ item.gtk_version }}/{{ item.gtk_file }}"
+    mode: "0644"
+    owner: "{{ i3_user_name }}"
+    group: "{{ i3_user_group }}"
+  loop:
+    - gtk_file: settings.ini
+      gtk_version: gtk-3.0
+    - gtk_file: settings.ini
+      gtk_version: gtk-2.0
+  loop_control:
+    label: "{{ i3_user_config_dir }}/{{ item.gtk_version }}/{{ item.gtk_file }}"
   notify: Restart i3
