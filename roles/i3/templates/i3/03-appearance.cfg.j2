@@ -1,0 +1,11 @@
+{{ ansible_managed | comment }}
+
+set $mod {{ i3_config_mod }}
+
+hide_edge_borders both
+default_border pixel 2
+default_floating_border pixel 2
+
+bar {
+    status_command i3status
+}

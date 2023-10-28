@@ -1,19 +1,21 @@
 ---
-- name: Importing user.yml tasks
+- name: Importing tasks
   tags: user
   ansible.builtin.import_tasks: user.yml
 
-- name: Importing git.yml tasks
+- name: Importing tasks
   tags: git
   ansible.builtin.import_tasks: git.yml
 
-- name: Importing general.yml tasks
+- name: Importing tasks
   tags: general
   ansible.builtin.import_tasks: general.yml
 
-- name: Importing bash.yml tasks
-  ansible.builtin.import_tasks: bash.yml
+- name: Importing tasks
+  tags: bash
+  ansible.builtin.import_role:
+    name: bash
 
-- name: Importing fonts.yml tasks
+- name: Importing tasks
   tags: fonts
   ansible.builtin.import_tasks: fonts.yml

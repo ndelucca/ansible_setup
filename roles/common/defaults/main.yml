@@ -1,0 +1,28 @@
+---
+# Must be defined in every host
+common_user_name: "{{ inventory_user.name }}"
+common_user_group: "{{ inventory_user.group }}"
+common_user_home: "{{ inventory_user.home }}"
+common_user_email: "{{ inventory_user.email }}"
+common_user_passwd: "{{ inventory_user.passwd }}"
+
+common_user_config_dir: "{{ common_user_home }}/.config"
+
+common_flatpak_excecutable: /usr/bin/flatpak
+common_flatpak_config:
+  - name: Obsidian
+    app: md.obsidian.Obsidian
+    cmd: "{{ common_flatpak_excecutable }} run --command=obsidian.sh --file-forwarding md.obsidian.Obsidian @@u %U @@"
+    alias: obsidian
+  - name: Spotify
+    app: com.spotify.Client
+    cmd: "{{ common_flatpak_excecutable }} run --command=spotify  --file-forwarding com.spotify.Client @@u %U @@"
+    alias: spotify
+  - name: ZapZap
+    app: com.rtosta.zapzap
+    cmd: "{{ common_flatpak_excecutable }} run --command=zapzap --file-forwarding com.rtosta.zapzap @@u %u @@"
+    alias: zapzap
+  - name: Chrome
+    app: com.google.Chrome
+    cmd: "{{ common_flatpak_excecutable }} run --command=/app/bin/chrome --file-forwarding com.google.Chrome @@u %U @@"
+    alias: chrome

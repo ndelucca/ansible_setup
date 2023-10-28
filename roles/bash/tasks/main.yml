@@ -1,0 +1,48 @@
+---
+- name: Fetching bash setup repository
+  ansible.builtin.git:
+    repo: "{{ bash_repo_uri }}"
+    dest: "{{ bash_repo_dir }}"
+    accept_hostkey: true
+    version: master
+  become: true
+  become_user: "{{ common_user_name }}"
+
+- name: Linking .bash_aliases
+  ansible.builtin.file:
+    src: "{{ bash_aliases_file }}"
+    path: "{{ bash_aliases_symlink }}"
+    state: link
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+
+- name: Creating global functions
+  ansible.builtin.template:
+    src: profile.d/{{ item }}.j2
+    dest: /etc/profile.d/{{ item }}
+    mode: "0644"
+  loop:
+    - 50-include-paths.sh
+  loop_control:
+    label: /etc/profile.d/{{ item }}
+
+- name: Creating custom scripts dir
+  ansible.builtin.file:
+    path: "{{ bash_custom_scripts_dir }}"
+    state: directory
+    mode: "0755"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+
+- name: Creating flatpak run commands
+  ansible.builtin.template:
+    src: flatpak/cmd.sh.j2
+    dest: "{{ bash_custom_scripts_dir }}/{{ item.alias }}"
+    mode: "0755"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+  vars:
+    bash_flatpak_cmd: "{{ item.cmd }}"
+  loop: "{{ bash_flatpak_config }}"
+  loop_control:
+    label: "{{ bash_custom_scripts_dir }}/{{ item.alias }}"

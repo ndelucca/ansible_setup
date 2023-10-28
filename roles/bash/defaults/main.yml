@@ -1,0 +1,15 @@
+---
+bash_repo_uri: git@github.com:ndelucca/bash.git
+bash_repo_dir: "{{ common_user_home }}/dev/bash"
+bash_aliases_file: "{{ bash_repo_dir }}/bash_aliases.sh"
+bash_aliases_symlink: "{{ common_user_home }}/.bash_aliases"
+
+bash_custom_scripts_dirname: .nd_scripts
+bash_custom_scripts_dir: "{{ common_user_home }}/{{ bash_custom_scripts_dirname }}"
+
+bash_exported_paths:
+  - ~/bin
+  - ~/{{ bash_custom_scripts_dirname }}
+
+bash_flatpak_excecutable: "{{ common_flatpak_excecutable }}"
+bash_flatpak_config: "{{ common_flatpak_config }}"

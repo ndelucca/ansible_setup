@@ -8,7 +8,7 @@
       ansible.builtin.import_role:
         name: mint_setup
       vars:
-        mint_setup_user: "{{ user.name }}"
-        mint_setup_group: "{{ user.group }}"
-        mint_setup_user_email: "{{ user.email }}"
-        mint_setup_user_passwd: "{{ user.passwd }}"
+        mint_setup_user: "{{ inventory_user.name }}"
+        mint_setup_group: "{{ inventory_user.group }}"
+        mint_setup_user_email: "{{ inventory_user.email }}"
+        mint_setup_user_passwd: "{{ inventory_user.passwd }}"
