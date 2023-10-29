@@ -23,6 +23,7 @@
     - nfs-common
     - gnome-color-manager
     - tree
+    - code
     - firefox
     - vim
     - gawk

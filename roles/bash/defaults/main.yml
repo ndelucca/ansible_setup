@@ -10,6 +10,3 @@ bash_custom_scripts_dir: "{{ common_user_home }}/{{ bash_custom_scripts_dirname 
 bash_exported_paths:
   - ~/bin
   - ~/{{ bash_custom_scripts_dirname }}
-
-bash_flatpak_excecutable: "{{ common_flatpak_excecutable }}"
-bash_flatpak_config: "{{ common_flatpak_config }}"

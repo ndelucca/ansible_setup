@@ -43,6 +43,6 @@
     group: "{{ common_user_group }}"
   vars:
     bash_flatpak_cmd: "{{ item.cmd }}"
-  loop: "{{ bash_flatpak_config }}"
+  loop: "{{ common_flatpak_apps }}"
   loop_control:
     label: "{{ bash_custom_scripts_dir }}/{{ item.alias }}"

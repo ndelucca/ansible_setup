@@ -6,23 +6,51 @@ common_user_home: "{{ inventory_user.home }}"
 common_user_email: "{{ inventory_user.email }}"
 common_user_passwd: "{{ inventory_user.passwd }}"
 
+# Directories
 common_user_config_dir: "{{ common_user_home }}/.config"
 
+# Apps
+common_apt_default_apps:
+  - name: Terminal
+    app: gnome-terminal
+    cmd: /usr/bin/gnome-germinal
+    on_startup: true
+  - name: Firefox
+    app: firefox
+    cmd: /usr/bin/firefox
+    on_startup: true
+  - name: Vistual Studio Code
+    app: code
+    cmd: /usr/bin/code
+    on_startup: true
+
+# Expand on each host
+common_apt_host_apps: []
+common_apt_apps: "{{ common_apt_default_apps + common_apt_host_apps }}"
+
 common_flatpak_excecutable: /usr/bin/flatpak
-common_flatpak_config:
+common_flatpak_default_apps:
   - name: Obsidian
     app: md.obsidian.Obsidian
     cmd: "{{ common_flatpak_excecutable }} run --command=obsidian.sh --file-forwarding md.obsidian.Obsidian @@u %U @@"
     alias: obsidian
+    on_startup: true
   - name: Spotify
     app: com.spotify.Client
     cmd: "{{ common_flatpak_excecutable }} run --command=spotify  --file-forwarding com.spotify.Client @@u %U @@"
     alias: spotify
+    on_startup: true
   - name: ZapZap
     app: com.rtosta.zapzap
     cmd: "{{ common_flatpak_excecutable }} run --command=zapzap --file-forwarding com.rtosta.zapzap @@u %u @@"
     alias: zapzap
+    on_startup: true
   - name: Chrome
     app: com.google.Chrome
     cmd: "{{ common_flatpak_excecutable }} run --command=/app/bin/chrome --file-forwarding com.google.Chrome @@u %U @@"
     alias: chrome
+    on_startup: false
+
+# Expand on each host
+common_flatpak_host_apps: []
+common_flatpak_apps: "{{ common_flatpak_default_apps + common_flatpak_host_apps }}"
