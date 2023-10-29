@@ -1,0 +1,9 @@
+---
+feh_wallpaper_dir: "{{ common_user_home }}/.wallpapers"
+
+feh_wallpaper_list:
+  - guts.jpg
+  - fuji.jpg
+
+feh_wallpaper_chosen: fuji.jpg
+feh_wallpaper_file: "{{ feh_wallpaper_dir }}/{{ feh_wallpaper_chosen }}"

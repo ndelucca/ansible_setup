@@ -14,18 +14,18 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# Wallpaper setup
-exec_always feh --bg-scale {{ i3_config_wallpaper }}
+# feh background
+exec --no-startup-id "/usr/bin/sh {{ common_fehbg_file }}"
 
 # System startup
 {% for apt_program in common_apt_apps %}
 {% if apt_program.on_startup %}
-exec --no-startup-id {{ apt_program.cmd }}
+exec --no-startup-id "/usr/bin/sh -c 'sleep 1; exec {{ apt_program.cmd }}'"
 {% endif %}
 {% endfor %}
 
 {% for flatpak_program in common_flatpak_apps %}
 {% if flatpak_program.on_startup %}
-exec --no-startup-id {{ flatpak_program.cmd }}
+exec --no-startup-id "/usr/bin/sh -c 'sleep 1; exec {{ flatpak_program.cmd }}'"
 {% endif %}
 {% endfor %}

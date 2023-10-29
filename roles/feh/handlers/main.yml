@@ -1,0 +1,4 @@
+---
+- name: Reload feh
+  ansible.builtin.command: /usr/bin/sh {{ common_fehbg_file }}
+  changed_when: true

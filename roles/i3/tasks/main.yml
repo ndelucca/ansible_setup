@@ -1,6 +1,69 @@
 ---
-- name: Importing tasks
-  ansible.builtin.import_tasks: install.yml
+- name: Updating apt
+  tags: update_apt
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
 
-- name: Importing tasks
-  ansible.builtin.import_tasks: configure.yml
+- name: Installing packages
+  tags: install_apt
+  ansible.builtin.apt:
+    name:
+      - i3
+      - feh
+
+- name: Creating custom scripts dir
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+  loop:
+    - "{{ i3_config_dir }}"
+    - "{{ i3_config_subdir }}"
+
+- name: Creating i3 configuration file
+  ansible.builtin.template:
+    src: "i3/config.cfg.j2"
+    dest: "{{ i3_config_dir }}/config"
+    mode: "0644"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+  loop:
+    - config
+  loop_control:
+    label: "{{ i3_config_dir }}/{{ item }}"
+  notify: Restart i3
+
+- name: Creating i3 configuration files
+  ansible.builtin.template:
+    src: "i3/{{ item }}.j2"
+    dest: "{{ i3_config_subdir }}/{{ item }}"
+    mode: "0644"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+  loop:
+    - 01-keybindings.cfg
+    - 02-workspaces.cfg
+    - 03-appearance.cfg
+    - 04-exec.cfg
+  loop_control:
+    label: "{{ i3_config_dir }}/{{ item }}"
+  notify: Restart i3
+
+- name: Creating gtk configuration files
+  ansible.builtin.template:
+    src: "{{ item.gtk_version }}/{{ item.gtk_file }}.j2"
+    dest: "{{ common_user_config_dir }}/{{ item.gtk_version }}/{{ item.gtk_file }}"
+    mode: "0664"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+  loop:
+    - gtk_file: settings.ini
+      gtk_version: gtk-3.0
+    - gtk_file: settings.ini
+      gtk_version: gtk-2.0
+  loop_control:
+    label: "{{ common_user_config_dir }}/{{ item.gtk_version }}/{{ item.gtk_file }}"
+  notify: Restart i3

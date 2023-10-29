@@ -4,4 +4,7 @@
   become: true
 
   roles:
-    - i3
+    - role: feh
+      tags: feh
+    - role: i3
+      tags: i3
