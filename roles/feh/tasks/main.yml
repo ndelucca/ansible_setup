@@ -1,4 +1,9 @@
 ---
+- name: Installing feh
+  tags: install_apt
+  ansible.builtin.apt:
+    name: feh
+
 - name: Creating wallpapers directory
   ansible.builtin.file:
     path: "{{ feh_wallpaper_dir }}"

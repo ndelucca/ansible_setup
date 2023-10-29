@@ -1,16 +1,20 @@
 ---
+# Can't do it with normal repositories because Mr.Mint is oldie but goldie.
+- name: Installing updated i3 .deb package
+  tags: install_apt
+  ansible.builtin.apt:
+    deb: "{{ item }}"
+  loop:
+    - "{{ i3_wm_deb_url }}"
+    - "{{ i3_deb_url }}"
+
 - name: Updating apt
   tags: update_apt
   ansible.builtin.apt:
-    update_cache: true
     cache_valid_time: 3600
-
-- name: Installing packages
-  tags: install_apt
-  ansible.builtin.apt:
-    name:
-      - i3
-      - feh
+    update_cache: true
+    autoremove: true
+    autoclean: true
 
 - name: Creating custom scripts dir
   ansible.builtin.file:
