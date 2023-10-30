@@ -39,7 +39,7 @@ common_flatpak_default_apps:
     app: com.spotify.Client
     cmd: "{{ common_flatpak_excecutable }} run --file-forwarding com.spotify.Client @@u %U @@"
     alias: spotify
-    on_startup: true
+    on_startup: false
   - name: ZapZap
     app: com.rtosta.zapzap
     cmd: "{{ common_flatpak_excecutable }} run --file-forwarding com.rtosta.zapzap @@u %u @@"

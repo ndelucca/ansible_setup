@@ -4,6 +4,8 @@ i3_config_subdir: "{{ i3_config_dir }}/config.d"
 i3_config_font: JetBrains Mono 10
 i3_config_mod: Mod4
 
+i3_status_dir: "{{ common_user_config_dir }}/i3status"
+
 # i3 Installation
 i3_version: 4.22-2
 i3_wm_deb_url: "http://ftp.debian.org/debian/pool/main/i/i3-wm/i3-wm_{{ i3_version }}_amd64.deb"

@@ -1,7 +1,7 @@
 ---
 # Can't do it with normal repositories because Mr.Mint is oldie but goldie.
 - name: Installing updated i3 .deb package
-  tags: install_apt
+  tags: apt
   ansible.builtin.apt:
     deb: "{{ item }}"
   loop:
@@ -9,7 +9,7 @@
     - "{{ i3_deb_url }}"
 
 - name: Updating apt
-  tags: update_apt
+  tags: apt
   ansible.builtin.apt:
     cache_valid_time: 3600
     update_cache: true
@@ -26,11 +26,13 @@
   loop:
     - "{{ i3_config_dir }}"
     - "{{ i3_config_subdir }}"
+    - "{{ i3_status_dir }}"
 
 - name: Creating i3 configuration file
+  tags: cfg, i3cfg
   ansible.builtin.template:
     src: "i3/config.cfg.j2"
-    dest: "{{ i3_config_dir }}/config"
+    dest: "{{ i3_config_dir }}/{{ item }}"
     mode: "0644"
     owner: "{{ common_user_name }}"
     group: "{{ common_user_group }}"
@@ -41,6 +43,7 @@
   notify: Restart i3
 
 - name: Creating i3 configuration files
+  tags: cfg, i3cfg
   ansible.builtin.template:
     src: "i3/{{ item }}.j2"
     dest: "{{ i3_config_subdir }}/{{ item }}"
@@ -52,11 +55,27 @@
     - 02-workspaces.cfg
     - 03-appearance.cfg
     - 04-exec.cfg
+    - 05-bar.cfg
+  loop_control:
+    label: "{{ i3_config_dir }}/{{ item }}"
+  notify: Restart i3
+
+- name: Creating i3status configuration file
+  tags: cfg, i3statuscfg
+  ansible.builtin.template:
+    src: "i3status/config.cfg.j2"
+    dest: "{{ i3_status_dir }}/{{ item }}"
+    mode: "0644"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+  loop:
+    - config
   loop_control:
     label: "{{ i3_config_dir }}/{{ item }}"
   notify: Restart i3
 
 - name: Creating gtk configuration files
+  tags: cfg
   ansible.builtin.template:
     src: "{{ item.gtk_version }}/{{ item.gtk_file }}.j2"
     dest: "{{ common_user_config_dir }}/{{ item.gtk_version }}/{{ item.gtk_file }}"

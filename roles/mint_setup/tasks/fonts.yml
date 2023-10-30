@@ -23,6 +23,7 @@
   ansible.builtin.apt:
     name: "{{ font_pkg }}"
   loop:
+    - fonts-font-awesome
     - ttf-mscorefonts-installer
     - fonts-hack
     - fonts-noto
