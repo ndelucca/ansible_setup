@@ -15,3 +15,15 @@ inventory_user:
   home: /home/ndelucca
   email: ndelucca@educativa.com
   passwd: "{{ ansible_become_pass }}"
+
+common_flatpak_host_apps:
+  - name: Skype
+    app: com.skype.Client
+    cmd: "{{ common_flatpak_excecutable }} run --file-forwarding com.skype.Client @@u %U @@"
+    alias: skype
+    on_startup: true
+  - name: DBeaver
+    app: io.dbeaver.DBeaverCommunity
+    cmd: "{{ common_flatpak_excecutable }} run --file-forwarding io.dbeaver.DBeaverCommunity @@u %U @@"
+    alias: dbeaver
+    on_startup: false
