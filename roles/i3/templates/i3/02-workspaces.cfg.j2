@@ -34,7 +34,29 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-assign [class="Gnome-terminal"] $ws1
+set $screen_main HDMI-1
+set $screen_notebook eDP-1
+
+exec --no-startup-id "/usr/bin/xrandr --output $screen_main --primary --right-of $screen_notebook"
+
+# Gaps
+workspace $ws1 gaps inner 10
+workspace $ws1 gaps outer 5
+
+# Screens
+workspace $ws1 output $screen_main
+workspace $ws2 output $screen_main
+workspace $ws3 output $screen_main
+workspace $ws4 output $screen_main
+workspace $ws5 output $screen_main
+workspace $ws6 output $screen_main
+workspace $ws7 output $screen_main
+workspace $ws8 output $screen_main
+workspace $ws9 output $screen_notebook
+workspace $ws10 output $screen_notebook
+
+set $terminal Gnome-terminal
+assign [class=$terminal] $ws1
 assign [window_role="^browser$"] $ws2
 assign [class="Code"] $ws3
 assign [class="obsidian"] $ws8
@@ -44,20 +66,3 @@ assign [class="Spotify"] $ws10
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
-
-set $inner_gaps 15px
-set $outer_gaps 0px
-
-smart_gaps on
-
-gaps inner $inner_gaps
-gaps outer $outer_gaps
-
-workspace $ws1 gaps inner $inner_gaps
-workspace $ws1 gaps outer $outer_gaps
-
-workspace $ws9 gaps inner $inner_gaps
-workspace $ws9 gaps outer $outer_gaps
-
-workspace $ws10 gaps inner $inner_gaps
-workspace $ws10 gaps outer $outer_gaps
