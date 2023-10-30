@@ -55,7 +55,6 @@
     - 02-workspaces.cfg
     - 03-appearance.cfg
     - 04-exec.cfg
-    - 05-bar.cfg
   loop_control:
     label: "{{ i3_config_dir }}/{{ item }}"
   notify: Restart i3
