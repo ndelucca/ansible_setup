@@ -2,9 +2,9 @@
 
 general {
     colors = true
-    color_good = "#66bb66"
-    color_degraded = "#eecc66"
-    color_bad = "#bb6666"
+    color_good = "{{ i3_color_scheme.status_good }}"
+    color_degraded = "{{ i3_color_scheme.status_degraded }}"
+    color_bad = "{{ i3_color_scheme.status_bad }}"
     interval = 2
 }
 
@@ -59,9 +59,9 @@ load {
 
 memory {
     format = " %used"
+    format_degraded = " %used"
     threshold_degraded = "10%"
     threshold_critical = 5%
-    format_degraded = "MEMORY: %free"
 }
 
 volume master {

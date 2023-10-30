@@ -18,3 +18,13 @@ i3_gtk3_config_dir: "{{ common_user_config_dir }}/gtk-3.0/"
 i3_gtk_theme_name: Mint-Y-Dark
 i3_gtk_icon_theme_name: Mint-Y
 i3_gtk_cursor_theme_name: Bibata-Modern-Ice
+
+i3_color_scheme:
+  background: "#1e1e1e"
+  foreground: "#e8e8e8"
+  active_workspace: "#044535"
+  inactive_workspace: "#242424"
+  urgent_workspace: "#6f2b0b"
+  status_good: "#448575"
+  status_degraded: "#f0d050"
+  status_bad: "#ef3b3b"
