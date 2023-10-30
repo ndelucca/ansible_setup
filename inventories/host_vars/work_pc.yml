@@ -17,6 +17,11 @@ inventory_user:
   passwd: "{{ ansible_become_pass }}"
 
 common_flatpak_host_apps:
+  - name: Chrome
+    app: com.google.Chrome
+    cmd: "{{ common_flatpak_excecutable }} run --file-forwarding com.google.Chrome @@u %U @@"
+    alias: chrome
+    on_startup: true
   - name: Skype
     app: com.skype.Client
     cmd: "{{ common_flatpak_excecutable }} run --file-forwarding com.skype.Client @@u %U @@"

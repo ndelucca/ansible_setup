@@ -15,10 +15,6 @@ common_apt_default_apps:
     app: gnome-terminal
     cmd: /usr/bin/gnome-terminal
     on_startup: true
-  - name: Firefox
-    app: firefox
-    cmd: /usr/bin/firefox
-    on_startup: true
   - name: Vistual Studio Code
     app: code
     cmd: /usr/bin/code
@@ -45,11 +41,6 @@ common_flatpak_default_apps:
     cmd: "{{ common_flatpak_excecutable }} run --file-forwarding com.rtosta.zapzap @@u %u @@"
     alias: zapzap
     on_startup: true
-  - name: Chrome
-    app: com.google.Chrome
-    cmd: "{{ common_flatpak_excecutable }} run --file-forwarding com.google.Chrome @@u %U @@"
-    alias: chrome
-    on_startup: false
 
 # Expand on each host
 common_flatpak_host_apps: []

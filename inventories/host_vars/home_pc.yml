@@ -15,3 +15,9 @@ inventory_user:
   home: /home/ndelucca
   email: nazadelucca@gmail.com
   passwd: "{{ ansible_become_pass }}"
+
+common_apt_default_apps:
+  - name: Firefox
+    app: firefox
+    cmd: /usr/bin/firefox
+    on_startup: true
