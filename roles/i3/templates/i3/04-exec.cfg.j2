@@ -1,7 +1,4 @@
 {{ ansible_managed | comment }}
-
-set $mod {{ i3_config_mod }}
-
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
