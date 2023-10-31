@@ -6,7 +6,7 @@ set $mod {{ i3_config_mod }}
 floating_modifier $mod
 
 # shutdown - restart - suspend
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (CTRL+s) shutdown
+set $mode_system System (l) lock | (e) logout | (s) suspend | (h) hibernate | (r) reboot | (CTRL+s) shutdown
 
 mode "$mode_system" {
     bindsym l exec --no-startup-id $i3lockwall, mode "default"
@@ -22,6 +22,18 @@ mode "$mode_system" {
 }
 
 bindsym $mod+BackSpace mode "$mode_system"
+
+# Settings and configurations mode
+set $mode_settings Audio Settings (a) | Drivers (d)
+mode "$mode_settings" {
+    bindsym a exec --no-startup-id cinnamon-settings sound, mode "default"
+    bindsym d exec --no-startup-id cinnamon-settings driver-manager, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+exclamdown mode "$mode_settings"
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
