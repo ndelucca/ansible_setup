@@ -49,7 +49,7 @@
 
 - name: Creating tray icons
   ansible.builtin.template:
-    src: tray/"{{ item }}.sh.j2"
+    src: tray/{{ item }}.sh.j2
     dest: "{{ bash_custom_scripts_dir }}/tray_{{ item }}"
     mode: "0755"
     owner: "{{ common_user_name }}"
