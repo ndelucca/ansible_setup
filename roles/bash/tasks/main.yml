@@ -1,21 +1,4 @@
 ---
-- name: Fetching bash setup repository
-  ansible.builtin.git:
-    repo: "{{ bash_repo_uri }}"
-    dest: "{{ bash_repo_dir }}"
-    accept_hostkey: true
-    version: master
-  become: true
-  become_user: "{{ common_user_name }}"
-
-- name: Linking .bash_aliases
-  ansible.builtin.file:
-    src: "{{ bash_aliases_file }}"
-    path: "{{ bash_aliases_symlink }}"
-    state: link
-    owner: "{{ common_user_name }}"
-    group: "{{ common_user_group }}"
-
 - name: Creating global functions
   ansible.builtin.template:
     src: profile.d/{{ item }}.j2
@@ -25,6 +8,46 @@
     - 50-include-paths.sh
   loop_control:
     label: /etc/profile.d/{{ item }}
+
+- name: Creating environment and bash_aliases files
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "0644"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+  loop:
+    - src: bash/env.sh.j2
+      dest: "{{ common_user_home }}/{{ bash_env_file }}"
+    - src: bash/bash_aliases.sh.j2
+      dest: "{{ common_user_home }}/.bash_aliases"
+
+- name: Creating bash directories
+  ansible.builtin.file:
+    path: "{{ bash_dir }}"
+    state: directory
+    mode: "0755"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+
+- name: Creating bash files
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "0644"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+  loop:
+    - src: git-prompt.sh
+      dest: "{{ bash_dir }}/.git-prompt.sh"
+    - src: ps1.sh
+      dest: "{{ bash_dir }}/.ps1.sh"
+    - src: bash_custom.sh
+      dest: "{{ bash_dir }}/.bash_custom.sh"
+    - src: work_aliases.sh
+      dest: "{{ bash_dir }}/.work_aliases.sh"
+  loop_control:
+    label: "{{ item.dest }}"
 
 - name: Creating custom scripts dir
   ansible.builtin.file:

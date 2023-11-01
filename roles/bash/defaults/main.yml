@@ -1,8 +1,9 @@
 ---
-bash_repo_uri: git@github.com:ndelucca/bash.git
-bash_repo_dir: "{{ common_user_home }}/dev/bash"
-bash_aliases_file: "{{ bash_repo_dir }}/bash_aliases.sh"
-bash_aliases_symlink: "{{ common_user_home }}/.bash_aliases"
+bash_aliases_file: "{{ common_user_home }}/.bash_aliases"
+bash_dev_dir: "{{ common_user_home }}/dev"
+
+bash_env_file: .nd_env
+bash_dir: "{{ common_user_home }}/.nd_bash"
 
 bash_custom_scripts_dirname: .nd_scripts
 bash_custom_scripts_dir: "{{ common_user_home }}/{{ bash_custom_scripts_dirname }}"
