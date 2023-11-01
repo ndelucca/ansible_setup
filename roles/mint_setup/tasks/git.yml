@@ -10,3 +10,5 @@
     dest: "{{ mint_setup_git_user_home }}/.gitconfig"
     src: gitconfig
     mode: "0644"
+    owner: "{{ mint_setup_user }}"
+    group: "{{ mint_setup_group }}"

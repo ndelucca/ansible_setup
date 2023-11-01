@@ -46,6 +46,8 @@
     src: mycli.conf
     force: true
     mode: "0644"
+    owner: "{{ mint_setup_user }}"
+    group: "{{ mint_setup_group }}"
 
 - name: Running redshift setup...
   ansible.builtin.template:
@@ -60,9 +62,13 @@
     src: vscode.json
     force: true
     mode: "0644"
+    owner: "{{ mint_setup_user }}"
+    group: "{{ mint_setup_group }}"
 
 - name: Creating dev directory...
   ansible.builtin.file:
     path: "{{ mint_setup_dev_folder }}"
     state: directory
     mode: "0755"
+    owner: "{{ mint_setup_user }}"
+    group: "{{ mint_setup_group }}"

@@ -3,7 +3,9 @@
   ansible.builtin.file:
     state: directory
     path: "{{ mint_setup_fonts_path }}"
-    mode: "0644"
+    mode: "0755"
+    owner: "{{ mint_setup_user }}"
+    group: "{{ mint_setup_group }}"
 
 - name: Running mscorefonts terms and conditions hack...
   ansible.builtin.debconf:
@@ -36,13 +38,16 @@
     path: "{{ mint_setup_fonts_path }}/jetbrainsmono"
     state: directory
     mode: "0755"
+    owner: "{{ mint_setup_user }}"
+    group: "{{ mint_setup_group }}"
 
 - name: Installing jetbrainsmono fonts...
   ansible.builtin.unarchive:
     src: "JetBrainsMono-2.304.zip"
     dest: "{{ mint_setup_fonts_path }}/jetbrainsmono"
     remote_src: false
-    owner: "{{ mint_setup_fonts_user }}"
+    owner: "{{ mint_setup_user }}"
+    group: "{{ mint_setup_group }}"
 
 - name: Creating Roboto directory...
   ansible.builtin.file:
@@ -55,7 +60,8 @@
     src: Roboto.zip
     dest: "{{ mint_setup_fonts_path }}/roboto"
     remote_src: false
-    owner: "{{ mint_setup_fonts_user }}"
+    owner: "{{ mint_setup_user }}"
+    group: "{{ mint_setup_group }}"
 
 - name: Creating Roboto Mono directory...
   ansible.builtin.file:
@@ -68,7 +74,8 @@
     src: Roboto_Mono.zip
     dest: "{{ mint_setup_fonts_path }}/roboto_mono"
     remote_src: false
-    owner: "{{ mint_setup_fonts_user }}"
+    owner: "{{ mint_setup_user }}"
+    group: "{{ mint_setup_group }}"
 
 - name: Updating fonts cache...
   ansible.builtin.command: fc-cache -f -v
