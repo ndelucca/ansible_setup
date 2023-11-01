@@ -16,8 +16,18 @@ inventory_user:
   email: nazadelucca@gmail.com
   passwd: "{{ ansible_become_pass }}"
 
+i3_main_screen: HDMI-0
+i3_secondary_screen: HDMI-0
+
 common_apt_default_apps:
   - name: Firefox
     app: firefox
     cmd: /usr/bin/firefox
     on_startup: true
+
+common_flatpak_host_apps:
+  - name: Chrome
+    app: com.google.Chrome
+    cmd: "{{ common_flatpak_excecutable }} run --file-forwarding com.google.Chrome @@u %U @@"
+    alias: chrome
+    on_startup: false

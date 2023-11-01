@@ -1,40 +1,6 @@
 {{ ansible_managed | comment }}
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
-# shutdown - restart - suspend
-set $mode_system System (l) lock | (e) logout | (s) suspend | (h) hibernate | (r) reboot | (CTRL+s) shutdown
-
-mode "$mode_system" {
-    bindsym l exec --no-startup-id $i3lockwall, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $i3lockwall && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $i3lockwall && systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Ctrl+s exec --no-startup-id systemctl poweroff -i, mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-bindsym $mod+BackSpace mode "$mode_system"
-
-# Settings and configurations mode
-set $mode_settings Audio Settings (a) | Drivers (d)
-mode "$mode_settings" {
-    bindsym a exec --no-startup-id cinnamon-settings sound, mode "default"
-    bindsym d exec --no-startup-id cinnamon-settings driver-manager, mode "default"
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-bindsym $mod+exclamdown mode "$mode_settings"
-
 # Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -55,9 +21,6 @@ bindsym $mod+q kill
 bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+j focus left

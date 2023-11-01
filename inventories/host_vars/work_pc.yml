@@ -32,3 +32,6 @@ common_flatpak_host_apps:
     cmd: "{{ common_flatpak_excecutable }} run --file-forwarding io.dbeaver.DBeaverCommunity @@u %U @@"
     alias: dbeaver
     on_startup: false
+
+i3_main_screen: HDMI-1
+i3_secondary_screen: eDP-1
