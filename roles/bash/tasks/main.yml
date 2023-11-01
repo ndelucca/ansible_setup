@@ -32,22 +32,16 @@
 
 - name: Creating bash files
   ansible.builtin.copy:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
+    src: "{{ item }}"
+    dest: "{{ bash_dir }}/{{ item }}"
     mode: "0644"
     owner: "{{ common_user_name }}"
     group: "{{ common_user_group }}"
   loop:
-    - src: git-prompt.sh
-      dest: "{{ bash_dir }}/.git-prompt.sh"
-    - src: ps1.sh
-      dest: "{{ bash_dir }}/.ps1.sh"
-    - src: bash_custom.sh
-      dest: "{{ bash_dir }}/.bash_custom.sh"
-    - src: work_aliases.sh
-      dest: "{{ bash_dir }}/.work_aliases.sh"
-  loop_control:
-    label: "{{ item.dest }}"
+    - git-prompt.sh
+    - ps1.sh
+    - bash_custom.sh
+    - work_aliases.sh
 
 - name: Creating custom scripts dir
   ansible.builtin.file:

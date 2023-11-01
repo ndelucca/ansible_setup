@@ -1,4 +1,3 @@
-
 C_GRAY="\[\e[0;90m\]"
 C_L_GRAY="\[\e[0;37m\]"
 C_WHITE="\[\e[0;97m\]"
@@ -31,5 +30,5 @@ GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUPSTREAM=1
 
-export PS1="${SIMB} ${RUTA}${GITB} ${DLLR} "
+export PS1="${RUTA}${GITB} >\n${SIMB}"
 export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa"
