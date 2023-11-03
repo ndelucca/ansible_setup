@@ -1,0 +1,2 @@
+---
+fonts_path: "{{ common_user_home }}/.fonts"

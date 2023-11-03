@@ -30,5 +30,5 @@ GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUPSTREAM=1
 
-export PS1="${RUTA}${GITB} >\n${SIMB}"
+export PS1="${RUTA}${GITB} >\n${SIMB} "
 export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa"

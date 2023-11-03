@@ -1,0 +1,20 @@
+---
+- name: Main PC setup
+  hosts: my_machines
+  become: true
+
+  roles:
+    - role: git
+      tags: role_git
+    - role: apps
+      tags: role_apps
+    - role: fonts
+      tags: role_fonts
+    - role: bash
+      tags: role_bash
+    - role: feh
+      tags: role_feh
+    - role: i3
+      tags: role_i3
+    - role: editors
+      tags: role_editors

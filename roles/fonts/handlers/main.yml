@@ -1,0 +1,5 @@
+---
+- name: Update fonts cache
+  ansible.builtin.command: fc-cache -f -v
+  register: result
+  changed_when: result.rc != 0

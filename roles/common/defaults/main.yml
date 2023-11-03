@@ -7,23 +7,20 @@ common_user_email: "{{ inventory_user.email }}"
 common_user_passwd: "{{ inventory_user.passwd }}"
 
 common_user_config_dir: "{{ common_user_home }}/.config"
+
+# Wallpaper config file
 common_fehbg_file: "{{ common_user_home }}/.fehbg"
 
-# Apps
-common_apt_default_apps:
-  - name: Terminal
-    app: gnome-terminal
-    cmd: /usr/bin/gnome-terminal
-    on_startup: true
-  - name: Vistual Studio Code
-    app: code
-    cmd: /usr/bin/code
-    on_startup: true
+# Apt default apps
+common_apt_default_startup_apps:
+  - /usr/bin/gnome-terminal
+  - /usr/bin/code
 
 # Expand on each host
-common_apt_host_apps: []
-common_apt_apps: "{{ common_apt_default_apps + common_apt_host_apps }}"
+common_apt_host_startup_apps: []
+common_apt_startup_apps: "{{ common_apt_default_startup_apps + common_apt_host_startup_apps }}"
 
+# Flatpak default apps
 common_flatpak_excecutable: /usr/bin/flatpak
 common_flatpak_default_apps:
   - name: Obsidian
@@ -40,6 +37,11 @@ common_flatpak_default_apps:
     app: com.rtosta.zapzap
     cmd: "{{ common_flatpak_excecutable }} run --file-forwarding com.rtosta.zapzap @@u %u @@"
     alias: zapzap
+    on_startup: true
+  - name: Thunderbird
+    app: org.mozilla.Thunderbird
+    cmd: "{{ common_flatpak_excecutable }} run --file-forwarding org.mozilla.Thunderbird @@u %u @@"
+    alias: thunderbird
     on_startup: true
 
 # Expand on each host

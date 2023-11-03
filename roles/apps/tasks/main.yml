@@ -1,0 +1,49 @@
+---
+- name: Deleting default packages
+  ansible.builtin.apt:
+    state: absent
+    name: "{{ pkg }}"
+  loop:
+    - vim.tiny
+    - vlc
+    - gimp
+    - onboard
+    - mono-runtime-common # security risk
+    - gnome-orca # security risk
+    - orca # security risk
+  loop_control:
+    loop_var: pkg
+
+- name: Installing packages
+  ansible.builtin.apt:
+    name: "{{ pkg }}"
+  loop:
+    - python3-pip
+    - code
+    - firefox
+    - vim
+    - gawk
+    - mc
+    - direnv
+    - virt-manager
+    - mycli
+    - inkscape
+    - numlockx
+    - redshift
+    - cowsay
+    - fortune-mod
+    - shellcheck
+  loop_control:
+    loop_var: pkg
+
+- name: Installing flatpaks
+  community.general.flatpak:
+    name: "{{ pkg.apps }}"
+    state: present
+    method: user
+  loop: "{{ common_flatpak_apps }}"
+  loop_control:
+    loop_var: pkg
+    label: "{{ pkg.app }}"
+  become: true
+  become_user: "{{ common_user_name }}"

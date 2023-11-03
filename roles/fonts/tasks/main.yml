@@ -1,0 +1,48 @@
+---
+- name: Creating fonts directory...
+  ansible.builtin.file:
+    state: directory
+    path: "{{ fonts_path }}"
+    mode: "0755"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+
+- name: Running mscorefonts terms and conditions hack...
+  ansible.builtin.debconf:
+    name: ttf-mscorefonts-installer
+    question: msttcorefonts/accepted-mscorefonts-eula
+    value: "true"
+    vtype: select
+
+- name: Running mscorefonts terms and conditions hack...
+  ansible.builtin.debconf:
+    name: ttf-mscorefonts-installer
+    question: msttcorefonts/present-mscorefonts-eula
+    value: ""
+    vtype: select
+
+- name: Installing apt fonts...
+  ansible.builtin.apt:
+    name: "{{ font_pkg }}"
+  loop:
+    - fonts-font-awesome
+    - ttf-mscorefonts-installer
+  loop_control:
+    loop_var: font_pkg
+
+- name: Creating jetbrainsmono directory...
+  ansible.builtin.file:
+    path: "{{ fonts_path }}/jetbrainsmono"
+    state: directory
+    mode: "0755"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+
+- name: Installing jetbrainsmono fonts...
+  ansible.builtin.unarchive:
+    src: "JetBrainsMono-2.304.zip"
+    dest: "{{ fonts_path }}/jetbrainsmono"
+    remote_src: false
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+  notify: Update fonts cache

@@ -16,6 +16,15 @@ inventory_user:
   email: ndelucca@educativa.com
   passwd: "{{ ansible_become_pass }}"
 
+i3_main_screen: HDMI-1
+i3_secondary_screen: eDP-1
+
+common_apt_host_startup_apps:
+  - name: Firefox
+    app: firefox
+    cmd: /usr/bin/firefox
+    on_startup: false
+
 common_flatpak_host_apps:
   - name: Chrome
     app: com.google.Chrome
@@ -32,6 +41,8 @@ common_flatpak_host_apps:
     cmd: "{{ common_flatpak_excecutable }} run --file-forwarding io.dbeaver.DBeaverCommunity @@u %U @@"
     alias: dbeaver
     on_startup: false
-
-i3_main_screen: HDMI-1
-i3_secondary_screen: eDP-1
+  - name: Edge
+    app: com.microsoft.Edge
+    cmd: "{{ common_flatpak_excecutable }} run --file-forwarding com.microsoft.Edge @@u %u @@"
+    alias: edge
+    on_startup: false

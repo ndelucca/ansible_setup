@@ -19,11 +19,8 @@ inventory_user:
 i3_main_screen: HDMI-0
 i3_secondary_screen: HDMI-0
 
-common_apt_default_apps:
-  - name: Firefox
-    app: firefox
-    cmd: /usr/bin/firefox
-    on_startup: true
+common_apt_host_startup_apps:
+  - /usr/bin/firefox
 
 common_flatpak_host_apps:
   - name: Chrome

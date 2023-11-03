@@ -1,0 +1,3 @@
+---
+apps_mycli_user: "{{ common_user_name }}"
+apps_mycli_pass: "{{ common_user_passwd }}"

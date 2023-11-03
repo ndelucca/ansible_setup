@@ -18,10 +18,8 @@ exec --no-startup-id mintupdate-launcher
 exec --no-startup-id "/usr/bin/sh {{ common_fehbg_file }}"
 
 # System startup
-{% for apt_program in common_apt_apps %}
-{% if apt_program.on_startup %}
-exec --no-startup-id "/usr/bin/sh -c 'sleep 1; exec {{ apt_program.cmd }}'"
-{% endif %}
+{% for apt_program in common_apt_startup_apps %}
+exec --no-startup-id "/usr/bin/sh -c 'sleep 1; exec {{ apt_program }}'"
 {% endfor %}
 
 {% for flatpak_program in common_flatpak_apps %}

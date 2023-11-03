@@ -1,6 +1,5 @@
 ---
 bash_aliases_file: "{{ common_user_home }}/.bash_aliases"
-bash_dev_dir: "{{ common_user_home }}/dev"
 
 bash_env_file: .nd_env
 bash_dir: "{{ common_user_home }}/.nd_bash"
