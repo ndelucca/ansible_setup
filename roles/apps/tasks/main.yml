@@ -1,5 +1,6 @@
 ---
 - name: Deleting default packages
+  tags: task_apt
   ansible.builtin.apt:
     state: absent
     name: "{{ pkg }}"
@@ -15,15 +16,16 @@
     loop_var: pkg
 
 - name: Installing packages
+  tags: task_apt
   ansible.builtin.apt:
     name: "{{ pkg }}"
   loop:
     - python3-pip
     - code
     - firefox
-    - vim
+    - pipx
+    - ranger
     - gawk
-    - mc
     - direnv
     - virt-manager
     - mycli
@@ -37,13 +39,19 @@
     loop_var: pkg
 
 - name: Installing flatpaks
+  tags: task_flatpak
   community.general.flatpak:
-    name: "{{ pkg.apps }}"
+    name: "{{ pkg.app }}"
     state: present
-    method: user
   loop: "{{ common_flatpak_apps }}"
   loop_control:
     loop_var: pkg
     label: "{{ pkg.app }}"
   become: true
   become_user: "{{ common_user_name }}"
+
+- name: Importing tasks
+  ansible.builtin.import_tasks: mycli.yml
+
+- name: Importing tasks
+  ansible.builtin.import_tasks: redshift.yml

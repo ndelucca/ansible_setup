@@ -2,6 +2,6 @@
 - name: Creating redshift config
   ansible.builtin.template:
     dest: "{{ common_user_home }}/.config/redshift.conf"
-    src: redshift.conf
+    src: redshift/redshift.conf.j2
     force: true
     mode: "0644"

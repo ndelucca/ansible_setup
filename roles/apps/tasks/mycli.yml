@@ -2,7 +2,7 @@
 - name: Creating mycli config
   ansible.builtin.template:
     dest: "{{ common_user_home }}/.my.cnf"
-    src: mycli.conf
+    src: mycli/mycli.cnf.j2
     force: true
     mode: "0644"
     owner: "{{ common_user_name }}"
