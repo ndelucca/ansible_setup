@@ -20,7 +20,7 @@ i3_gtk_icon_theme_name: Mint-Y
 i3_gtk_cursor_theme_name: Bibata-Modern-Ice
 
 i3_color_scheme:
-  background: "#0d1117"
+  background: "#0d1117d0"
   foreground: "#e8e8e8"
   active_workspace: "#6D4F37"
   active_foreground: "#ffffff"

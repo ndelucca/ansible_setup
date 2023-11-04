@@ -5,3 +5,5 @@
     src: redshift/redshift.conf.j2
     force: true
     mode: "0644"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"

@@ -23,6 +23,7 @@ client.unfocused        $inactive_workspace $inactive_workspace $inactive_foregr
 client.urgent           $urgent_workspace   $urgent_workspace   $urgent_foreground $urgent_workspace   $urgent_workspace
 
 bar {
+    i3bar_command i3bar -t
     output $screen_main
     status_command i3status
     position bottom
@@ -33,8 +34,8 @@ bar {
     colors {
         background $background
         statusline $foreground
-        focused_workspace  $active_workspace   $active_workspace   $foreground
-        inactive_workspace $inactive_workspace $inactive_workspace $foreground
-        urgent_workspace   $urgent_workspace   $urgent_workspace   $foreground
+        focused_workspace  $active_workspace   $active_workspace   $active_foreground
+        inactive_workspace $inactive_workspace $inactive_workspace $inactive_foreground
+        urgent_workspace   $urgent_workspace   $urgent_workspace   $urgent_foreground
     }
 }
