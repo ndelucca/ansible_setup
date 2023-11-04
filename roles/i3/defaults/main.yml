@@ -22,9 +22,12 @@ i3_gtk_cursor_theme_name: Bibata-Modern-Ice
 i3_color_scheme:
   background: "#0d1117"
   foreground: "#e8e8e8"
-  active_workspace: "#044535"
+  active_workspace: "#6D4F37"
+  active_foreground: "#ffffff"
   inactive_workspace: "#141414"
+  inactive_foreground: "#ffffff"
   urgent_workspace: "#5f0b0b"
+  urgent_foreground: "#ffffff"
   status_good: "#448575"
   status_degraded: "#f0d050"
   status_bad: "#ef3b3b"
