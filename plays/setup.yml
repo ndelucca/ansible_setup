@@ -14,6 +14,8 @@
       tags: role_bash
     - role: feh
       tags: role_feh
+    - role: picom
+      tags: role_picom
     - role: i3
       tags: role_i3
     - role: editors

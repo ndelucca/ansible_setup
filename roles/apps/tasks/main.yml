@@ -35,6 +35,7 @@
     - cowsay
     - fortune-mod
     - shellcheck
+    - picom
   loop_control:
     loop_var: pkg
 

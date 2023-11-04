@@ -1,0 +1,73 @@
+# Shadow
+shadow = true;            # Enable shadows
+no-dnd-shadow = true;     # Avoid drawing shadows on DND windows
+no-dock-shadow = true;    # Avoid drawing shadows on dock/panel windows
+shadow-radius = 7;        # The blur radius for shadows
+shadow-offset-x = -7;     # The left offset for shadows
+shadow-offset-y = -7;     # The top offset for shadows
+shadow-opacity = 0.7;     # The translucency for shadows
+
+# Fading
+fading = true;            # Fade windows during opacity changes
+fade-delta = 5;           # The time between steps in a fade in milliseconds
+fade-in-step = 0.03;      # Opacity change between steps while fading in
+fade-out-step = 0.03;     # Opacity change between steps while fading out
+
+focus-exclude = [ "class_g = 'Cairo-clock'" ];
+
+# Opacity
+inactive-opacity = 1;  # The opacity for inactive windows.
+active-opacity = 1;       # The opacity for active windows.
+frame-opacity = 0.7;      # The opacity for window frames.
+inactive-opacity-override = false;  # Don't override inactive opacity.
+opacity-rule = [
+  "95:class_g = 'Gnome-terminal'",
+  "95:class_g = 'thunderbird'"
+];
+
+glx-no-stencil = false
+glx-no-rebind-pixmap = false
+backend = "glx";
+vsync = true;
+mark-wmwin-focused = true;
+mark-ovredir-focused = true;
+detect-client-opacity = true;
+
+# Blur
+blur:
+{
+  background = true;
+  method = "dual_kawase";
+  iterations = 2;
+  strength = 2;
+  kern = "3x3box";
+  background-exclude = [
+    "window_type = 'dock'",
+    "window_type = 'desktop'",
+    "_GTK_FRAME_EXTENTS@:c"
+  ];
+}
+
+# Window type settings
+uwintypes:
+{
+  tooltip = {
+    fade = true;
+    shadow = true;
+    opacity = 1;
+    focus = true;
+    full-shadow = false;
+  };
+  dock = {
+    shadow = false;
+  }
+  dnd = {
+    shadow = false;
+  }
+  popup_menu = {
+    opacity = 1;
+  }
+  dropdown_menu = {
+    opacity = 1;
+  }
+};

@@ -11,6 +11,9 @@ common_user_config_dir: "{{ common_user_home }}/.config"
 # Wallpaper config file
 common_fehbg_file: "{{ common_user_home }}/.fehbg"
 
+# Terminal config
+common_picom_config_file: "{{ common_user_home }}/.config/picom/picom.conf"
+
 # Apt default apps
 common_apt_default_startup_apps:
   - /usr/bin/gnome-terminal

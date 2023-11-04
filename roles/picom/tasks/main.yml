@@ -1,0 +1,16 @@
+---
+- name: Create Picom config directory
+  ansible.builtin.file:
+    path: "{{ common_picom_config_file | dirname }}"
+    state: directory
+    mode: "0755"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+
+- name: Creating picom config file
+  ansible.builtin.template:
+    src: picom.conf.j2
+    dest: "{{ common_picom_config_file }}"
+    mode: "0644"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
