@@ -4,6 +4,8 @@ bash_aliases_file: "{{ common_user_home }}/.bash_aliases"
 bash_env_file: .nd_env
 bash_dir: "{{ common_user_home }}/.nd_bash"
 
+bash_ps1_file: ps1.sh
+
 bash_custom_scripts_dirname: .nd_scripts
 bash_custom_scripts_dir: "{{ common_user_home }}/{{ bash_custom_scripts_dirname }}"
 

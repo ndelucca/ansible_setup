@@ -1,0 +1,9 @@
+---
+- name: Creating slick-greeter config
+  ansible.builtin.template:
+    dest: "{{ common_user_home }}/.ignore"
+    src: fzf/ignore.j2
+    force: true
+    mode: "0644"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"

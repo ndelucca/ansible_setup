@@ -9,7 +9,7 @@
 
 - name: Creating picom config file
   ansible.builtin.template:
-    src: picom.conf.j2
+    src: picom/picom.conf.j2
     dest: "{{ common_picom_config_file }}"
     mode: "0644"
     owner: "{{ common_user_name }}"

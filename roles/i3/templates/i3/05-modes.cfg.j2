@@ -18,11 +18,12 @@ mode "$mode_system" {
 }
 
 # Settings and configurations mode
-set $mode_settings Audio Settings (a) | Drivers (d)
+set $mode_settings Settings (s) | Audio (a) | Drivers (d)
 
 bindsym $mod+exclamdown mode "$mode_settings"
 
 mode "$mode_settings" {
+    bindsym s exec --no-startup-id cinnamon-settings, mode "default"
     bindsym a exec --no-startup-id cinnamon-settings sound, mode "default"
     bindsym d exec --no-startup-id cinnamon-settings driver-manager, mode "default"
 

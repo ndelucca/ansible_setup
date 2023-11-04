@@ -13,8 +13,8 @@ if [ -f "${BASH_CUSTOM_PATH}/git-prompt.sh" ]; then
     . "${BASH_CUSTOM_PATH}/git-prompt.sh"
 fi
 
-if [ -f "${BASH_CUSTOM_PATH}/ps1.sh" ]; then
-    . "${BASH_CUSTOM_PATH}/ps1.sh"
+if [ -f "${BASH_CUSTOM_PATH}/{{ bash_ps1_file }}" ]; then
+    . "${BASH_CUSTOM_PATH}/{{ bash_ps1_file }}"
 fi
 
 if [ -f "${BASH_CUSTOM_PATH}/work_aliases.sh" ]; then

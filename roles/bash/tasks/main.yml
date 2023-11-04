@@ -9,39 +9,27 @@
   loop_control:
     label: /etc/profile.d/{{ item }}
 
-- name: Creating environment and bash_aliases files
-  ansible.builtin.template:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
-    mode: "0644"
-    owner: "{{ common_user_name }}"
-    group: "{{ common_user_group }}"
-  loop:
-    - src: bash/env.sh.j2
-      dest: "{{ common_user_home }}/{{ bash_env_file }}"
-    - src: bash/bash_aliases.sh.j2
-      dest: "{{ common_user_home }}/.bash_aliases"
+- name: Importing tasks...
+  ansible.builtin.import_tasks: user_bash.yml
+  vars:
+    bash_user_name: "{{ common_user_name }}"
+    bash_user_group: "{{ common_user_group }}"
+    bash_user_home: "{{ common_user_home }}"
 
-- name: Creating bash directories
-  ansible.builtin.file:
-    path: "{{ bash_dir }}"
-    state: directory
-    mode: "0755"
-    owner: "{{ common_user_name }}"
-    group: "{{ common_user_group }}"
+- name: Importing tasks...
+  ansible.builtin.import_tasks: user_bash.yml
+  vars:
+    bash_user_name: root
+    bash_user_group: root
+    bash_user_home: /root
+    bash_ps1_file: ps1_root.sh
 
-- name: Creating bash files
-  ansible.builtin.copy:
-    src: "{{ item }}"
-    dest: "{{ bash_dir }}/{{ item }}"
-    mode: "0644"
-    owner: "{{ common_user_name }}"
-    group: "{{ common_user_group }}"
-  loop:
-    - git-prompt.sh
-    - ps1.sh
-    - bash_custom.sh
-    - work_aliases.sh
+- name: Importing tasks...
+  ansible.builtin.import_tasks: user_bash.yml
+  vars:
+    bash_user_name: "{{ common_user_name }}"
+    bash_user_group: "{{ common_user_group }}"
+    bash_user_home: "{{ common_user_home }}"
 
 - name: Creating custom scripts dir
   ansible.builtin.file:

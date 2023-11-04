@@ -1,7 +1,7 @@
 ---
 i3_config_dir: "{{ common_user_config_dir }}/i3"
 i3_config_subdir: "{{ i3_config_dir }}/config.d"
-i3_config_font: JetBrains Mono 10
+i3_config_font: "{{ common_main_font }}"
 i3_config_mod: Mod4
 
 i3_status_dir: "{{ common_user_config_dir }}/i3status"
@@ -14,10 +14,6 @@ i3_deb_url: "http://ftp.debian.org/debian/pool/main/i/i3-wm/i3_{{ i3_version }}_
 # GTK Configuration
 i3_gtk2_config_dir: "{{ common_user_config_dir }}/gtk-2.0/"
 i3_gtk3_config_dir: "{{ common_user_config_dir }}/gtk-3.0/"
-
-i3_gtk_theme_name: Mint-Y-Dark
-i3_gtk_icon_theme_name: Mint-Y
-i3_gtk_cursor_theme_name: Bibata-Modern-Ice
 
 i3_color_scheme:
   background: "#0d1117d0"

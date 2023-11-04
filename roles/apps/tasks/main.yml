@@ -21,6 +21,9 @@
     name: "{{ pkg }}"
   loop:
     - python3-pip
+    - fd-find
+    - fzf
+    - feh
     - code
     - firefox
     - pipx
@@ -53,7 +56,16 @@
   become_user: "{{ common_user_name }}"
 
 - name: Importing tasks
+  ansible.builtin.import_tasks: lightdm.yml
+
+- name: Importing tasks
+  ansible.builtin.import_tasks: feh.yml
+
+- name: Importing tasks
   ansible.builtin.import_tasks: mycli.yml
 
 - name: Importing tasks
   ansible.builtin.import_tasks: redshift.yml
+
+- name: Importing tasks
+  ansible.builtin.import_tasks: fzf.yml

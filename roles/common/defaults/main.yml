@@ -8,7 +8,14 @@ common_user_passwd: "{{ inventory_user.passwd }}"
 
 common_user_config_dir: "{{ common_user_home }}/.config"
 
+common_main_font: JetBrains Mono 10
+
+common_gtk_theme_name: Mint-Y-Dark
+common_gtk_icon_theme_name: Mint-Y
+common_gtk_cursor_theme_name: Bibata-Modern-Ice
+
 # Wallpaper config file
+common_wallpaper_dir: /usr/share/backgrounds/nd_wallpapers
 common_fehbg_file: "{{ common_user_home }}/.fehbg"
 
 # Terminal config

@@ -12,10 +12,8 @@
       tags: role_fonts
     - role: bash
       tags: role_bash
-    - role: feh
-      tags: role_feh
-    - role: picom
-      tags: role_picom
+    - role: wallpapers
+      tags: role_wallpapers
     - role: i3
       tags: role_i3
     - role: editors

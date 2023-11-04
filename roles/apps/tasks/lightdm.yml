@@ -1,0 +1,9 @@
+---
+- name: Creating slick-greeter config
+  ansible.builtin.template:
+    dest: /etc/lightdm/slick-greeter.conf
+    src: lightdm/slick-greeter.conf.j2
+    force: true
+    mode: "0644"
+    owner: root
+    group: root
