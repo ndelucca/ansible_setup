@@ -18,6 +18,7 @@ common_picom_config_file: "{{ common_user_home }}/.config/picom/picom.conf"
 common_apt_default_startup_apps:
   - /usr/bin/gnome-terminal
   - /usr/bin/code
+  - /usr/bin/thunderbird
 
 # Expand on each host
 common_apt_host_startup_apps: []
@@ -26,6 +27,11 @@ common_apt_startup_apps: "{{ common_apt_default_startup_apps + common_apt_host_s
 # Flatpak default apps
 common_flatpak_excecutable: /usr/bin/flatpak
 common_flatpak_default_apps:
+  - name: Flatseal
+    app: com.github.tchx84.Flatseal
+    cmd: "{{ common_flatpak_excecutable }} run com.github.tchx84.Flatseal"
+    alias: flatseal
+    on_startup: false
   - name: Obsidian
     app: md.obsidian.Obsidian
     cmd: "{{ common_flatpak_excecutable }} run --file-forwarding md.obsidian.Obsidian @@u %U @@"
@@ -40,11 +46,6 @@ common_flatpak_default_apps:
     app: com.rtosta.zapzap
     cmd: "{{ common_flatpak_excecutable }} run --file-forwarding com.rtosta.zapzap @@u %u @@"
     alias: zapzap
-    on_startup: true
-  - name: Thunderbird
-    app: org.mozilla.Thunderbird
-    cmd: "{{ common_flatpak_excecutable }} run --file-forwarding org.mozilla.Thunderbird @@u %u @@"
-    alias: thunderbird
     on_startup: true
 
 # Expand on each host

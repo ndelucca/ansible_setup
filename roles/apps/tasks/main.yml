@@ -36,6 +36,7 @@
     - fortune-mod
     - shellcheck
     - picom
+    - thunderbird
   loop_control:
     loop_var: pkg
 
