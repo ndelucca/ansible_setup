@@ -19,14 +19,3 @@ exec --no-startup-id "/usr/bin/sh {{ common_fehbg_file }}"
 
 # picom transparency
 exec --no-startup-id "/usr/bin/picom -b --experimental-backends --config {{ common_picom_config_file }}"
-
-# System startup
-{% for apt_program in common_apt_startup_apps %}
-exec --no-startup-id "/usr/bin/sh -c 'sleep 1; exec {{ apt_program }}'"
-{% endfor %}
-
-{% for flatpak_program in common_flatpak_apps %}
-{% if flatpak_program.on_startup %}
-exec --no-startup-id "/usr/bin/sh -c 'sleep 1; exec {{ flatpak_program.cmd }}'"
-{% endif %}
-{% endfor %}

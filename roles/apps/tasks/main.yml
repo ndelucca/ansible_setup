@@ -43,29 +43,30 @@
   loop_control:
     loop_var: pkg
 
-- name: Installing flatpaks
-  tags: task_flatpak
-  community.general.flatpak:
-    name: "{{ pkg.app }}"
-    state: present
-  loop: "{{ common_flatpak_apps }}"
-  loop_control:
-    loop_var: pkg
-    label: "{{ pkg.app }}"
-  become: true
-  become_user: "{{ common_user_name }}"
+- name: Importing tasks
+  ansible.builtin.import_tasks: flatpak.yml
+  tags: tasks_flatpak
+
+- name: Importing tasks
+  ansible.builtin.import_tasks: autostart.yml
+  tags: tasks_autostart
 
 - name: Importing tasks
   ansible.builtin.import_tasks: lightdm.yml
+  tags: tasks_lightdm
 
 - name: Importing tasks
   ansible.builtin.import_tasks: feh.yml
+  tags: tasks_feh
 
 - name: Importing tasks
   ansible.builtin.import_tasks: mycli.yml
+  tags: tasks_mycli
 
 - name: Importing tasks
   ansible.builtin.import_tasks: redshift.yml
+  tags: tasks_redshift
 
 - name: Importing tasks
   ansible.builtin.import_tasks: fzf.yml
+  tags: tasks_fzf

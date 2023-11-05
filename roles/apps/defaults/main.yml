@@ -7,3 +7,6 @@ apps_feh_wallpaper_file: "{{ common_wallpaper_dir }}/{{ apps_feh_wallpaper_chose
 
 apps_lightdm_wallpaper_chosen: snowy.jpg
 apps_lightdm_wallpaper_file: "{{ common_wallpaper_dir }}/{{ apps_lightdm_wallpaper_chosen }}"
+
+apps_desktop_application_dir: "{{ common_user_home }}/.local/share/applications"
+apps_autostart_dir: "{{ common_user_config_dir }}/autostart"

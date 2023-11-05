@@ -38,30 +38,3 @@
     mode: "0755"
     owner: "{{ common_user_name }}"
     group: "{{ common_user_group }}"
-
-- name: Creating flatpak run commands
-  ansible.builtin.template:
-    src: flatpak/cmd.sh.j2
-    dest: "{{ bash_custom_scripts_dir }}/{{ item.alias }}"
-    mode: "0755"
-    owner: "{{ common_user_name }}"
-    group: "{{ common_user_group }}"
-  vars:
-    bash_flatpak_cmd: "{{ item.cmd }}"
-  loop: "{{ common_flatpak_apps }}"
-  loop_control:
-    label: "{{ bash_custom_scripts_dir }}/{{ item.alias }}"
-
-- name: Creating tray icons
-  ansible.builtin.template:
-    src: tray/{{ item }}.sh.j2
-    dest: "{{ bash_custom_scripts_dir }}/tray_{{ item }}"
-    mode: "0755"
-    owner: "{{ common_user_name }}"
-    group: "{{ common_user_group }}"
-  vars:
-    bash_flatpak_cmd: "{{ item.cmd }}"
-  loop:
-    - audio_devices
-  loop_control:
-    label: "{{ bash_custom_scripts_dir }}/tray_{{ item }}"

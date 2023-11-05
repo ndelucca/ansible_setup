@@ -9,22 +9,14 @@ ansible_become_pass: !vault |
   3534373563643765370a643561383664666333386561376435366635656538316361343066376362
   3935
 
-inventory_user:
-  name: ndelucca
-  group: ndelucca
-  home: /home/ndelucca
-  email: nazadelucca@gmail.com
-  passwd: "{{ ansible_become_pass }}"
+common_user_name: ndelucca
+common_user_group: ndelucca
+common_user_home: /home/ndelucca
+common_user_email: nazadelucca@gmail.com
+common_user_passwd: "{{ ansible_become_pass }}"
 
 i3_main_screen: HDMI-0
 i3_secondary_screen: HDMI-0
 
-common_apt_host_startup_apps:
-  - /usr/bin/firefox
-
-common_flatpak_host_apps:
-  - name: Chrome
-    app: com.google.Chrome
-    cmd: "{{ common_flatpak_excecutable }} run --file-forwarding com.google.Chrome @@u %U @@"
-    alias: chrome
-    on_startup: false
+common_firefox_startup: true
+common_chrome_startup: false

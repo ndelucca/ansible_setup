@@ -1,12 +1,14 @@
 ---
 # Must be defined in every host
-common_user_name: "{{ inventory_user.name }}"
-common_user_group: "{{ inventory_user.group }}"
-common_user_home: "{{ inventory_user.home }}"
-common_user_email: "{{ inventory_user.email }}"
-common_user_passwd: "{{ inventory_user.passwd }}"
+# common_user_name
+# common_user_group
+# common_user_home
+# common_user_email
+# common_user_passwd
 
+common_user_local_dir: "{{ common_user_home }}/.local"
 common_user_config_dir: "{{ common_user_home }}/.config"
+common_user_bin_dir: "{{ common_user_local_dir }}/bin"
 
 common_main_font: JetBrains Mono 10
 
@@ -21,40 +23,109 @@ common_fehbg_file: "{{ common_user_home }}/.fehbg"
 # Terminal config
 common_picom_config_file: "{{ common_user_home }}/.config/picom/picom.conf"
 
-# Apt default apps
-common_apt_default_startup_apps:
-  - /usr/bin/gnome-terminal
-  - /usr/bin/code
-  - /usr/bin/thunderbird
+common_firefox_startup: true
+common_chrome_startup: false
+
+common_default_apps:
+  - alias: firefox
+    name: Firefox
+    comment: Firefox browser
+    executable: /usr/bin/firefox
+    icon: firefox
+    launch_terminal: false
+    startup: "{{ common_firefox_startup | bool }}"
+    startup_delay: 1
+    flatpak: false
+    flatpak_app:
+
+  - alias: chrome
+    name: Chrome
+    comment: Chrome browser
+    executable: "{{ common_user_bin_dir }}/chrome"
+    icon: com.google.Chrome
+    launch_terminal: false
+    startup: "{{ common_chrome_startup | bool }}"
+    startup_delay: 1
+    flatpak: true
+    flatpak_app: com.google.Chrome
+
+  - alias: gnome-terminal
+    name: Gnome-terminal
+    comment: Terminal app
+    executable: /usr/bin/gnome-terminal
+    icon: utilities-terminal
+    launch_terminal: false
+    startup: true
+    startup_delay: 0
+    flatpak: false
+    flatpak_app:
+
+  - alias: code
+    name: Code
+    comment: Code editor
+    executable: /usr/bin/code
+    icon: visual-studio-code
+    launch_terminal: false
+    startup: true
+    startup_delay: 2
+    flatpak: false
+    flatpak_app:
+
+  - alias: thunderbird
+    name: Thunderbird
+    comment: Email client
+    executable: /usr/bin/thunderbird
+    icon: thunderbird
+    launch_terminal: false
+    startup: true
+    startup_delay: 4
+    flatpak: false
+    flatpak_app:
+
+  - alias: flatseal
+    name: Flatseal
+    comment: Configure Flatpak apps permissions
+    executable: "{{ common_user_bin_dir }}/flatseal"
+    icon: com.github.tchx84.Flatseal
+    launch_terminal: false
+    startup: false
+    startup_delay: 0
+    flatpak: true
+    flatpak_app: com.github.tchx84.Flatseal
+
+  - alias: obsidian
+    name: Obsidian
+    comment: Knowledge base that works on top of a local folder of plain text Markdown files
+    executable: "{{ common_user_bin_dir }}/obsidian"
+    icon: md.obsidian.Obsidian
+    launch_terminal: false
+    startup: true
+    startup_delay: 5
+    flatpak: true
+    flatpak_app: md.obsidian.Obsidian
+
+  - alias: spotify
+    name: Spotify
+    comment: Listen to music
+    executable: "{{ common_user_bin_dir }}/spotify"
+    icon: com.spotify.Client
+    launch_terminal: false
+    startup: false
+    startup_delay: 10
+    flatpak: true
+    flatpak_app: com.spotify.Client
+
+  - alias: zapzap
+    name: ZapZap
+    comment: A simple and secure chat app
+    executable: "{{ common_user_bin_dir }}/zapzap"
+    icon: com.rtosta.zapzap
+    launch_terminal: false
+    startup: true
+    startup_delay: 10
+    flatpak: true
+    flatpak_app: com.rtosta.zapzap
 
 # Expand on each host
-common_apt_host_startup_apps: []
-common_apt_startup_apps: "{{ common_apt_default_startup_apps + common_apt_host_startup_apps }}"
-
-# Flatpak default apps
-common_flatpak_excecutable: /usr/bin/flatpak
-common_flatpak_default_apps:
-  - name: Flatseal
-    app: com.github.tchx84.Flatseal
-    cmd: "{{ common_flatpak_excecutable }} run com.github.tchx84.Flatseal"
-    alias: flatseal
-    on_startup: false
-  - name: Obsidian
-    app: md.obsidian.Obsidian
-    cmd: "{{ common_flatpak_excecutable }} run --file-forwarding md.obsidian.Obsidian @@u %U @@"
-    alias: obsidian
-    on_startup: true
-  - name: Spotify
-    app: com.spotify.Client
-    cmd: "{{ common_flatpak_excecutable }} run --file-forwarding com.spotify.Client @@u %U @@"
-    alias: spotify
-    on_startup: false
-  - name: ZapZap
-    app: com.rtosta.zapzap
-    cmd: "{{ common_flatpak_excecutable }} run --file-forwarding com.rtosta.zapzap @@u %u @@"
-    alias: zapzap
-    on_startup: true
-
-# Expand on each host
-common_flatpak_host_apps: []
-common_flatpak_apps: "{{ common_flatpak_default_apps + common_flatpak_host_apps }}"
+common_host_apps: []
+common_apps: "{{ common_default_apps + common_host_apps }}"

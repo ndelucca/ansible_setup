@@ -1,0 +1,36 @@
+---
+- name: Creating desktop applications directory
+  ansible.builtin.file:
+    path: "{{ apps_autostart_dir }}"
+    state: directory
+    mode: "0755"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+
+- name: Creating autostart desktop file
+  ansible.builtin.template:
+    src: desktop/app.desktop.j2
+    dest: "{{ apps_autostart_dir }}/{{ app_alias }}.desktop"
+    mode: "0664"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+  vars:
+    app_alias: "{{ item.alias }}"
+    app_name: "{{ item.name }}"
+    app_comment: "{{ item.comment }}"
+    app_executable: "{{ item.executable }}"
+    app_icon: "{{ item.icon }}"
+    app_launch_terminal: "{{ item.launch_terminal }}"
+    app_startup: "{{ item.startup }}"
+    app_startup_delay: "{{ item.startup_delay }}"
+  loop: "{{ common_apps | selectattr('startup', 'equalto', true) | list }}"
+  loop_control:
+    label: "{{ apps_autostart_dir }}/{{ app_alias }}.desktop"
+
+- name: Deleting autostart desktop files
+  ansible.builtin.file:
+    path: "{{ apps_autostart_dir }}/{{ item.alias }}.desktop"
+    state: absent
+  loop: "{{ common_apps | selectattr('startup', 'equalto', false) | list }}"
+  loop_control:
+    label: "{{ apps_autostart_dir }}/{{ item.alias }}.desktop"

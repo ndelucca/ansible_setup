@@ -9,40 +9,48 @@ ansible_become_pass: !vault |
   3534373563643765370a643561383664666333386561376435366635656538316361343066376362
   3935
 
-inventory_user:
-  name: ndelucca
-  group: ndelucca
-  home: /home/ndelucca
-  email: ndelucca@educativa.com
-  passwd: "{{ ansible_become_pass }}"
+common_user_name: ndelucca
+common_user_group: ndelucca
+common_user_home: /home/ndelucca
+common_user_email: ndelucca@educativa.com
+common_user_passwd: "{{ ansible_become_pass }}"
 
 i3_main_screen: HDMI-1
 i3_secondary_screen: eDP-1
 
-common_apt_host_startup_apps:
-  - name: Firefox
-    app: firefox
-    cmd: /usr/bin/firefox
-    on_startup: false
+common_firefox_startup: false
+common_chrome_startup: true
 
-common_flatpak_host_apps:
-  - name: Chrome
-    app: com.google.Chrome
-    cmd: "{{ common_flatpak_excecutable }} run --file-forwarding com.google.Chrome @@u %U @@"
-    alias: chrome
-    on_startup: true
-  - name: Skype
-    app: com.skype.Client
-    cmd: "{{ common_flatpak_excecutable }} run --file-forwarding com.skype.Client @@u %U @@"
-    alias: skype
-    on_startup: true
-  - name: DBeaver
-    app: io.dbeaver.DBeaverCommunity
-    cmd: "{{ common_flatpak_excecutable }} run --file-forwarding io.dbeaver.DBeaverCommunity @@u %U @@"
-    alias: dbeaver
-    on_startup: false
-  - name: Edge
-    app: com.microsoft.Edge
-    cmd: "{{ common_flatpak_excecutable }} run --file-forwarding com.microsoft.Edge @@u %u @@"
-    alias: edge
-    on_startup: false
+common_host_apps:
+  - alias: edge
+    name: Edge
+    comment: Crap messaging app
+    executable: "{{ common_user_bin_dir }}/edge"
+    icon: com.microsoft.Edge
+    launch_terminal: false
+    startup: false
+    startup_delay: 0
+    flatpak: true
+    flatpak_app: com.microsoft.Edge
+
+  - alias: skype
+    name: Skype
+    comment: Crap messaging app
+    executable: "{{ common_user_bin_dir }}/skype"
+    icon: com.skype.Client
+    launch_terminal: false
+    startup: true
+    startup_delay: 8
+    flatpak: true
+    flatpak_app: com.skype.Client
+
+  - alias: dbeaver
+    name: DBeaver
+    comment: Database client
+    executable: "{{ common_user_bin_dir }}/dbeaver"
+    icon: io.dbeaver.DBeaverCommunity
+    launch_terminal: false
+    startup: false
+    startup_delay: 0
+    flatpak: true
+    flatpak_app: io.dbeaver.DBeaverCommunity

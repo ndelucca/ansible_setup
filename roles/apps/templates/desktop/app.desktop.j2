@@ -1,0 +1,12 @@
+# https://specifications.freedesktop.org/autostart-spec/autostart-spec-latest.html
+[Desktop Entry]
+Type=Application
+Name={{ app_name }}
+Comment={{ app_comment }}
+Exec=bash -c "sleep {{ app_startup_delay}} && {{ app_executable }}"
+Icon={{ app_icon }}
+Terminal={{ app_launch_terminal | ternary('true', 'false') }}
+Categories=MyApps
+Hidden=false
+NoDisplay=false
+OnlyShowIn=i3

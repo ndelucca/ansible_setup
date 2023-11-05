@@ -1,0 +1,23 @@
+---
+- name: Installing flatpaks
+  community.general.flatpak:
+    name: "{{ item.flatpak_app }}"
+    state: present
+  loop: "{{ common_apps | selectattr('flatpak', 'equalto', true) | list }}"
+  loop_control:
+    label: "{{ item.flatpak_app }}"
+  become: true
+  become_user: "{{ common_user_name }}"
+
+- name: Creating local executable
+  ansible.builtin.template:
+    src: flatpak/app.sh.j2
+    dest: "{{ item.executable }}"
+    mode: "0755"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+  vars:
+    flatpak_app: "{{ item.flatpak_app }}"
+  loop: "{{ common_apps | selectattr('flatpak', 'equalto', true) | list }}"
+  loop_control:
+    label: "{{ item.executable }}"

@@ -2,15 +2,15 @@
 - name: Installing NVM and Node.js
   hosts: my_machines
   become: true
-  become_user: "{{ inventory_user.name }}"
+  become_user: "{{ common_user_name }}"
 
   tasks:
     - name: Creating .bashrc_custom file
       ansible.builtin.file:
-        path: "{{ inventory_user.home }}/.bashrc_custom"
+        path: "{{ common_user_home }}/.bashrc_custom"
         state: touch
-        owner: "{{ inventory_user.name }}"
-        group: "{{ inventory_user.group }}"
+        owner: "{{ common_user_name }}"
+        group: "{{ common_user_group }}"
         mode: "0755"
 
     - name: Importing stephdewit.nvm role
@@ -18,7 +18,7 @@
         name: stephdewit.nvm
       vars:
         nvm_node_version: lts
-        nvm_install_path: "{{ inventory_user.home }}/.nvm"
-        nvm_shell_init_file: "{{ inventory_user.home }}/.bashrc_custom"
+        nvm_install_path: "{{ common_user_home }}/.nvm"
+        nvm_shell_init_file: "{{ common_user_home }}/.bashrc_custom"
       environment:
-        NVM_DIR: "{{ inventory_user.home }}/.nvm"
+        NVM_DIR: "{{ common_user_home }}/.nvm"
