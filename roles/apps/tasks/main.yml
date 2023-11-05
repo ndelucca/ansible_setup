@@ -64,9 +64,5 @@
   tags: tasks_mycli
 
 - name: Importing tasks
-  ansible.builtin.import_tasks: redshift.yml
-  tags: tasks_redshift
-
-- name: Importing tasks
   ansible.builtin.import_tasks: fzf.yml
   tags: tasks_fzf
