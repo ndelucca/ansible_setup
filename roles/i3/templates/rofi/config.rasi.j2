@@ -1,0 +1,15 @@
+configuration {
+  modi: [window,drun,run,ssh];
+  show-icons: true;
+  icon-theme: "{{ common_gtk_icon_theme_name }}";
+  font: "{{ common_main_font }}";
+  timeout {
+    action: "kb-cancel";
+    delay: 0;
+  }
+  filebrowser {
+    directories-first: true;
+    sorting-method: "name";
+  }
+}
+@theme "sidebar"

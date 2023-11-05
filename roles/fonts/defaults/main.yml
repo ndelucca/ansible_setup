@@ -1,2 +1,3 @@
 ---
-fonts_path: "{{ common_user_home }}/.fonts"
+# fonts_path: "{{ common_user_home }}/.local/share/fonts"
+fonts_path: "/usr/share/fonts"

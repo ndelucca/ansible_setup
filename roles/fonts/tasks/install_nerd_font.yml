@@ -1,0 +1,13 @@
+---
+- name: Downloading nerdfonts...
+  ansible.builtin.get_url:
+    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/{{ fonts_nerdfont_name }}.zip
+    dest: /tmp/{{ fonts_nerdfont_name }}.zip
+    mode: "0644"
+
+- name: Installing nerdfonts fonts...
+  ansible.builtin.unarchive:
+    src: /tmp/{{ fonts_nerdfont_name }}.zip
+    dest: "{{ fonts_path }}/fonts-nerd-fonts/"
+    remote_src: false
+  notify: Update fonts cache
