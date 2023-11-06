@@ -33,7 +33,7 @@
     - 01-git-prompt.sh
     - "{{ bash_ps1_file }}"
     - 03-greeting.sh
-    - 04-work_aliases.sh
+    - 04-work-aliases.sh
   loop_control:
     label: "{{ bash_scripts_dir }}/{{ item }}"
 

@@ -9,15 +9,12 @@
     - "{{ i3_deb_url }}"
 
 - name: Installing i3 complement apps
+  tags: apt
   ansible.builtin.apt:
     name:
       - rofi
       - numlockx
     state: present
-
-- name: Updating apt
-  tags: apt
-  ansible.builtin.apt:
     cache_valid_time: 3600
     update_cache: true
     autoremove: true

@@ -17,7 +17,7 @@
 
 - name: Installing common apps
   ansible.builtin.apt:
-    name: "{{ item.app }}"
+    name: "{{ item.alias }}"
     state: present
   loop: "{{ common_apps | selectattr('flatpak', 'equalto', false) | list }}"
   loop_control:

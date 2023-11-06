@@ -9,11 +9,23 @@
   loop_control:
     label: /etc/profile.d/{{ item }}
 
-- name: Importing tasks...
-  ansible.builtin.import_tasks: user.yml
+- name: Configuring user...
+  ansible.builtin.include_tasks: user.yml
 
-- name: Importing tasks...
-  ansible.builtin.import_tasks: user.yml
+- name: Copying custom programs
+  ansible.builtin.copy:
+    src: "bin/{{ item }}"
+    dest: "{{ bash_custom_scripts_dir }}/{{ item }}"
+    mode: "0644"
+    owner: "{{ bash_user_name }}"
+    group: "{{ bash_user_group }}"
+  loop:
+    - pulse
+  loop_control:
+    label: "{{ bash_scripts_dir }}/{{ item }}"
+
+- name: Configuring root user...
+  ansible.builtin.include_tasks: user.yml
   vars:
     bash_user_name: root
     bash_user_group: root
