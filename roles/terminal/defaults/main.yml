@@ -1,0 +1,3 @@
+---
+terminal_gnome_profile_name: "{{ common_user_name }}"
+terminal_gnome_profile_id: "b1dcc9dd-5262-4d8d-a863-c897e6d979b9"

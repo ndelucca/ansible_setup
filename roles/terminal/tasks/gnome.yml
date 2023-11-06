@@ -1,0 +1,21 @@
+---
+- name: Create gnome-terminal profile
+  community.general.dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.val }}"
+    state: present
+  loop:
+    - key: /org/gnome/terminal/legacy/profiles:/list
+      val: "['{{ terminal_gnome_profile_id }}']"
+    - key: /org/gnome/terminal/legacy/profiles:/default
+      val: "'{{ terminal_gnome_profile_id }}'"
+    - key: /org/gnome/terminal/legacy/profiles:/{{ terminal_gnome_profile_id }}/visible-name
+      val: "'{{ terminal_gnome_profile_name }}'"
+    - key: /org/gnome/terminal/legacy/profiles:/{{ terminal_gnome_profile_id }}/use-custom-command
+      val: "true"
+    - key: /org/gnome/terminal/legacy/profiles:/{{ terminal_gnome_profile_id }}/custom-command
+      val: "'/bin/bash'"
+    - key: /org/gnome/terminal/legacy/profiles:/{{ terminal_gnome_profile_id }}/font
+      val: "'monospace 12'"
+    - key: /org/gnome/terminal/legacy/profiles:/{{ terminal_gnome_profile_id }}/background-color
+      val: "'#4E1E1E'"
