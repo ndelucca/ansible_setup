@@ -49,6 +49,10 @@
   tags: tasks_autostart
 
 - name: Importing tasks
+  ansible.builtin.import_tasks: picom.yml
+  tags: tasks_picom
+
+- name: Importing tasks
   ansible.builtin.import_tasks: lightdm.yml
   tags: tasks_lightdm
 
