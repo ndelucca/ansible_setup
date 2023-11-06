@@ -5,7 +5,7 @@ alias ap='ansible-playbook'
 
 alias myip='printf "external: " && curl ifconfig.me && echo && printf "local: " && hostname -I'
 
-for file in "${HOME}/{{ bash_scripts_dir | basename }}/*.sh"
+for file in ${HOME}/{{ bash_scripts_dir | basename }}/*.sh
 do
   . "$file"
 done
