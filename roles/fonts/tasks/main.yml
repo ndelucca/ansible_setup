@@ -44,3 +44,4 @@
     fonts_nerdfont_name: "{{ item }}"
   loop:
     - JetBrainsMono
+    - EnvyCodeR

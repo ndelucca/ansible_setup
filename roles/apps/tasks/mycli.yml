@@ -1,4 +1,9 @@
 ---
+- name: Installing mycli
+  ansible.builtin.apt:
+    name: mycli
+    state: present
+
 - name: Creating mycli config
   ansible.builtin.template:
     dest: "{{ common_user_home }}/.my.cnf"

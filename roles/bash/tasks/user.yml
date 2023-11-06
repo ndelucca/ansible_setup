@@ -1,0 +1,46 @@
+---
+- name: Creating bash directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+    owner: "{{ bash_user_name }}"
+    group: "{{ bash_user_group }}"
+  loop:
+    - "{{ bash_scripts_dir }}"
+    - "{{ bash_custom_scripts_dir }}"
+
+- name: Creating environment files
+  ansible.builtin.template:
+    src: bash/{{ item }}.j2
+    dest: "{{ bash_scripts_dir }}/{{ item }}.sh"
+    mode: "0644"
+    owner: "{{ bash_user_name }}"
+    group: "{{ bash_user_group }}"
+  loop:
+    - 00-environment.sh
+  loop_control:
+    label: "{{ bash_scripts_dir }}/{{ item }}"
+
+- name: Creating bash files
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ bash_scripts_dir }}/{{ item }}"
+    mode: "0644"
+    owner: "{{ bash_user_name }}"
+    group: "{{ bash_user_group }}"
+  loop:
+    - 01-git-prompt.sh
+    - "{{ bash_ps1_file }}"
+    - 03-greeting.sh
+    - 04-work_aliases.sh
+  loop_control:
+    label: "{{ bash_scripts_dir }}/{{ item }}"
+
+- name: Creating .bash_aliases file
+  ansible.builtin.template:
+    src: bash/bash_aliases.sh.j2
+    dest: "{{ bash_scripts_dir }}/.bash_aliases"
+    mode: "0644"
+    owner: "{{ bash_user_name }}"
+    group: "{{ bash_user_group }}"

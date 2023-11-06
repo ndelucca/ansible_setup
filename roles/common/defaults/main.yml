@@ -126,6 +126,17 @@ common_default_apps:
     flatpak: true
     flatpak_app: com.rtosta.zapzap
 
+  - alias: dropbox
+    name: Dropbox
+    comment: Sync your files across computers and to the web
+    executable: /usr/bin/dropbox
+    icon: dropbox
+    launch_terminal: false
+    startup: true
+    startup_delay: 1
+    flatpak: false
+    flatpak_app:
+
 # Expand on each host
 common_host_apps: []
 common_apps: "{{ common_default_apps + common_host_apps }}"

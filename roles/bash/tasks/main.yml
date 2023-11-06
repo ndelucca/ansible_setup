@@ -10,31 +10,11 @@
     label: /etc/profile.d/{{ item }}
 
 - name: Importing tasks...
-  ansible.builtin.import_tasks: user_bash.yml
-  vars:
-    bash_user_name: "{{ common_user_name }}"
-    bash_user_group: "{{ common_user_group }}"
-    bash_user_home: "{{ common_user_home }}"
+  ansible.builtin.import_tasks: user.yml
 
 - name: Importing tasks...
-  ansible.builtin.import_tasks: user_bash.yml
+  ansible.builtin.import_tasks: user.yml
   vars:
     bash_user_name: root
     bash_user_group: root
     bash_user_home: /root
-    bash_ps1_file: ps1_root.sh
-
-- name: Importing tasks...
-  ansible.builtin.import_tasks: user_bash.yml
-  vars:
-    bash_user_name: "{{ common_user_name }}"
-    bash_user_group: "{{ common_user_group }}"
-    bash_user_home: "{{ common_user_home }}"
-
-- name: Creating custom scripts dir
-  ansible.builtin.file:
-    path: "{{ bash_custom_scripts_dir }}"
-    state: directory
-    mode: "0755"
-    owner: "{{ common_user_name }}"
-    group: "{{ common_user_group }}"

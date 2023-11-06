@@ -8,6 +8,13 @@
     - "{{ i3_wm_deb_url }}"
     - "{{ i3_deb_url }}"
 
+- name: Installing i3 complement apps
+  ansible.builtin.apt:
+    name:
+      - rofi
+      - numlockx
+    state: present
+
 - name: Updating apt
   tags: apt
   ansible.builtin.apt:

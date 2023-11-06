@@ -1,4 +1,9 @@
 ---
+- name: Installing feh
+  ansible.builtin.apt:
+    name: feh
+    state: present
+
 - name: Create .fehbg file
   ansible.builtin.template:
     src: feh/fehbg.sh.j2

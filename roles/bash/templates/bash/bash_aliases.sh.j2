@@ -1,26 +1,11 @@
-. "${HOME}/{{ bash_env_file }}"
-
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 alias ap='ansible-playbook'
 
 alias myip='printf "external: " && curl ifconfig.me && echo && printf "local: " && hostname -I'
-alias weather='curl wttr.in'
 
-
-if [ -f "${BASH_CUSTOM_PATH}/git-prompt.sh" ]; then
-    . "${BASH_CUSTOM_PATH}/git-prompt.sh"
-fi
-
-if [ -f "${BASH_CUSTOM_PATH}/{{ bash_ps1_file }}" ]; then
-    . "${BASH_CUSTOM_PATH}/{{ bash_ps1_file }}"
-fi
-
-if [ -f "${BASH_CUSTOM_PATH}/work_aliases.sh" ]; then
-    . "${BASH_CUSTOM_PATH}/work_aliases.sh"
-fi
-
-if [ -f "${BASH_CUSTOM_PATH}/custom_bash.sh" ]; then
-    . "${BASH_CUSTOM_PATH}/custom_bash.sh"
-fi
+for file in "${HOME}/{{ bash_scripts_dir | basename }}/*.sh"
+do
+  . "$file"
+done

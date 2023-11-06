@@ -1,4 +1,9 @@
 ---
+- name: Installing lightdm
+  ansible.builtin.apt:
+    name: lightdm
+    state: present
+
 - name: Creating slick-greeter config
   ansible.builtin.template:
     dest: /etc/lightdm/slick-greeter.conf

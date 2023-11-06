@@ -1,4 +1,11 @@
 ---
+- name: Installing feh
+  ansible.builtin.apt:
+    name:
+      - fd-find
+      - fzf
+    state: present
+
 - name: Creating slick-greeter config
   ansible.builtin.template:
     dest: "{{ common_user_home }}/.ignore"

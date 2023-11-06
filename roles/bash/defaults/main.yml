@@ -1,14 +1,15 @@
 ---
+bash_user_name: "{{ common_user_name }}"
+bash_user_group: "{{ common_user_name }}"
+bash_user_home: "{{ common_user_name }}"
+
 bash_aliases_file: "{{ common_user_home }}/.bash_aliases"
 
-bash_env_file: .nd_env
-bash_dir: "{{ common_user_home }}/.nd_bash"
+bash_scripts_dir: "{{ bash_user_home }}/scripts"
+bash_custom_scripts_dir: "{{ bash_user_home }}/custom_scripts"
 
-bash_ps1_file: ps1.sh
-
-bash_custom_scripts_dirname: .nd_scripts
-bash_custom_scripts_dir: "{{ common_user_home }}/{{ bash_custom_scripts_dirname }}"
+bash_ps1_file: "{{ bash_user_name == 'root' | ternary('ps1_root.sh', 'ps1.sh') }}"
 
 bash_exported_paths:
   - ~/bin
-  - ~/{{ bash_custom_scripts_dirname }}
+  - ~/{{ bash_custom_scripts_dir | basename }}

@@ -1,4 +1,9 @@
 ---
+- name: Installing picom
+  ansible.builtin.apt:
+    name: picom
+    state: present
+
 - name: Create Picom config directory
   ansible.builtin.file:
     path: "{{ common_picom_config_file | dirname }}"
