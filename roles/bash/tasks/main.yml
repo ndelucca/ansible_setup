@@ -16,7 +16,7 @@
   ansible.builtin.copy:
     src: "bin/{{ item }}"
     dest: "{{ bash_custom_scripts_dir }}/{{ item }}"
-    mode: "0644"
+    mode: "0755"
     owner: "{{ bash_user_name }}"
     group: "{{ bash_user_group }}"
   loop:
