@@ -49,10 +49,10 @@ common_default_apps:
     flatpak: true
     flatpak_app: com.google.Chrome
 
-  - alias: gnome-terminal
-    name: Gnome-terminal
+  - alias: kitty
+    name: Kitty
     comment: Terminal app
-    executable: /usr/bin/gnome-terminal
+    executable: /usr/bin/kitty
     icon: utilities-terminal
     launch_terminal: false
     startup: true
