@@ -1,0 +1,60 @@
+---
+- name: Install dependencies
+  ansible.builtin.apt:
+    name:
+      - cmake
+      - pkg-config
+      - libfreetype6-dev
+      - libfontconfig1-dev
+      - libxcb-xfixes0-dev
+      - python3
+      - cargo
+    state: present
+
+- name: Clone Alacritty from GitHub
+  ansible.builtin.git:
+    repo: "https://github.com/alacritty/alacritty.git"
+    dest: "{{ common_user_home }}/dev/alacritty"
+    version: master
+    accept_hostkey: true
+    force: true
+  become: true
+  become_user: "{{ common_user_name }}"
+
+- name: Build and Install Alacritty
+  ansible.builtin.command:
+    cmd: cargo build --release
+    chdir: "{{ common_user_home }}/dev/alacritty"
+  args:
+    creates: "{{ common_user_home }}/dev/alacritty/target/release/alacritty"
+  become: true
+  become_user: "{{ common_user_name }}"
+# - name: Download Alacritty theme
+#   ansible.builtin.get_url:
+#     url: http://example.com/path/to/alacritty_theme.yml
+#     dest: ~/.config/alacritty/alacritty.yml
+
+- name: Creating configuration directory
+  ansible.builtin.file:
+    path: "{{ terminal_alacritty_config_file | dirname }}"
+    state: directory
+    mode: "0755"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+
+- name: Configuring Alacritty
+  ansible.builtin.template:
+    src: alacritty.toml.j2
+    dest: "{{ terminal_alacritty_config_file }}"
+    mode: "0644"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+
+- name: Creating link
+  ansible.builtin.file:
+    src: "{{ common_user_home }}/dev/alacritty/target/release/alacritty"
+    dest: "{{ common_user_home }}/.local/bin/alacritty"
+    state: link
+    mode: "0755"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
