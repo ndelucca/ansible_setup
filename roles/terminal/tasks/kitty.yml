@@ -1,0 +1,25 @@
+---
+- name: Install dependencies
+  ansible.builtin.apt:
+    name:
+      - kitty
+    state: present
+
+- name: Creating configuration directory
+  ansible.builtin.file:
+    path: "{{ terminal_kitty_config_file | dirname }}"
+    state: directory
+    mode: "0755"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+
+- name: Configuring Kitty
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "0644"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+  loop:
+    - src: kitty/kitty.cfg.j2
+      dest: "{{ terminal_kitty_config_file }}"

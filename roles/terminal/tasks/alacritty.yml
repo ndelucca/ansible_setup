@@ -29,10 +29,6 @@
     creates: "{{ common_user_home }}/dev/alacritty/target/release/alacritty"
   become: true
   become_user: "{{ common_user_name }}"
-# - name: Download Alacritty theme
-#   ansible.builtin.get_url:
-#     url: http://example.com/path/to/alacritty_theme.yml
-#     dest: ~/.config/alacritty/alacritty.yml
 
 - name: Creating configuration directory
   ansible.builtin.file:
