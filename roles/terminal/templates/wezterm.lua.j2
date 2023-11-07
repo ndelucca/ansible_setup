@@ -1,0 +1,45 @@
+local wezterm = require 'wezterm'
+local config = {}
+
+
+
+config.colors = {
+  foreground = "#ffffff",
+  background = "#000000",
+  cursor_bg = "#ffffff",
+  cursor_border = "#ffffff",
+  cursor_fg = "#ffffff",
+  selection_bg = "#073642",
+  selection_fg = "#000000",
+  ansi = {
+    "#000000", "#dc322f", "#56db3a", "#ff8400", "#0084d4", "#b729d9", "#ccccff", "#ffffff"
+  },
+  brights = {
+    "#1b1d21", "#dc322f", "#56db3a", "#ff8400", "#0084d4", "#b729d9", "#ccccff", "#ffffff"
+  },
+}
+{# config.font = wezterm.font('JetBrainsMono Nerd Font Mono') #}
+config.font = {
+  family = "JetBrainsMono Nerd Font Mono",
+  bold_font = "JetBrainsMono Nerd Font Mono Extra Bold",
+  italic_font = "JetBrainsMono Nerd Font Mono Italic",
+  bold_italic_font = "JetBrainsMono Nerd Font Mono Extra Bold Italic",
+}
+
+config.window_background_opacity = 0.9
+
+config.tab_bar = {
+    enable = true,
+    edge = "top",
+    style = "powerline",
+    powerline_style = "slanted",
+    title_template = "{title}",
+    active_tab_title_template = "{title}",
+    active_tab_foreground = "#ffffff",
+    active_tab_font_style = "Bold Italic",
+    active_tab_background = "#073642",
+    inactive_tab_foreground = "#c2c2c2",
+    inactive_tab_background = "#222222",
+  }
+
+return config
