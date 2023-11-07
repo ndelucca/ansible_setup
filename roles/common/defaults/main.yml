@@ -59,6 +59,7 @@ common_default_apps:
     startup_delay: 0
     flatpak: false
     flatpak_app:
+    deb: https://github.com/wez/wezterm/releases/download/20230712-072601-f4abf8fd/wezterm-20230712-072601-f4abf8fd.Ubuntu22.04.deb
 
   - alias: code
     name: Code
@@ -140,3 +141,12 @@ common_default_apps:
 # Expand on each host
 common_host_apps: []
 common_apps: "{{ common_default_apps + common_host_apps }}"
+
+# Apps a instalarse por APT
+common_apt_apps: "{{ common_apps | selectattr('flatpak', 'equalto', false) | list }}"
+# Apps a instalarse por APT estándar
+common_apt_source_apps: "{{ common_apt_apps | rejectattr('deb', 'defined') | list }}"
+# Apps a instalarse por APT mediante un paquete .deb
+common_apt_deb_apps: "{{ common_apt_apps | selectattr('deb', 'defined') | list }}"
+# Apps a instalarse por FLATPAK
+common_flatpak_apps: "{{ common_apps | selectattr('flatpak', 'equalto', true) | list }}"

@@ -3,7 +3,7 @@
   community.general.flatpak:
     name: "{{ item.flatpak_app }}"
     state: present
-  loop: "{{ common_apps | selectattr('flatpak', 'equalto', true) | list }}"
+  loop: "{{ common_flatpak_apps }}"
   loop_control:
     label: "{{ item.flatpak_app }}"
   become: true
@@ -18,6 +18,6 @@
     group: "{{ common_user_group }}"
   vars:
     flatpak_app: "{{ item.flatpak_app }}"
-  loop: "{{ common_apps | selectattr('flatpak', 'equalto', true) | list }}"
+  loop: "{{ common_flatpak_apps }}"
   loop_control:
     label: "{{ item.executable }}"
