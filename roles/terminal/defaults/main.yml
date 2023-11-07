@@ -3,4 +3,4 @@ terminal_alacritty_config_file: "{{ common_user_home }}/.config/alacritty/alacri
 terminal_kitty_config_file: "{{ common_user_home }}/.config/kitty/kitty.conf"
 terminal_kitty_theme: jetbrains_darcula
 
-terminal_wezterm_config_file: "{{ common_user_home }}/.wezterm.lua"
+terminal_wezterm_config_file: "{{ common_user_home }}/.config/wezterm/wezterm.lua"

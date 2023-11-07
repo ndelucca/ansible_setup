@@ -1,45 +1,93 @@
+-- Config table
+-- https://wezfurlong.org/wezterm/config/lua/config/index.html
+
 local wezterm = require 'wezterm'
 local config = {}
 
+if wezterm.config_builder then
+  config = wezterm.config_builder()
+end
 
-
+config.color_scheme = 'Symfonic'
 config.colors = {
   foreground = "#ffffff",
   background = "#000000",
+  -- Overrides the cell background color when the current cell is occupied by the
+  -- cursor and the cursor style is set to Block
   cursor_bg = "#ffffff",
-  cursor_border = "#ffffff",
+  -- Overrides the text color when the current cell is occupied by the cursor
   cursor_fg = "#ffffff",
-  selection_bg = "#073642",
+  -- Specifies the border color of the cursor when the cursor style is set to Block,
+  -- or the color of the vertical or horizontal bar when the cursor style is set to
+  -- Bar or Underline.
+  cursor_border = "#ffffff",
+  -- the foreground color of selected text
   selection_fg = "#000000",
+  -- the background color of selected text
+  selection_bg = "#073642",
+  -- The color of the scrollbar "thumb"; the portion that represents the current viewport
+  scrollbar_thumb = '#222222',
+  -- The color of the split lines between panes
+  split = '#444444',
+
   ansi = {
-    "#000000", "#dc322f", "#56db3a", "#ff8400", "#0084d4", "#b729d9", "#ccccff", "#ffffff"
+    "#000000",
+    "#dc322f",
+    "#56db3a",
+    "#ff8400",
+    "#0084d4",
+    "#b729d9",
+    "#ccccff",
+    "#ffffff"
   },
   brights = {
-    "#1b1d21", "#dc322f", "#56db3a", "#ff8400", "#0084d4", "#b729d9", "#ccccff", "#ffffff"
+    "#1b1d21",
+    "#dc322f",
+    "#56db3a",
+    "#ff8400",
+    "#0084d4",
+    "#b729d9",
+    "#ccccff",
+    "#ffffff"
+  },
+
+  tab_bar = {
+    background = "rgba(0,0,0,0.82)",
+    active_tab = {
+      bg_color = 'rgba(100,80,50,0.85)',
+      fg_color = '#ffffff',
+      intensity = 'Bold',
+    },
+    inactive_tab = {
+      bg_color = 'rgba(0,0,0,0.85)',
+      fg_color = '#808080',
+    },
+    inactive_tab_hover = {
+      bg_color = 'rgba(25,35,40,0.7)',
+      fg_color = '#bbbbbb',
+    },
+    new_tab = {
+      bg_color = 'rgba(0,0,0,0.85)',
+      fg_color = '#808080',
+    },
+    new_tab_hover = {
+      bg_color = 'rgba(35,30,25,0.8)',
+      fg_color = '#bbbbbb',
+    },
   },
 }
-{# config.font = wezterm.font('JetBrainsMono Nerd Font Mono') #}
-config.font = {
-  family = "JetBrainsMono Nerd Font Mono",
-  bold_font = "JetBrainsMono Nerd Font Mono Extra Bold",
-  italic_font = "JetBrainsMono Nerd Font Mono Italic",
-  bold_italic_font = "JetBrainsMono Nerd Font Mono Extra Bold Italic",
+config.use_fancy_tab_bar = false
+-- BUG si se pone la barra abajo se pierde la opacidad
+-- config.tab_bar_at_bottom  = false
+config.window_background_opacity = 0.8
+config.window_frame = {
+
+  font = wezterm.font "JetBrains Mono Nerd Font Mono",
+  font_size = 12,
+
+  active_titlebar_bg = "rgba(30,30,30,0)",
+  inactive_titlebar_bg = "rgba(30,30,30,0)",
+
 }
-
-config.window_background_opacity = 0.9
-
-config.tab_bar = {
-    enable = true,
-    edge = "top",
-    style = "powerline",
-    powerline_style = "slanted",
-    title_template = "{title}",
-    active_tab_title_template = "{title}",
-    active_tab_foreground = "#ffffff",
-    active_tab_font_style = "Bold Italic",
-    active_tab_background = "#073642",
-    inactive_tab_foreground = "#c2c2c2",
-    inactive_tab_background = "#222222",
-  }
 
 return config
