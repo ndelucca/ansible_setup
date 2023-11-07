@@ -49,10 +49,10 @@ common_default_apps:
     flatpak: true
     flatpak_app: com.google.Chrome
 
-  - alias: kitty
-    name: Kitty
+  - alias: wezterm
+    name: wezterm
     comment: Terminal app
-    executable: /usr/bin/kitty
+    executable: /usr/bin/wezterm
     icon: utilities-terminal
     launch_terminal: false
     startup: true
