@@ -95,20 +95,5 @@
     label: "{{ common_user_config_dir }}/{{ item.gtk_version }}/{{ item.gtk_file }}"
   notify: Restart i3
 
-- name: Creating rofi configuration directory
-  tags: rofi
-  ansible.builtin.file:
-    path: "{{ i3_rofi_config_file | dirname }}"
-    state: directory
-    mode: "0755"
-    owner: "{{ common_user_name }}"
-    group: "{{ common_user_group }}"
-
-- name: Creating rofi configuration file
-  tags: rofi
-  ansible.builtin.template:
-    src: "rofi/config.rasi.j2"
-    dest: "{{ i3_rofi_config_file }}"
-    mode: "0644"
-    owner: "{{ common_user_name }}"
-    group: "{{ common_user_group }}"
+- name: Importing tasks
+  ansible.builtin.import_tasks: rofi.yml

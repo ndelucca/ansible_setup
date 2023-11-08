@@ -2,7 +2,7 @@
 # Lock - Reboot - Shutdown mode
 set $mode_system (l) Lock | (e) Logout | (r) Reboot | (CTRL+s) Shutdown
 
-bindsym $mod+BackSpace mode "$mode_system"
+{# bindsym $mod+BackSpace mode "$mode_system"
 
 mode "$mode_system" {
     bindsym l exec --no-startup-id $i3lockwall, mode "default"
@@ -15,7 +15,7 @@ mode "$mode_system" {
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
-}
+} #}
 
 # Settings and configurations mode
 set $mode_settings Settings (s) | Audio (a) | Drivers (d)

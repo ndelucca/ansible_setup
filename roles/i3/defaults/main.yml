@@ -6,7 +6,17 @@ i3_config_mod: Mod4
 
 i3_status_dir: "{{ common_user_config_dir }}/i3status"
 
+# Rofi configuration
 i3_rofi_config_file: "{{ common_user_config_dir }}/rofi/config.rasi"
+i3_rofi_scripts_dir: "{{ common_user_config_dir }}/rofi/scripts"
+i3_rofi_launcher: launcher_t1
+i3_rofi_launcher_style: style-7
+i3_rofi_launcher_file: "{{ i3_rofi_scripts_dir }}/{{ i3_rofi_launcher }}"
+i3_rofi_selected_launcher_file: "{{ i3_rofi_scripts_dir }}/i3_launcher"
+i3_rofi_powermenu: powermenu_t3
+i3_rofi_powermenu_style: style-3
+i3_rofi_powermenu_file: "{{ i3_rofi_scripts_dir }}/{{ i3_rofi_powermenu }}"
+i3_rofi_selected_powermenu_file: "{{ i3_rofi_scripts_dir }}/i3_powermenu"
 
 # i3 Installation
 i3_version: 4.22-2
