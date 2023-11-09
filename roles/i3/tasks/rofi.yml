@@ -8,36 +8,6 @@
     owner: "{{ common_user_name }}"
     group: "{{ common_user_group }}"
 
-- name: Pulling rofi collections
-  tags: rofi
-  ansible.builtin.git:
-    repo: https://github.com/adi1090x/rofi.git
-    dest: "{{ common_utilities_dir }}/rofi-collections"
-    version: master
-    accept_hostkey: true
-    force: true
-    depth: 1
-  become: true
-  become_user: "{{ common_user_name }}"
-
-- name: Creating .local rofi directory
-  tags: rofi
-  ansible.builtin.file:
-    path: "{{ common_utilities_dir }}/rofi-collections/setup.sh"
-    state: file
-    mode: "0755"
-    owner: "{{ common_user_name }}"
-    group: "{{ common_user_group }}"
-
-- name: Installing rofi-collections
-  tags: rofi
-  ansible.builtin.command: ./setup.sh
-  args:
-    chdir: "{{ common_utilities_dir }}/rofi-collections"
-    creates: "{{ i3_rofi_config_file }}"
-  become: true
-  become_user: "{{ common_user_name }}"
-
 - name: Creating rofi configuration file
   tags: rofi
   ansible.builtin.template:
@@ -47,31 +17,11 @@
     owner: "{{ common_user_name }}"
     group: "{{ common_user_group }}"
 
-- name: Configuring launcher style
+- name: Creating rofi theme file
   tags: rofi
-  ansible.builtin.lineinfile:
-    path: "{{ i3_rofi_launcher_file }}"
-    regexp: "^theme=.*"
-    line: theme='{{ i3_rofi_launcher_style }}'
-
-- name: Configuring powermenu style
-  tags: rofi
-  ansible.builtin.lineinfile:
-    path: "{{ i3_rofi_powermenu_file }}"
-    regexp: "^theme=.*"
-    line: theme='{{ i3_rofi_powermenu_style }}'
-
-- name: Creating .local rofi directory
-  tags: rofi
-  ansible.builtin.file:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
-    state: link
-    mode: "0755"
+  ansible.builtin.template:
+    src: "rofi/theme.rasi.j2"
+    dest: "{{ i3_rofi_config_file | dirname }}/theme.rasi"
+    mode: "0644"
     owner: "{{ common_user_name }}"
     group: "{{ common_user_group }}"
-  loop:
-    - src: "{{ i3_rofi_launcher_file }}"
-      dest: "{{ i3_rofi_selected_launcher_file }}"
-    - src: "{{ i3_rofi_powermenu_file }}"
-      dest: "{{ i3_rofi_selected_powermenu_file }}"
