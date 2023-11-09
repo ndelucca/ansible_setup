@@ -3,17 +3,14 @@
   tags: task_apt
   ansible.builtin.apt:
     state: absent
-    name: "{{ pkg }}"
-  loop:
-    - vim.tiny
-    - vlc
-    - gimp
-    - onboard
-    - mono-runtime-common # security risk
-    - gnome-orca # security risk
-    - orca # security risk
-  loop_control:
-    loop_var: pkg
+    name:
+      - vim.tiny
+      - vlc
+      - gimp
+      - onboard
+      - mono-runtime-common # security risk
+      - gnome-orca # security risk
+      - orca # security risk
 
 - name: Installing common apps
   ansible.builtin.apt:
@@ -34,19 +31,16 @@
 - name: Installing packages
   tags: task_apt
   ansible.builtin.apt:
-    name: "{{ pkg }}"
-  loop:
-    - python3-pip
-    - pipx
-    - gawk
-    - direnv
-    - virt-manager
-    - inkscape
-    - cowsay
-    - fortune-mod
-    - shellcheck
-  loop_control:
-    loop_var: pkg
+    name:
+      - python3-pip
+      - pipx
+      - gawk
+      - direnv
+      - virt-manager
+      - inkscape
+      - cowsay
+      - fortune-mod
+      - shellcheck
 
 - name: Importing tasks
   ansible.builtin.import_tasks: flatpak.yml
