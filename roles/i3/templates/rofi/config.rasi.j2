@@ -3,14 +3,13 @@ configuration {
   show-icons: true;
   icon-theme: "{{ common_gtk_icon_theme_name }}";
   font: "{{ common_main_font }}";
-
+  terminal: "wezterm";
   timeout {
     action: "kb-cancel";
     delay: 0;
   }
 
   threads: 0;
-  terminal: "rofi-sensible-terminal";
   click-to-exit: true;
   case-sensitive: false;
   cycle: true;
@@ -21,7 +20,6 @@ configuration {
   steal-focus: false;
 
   ssh-client: "ssh";
-  ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";
   parse-hosts: true;
   parse-known-hosts: true;
   filebrowser {
