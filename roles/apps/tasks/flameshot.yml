@@ -1,0 +1,25 @@
+---
+- name: Installing flameshot
+  ansible.builtin.apt:
+    name: flameshot
+    state: present
+
+- name: Create Flameshot config directory
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+  loop:
+    - "{{ apps_flameshot_config_file | dirname }}"
+    - "{{ apps_flameshot_screenshots_dir }}"
+
+- name: Creating flameshot config file
+  tags: cfg
+  ansible.builtin.template:
+    src: flameshot/flameshot.ini.j2
+    dest: "{{ apps_flameshot_config_file }}"
+    mode: "0644"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
