@@ -21,6 +21,7 @@
     group: "{{ bash_user_group }}"
   loop:
     - pulse
+    - scrotlock
   loop_control:
     label: "{{ bash_scripts_dir }}/{{ item }}"
 
