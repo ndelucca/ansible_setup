@@ -1,14 +1,11 @@
 
 # Lock - Reboot - Shutdown mode
-set $mode_system (l) Lock | (e) Logout | (r) Reboot | (CTRL+s) Shutdown
+set $mode_system (e) Logout | (r) Reboot | (CTRL+s) Shutdown
 
 bindsym $mod+BackSpace mode "$mode_system"
 
 mode "$mode_system" {
-    bindsym l exec --no-startup-id $i3lockwall, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $i3lockwall && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $i3lockwall && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Ctrl+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
