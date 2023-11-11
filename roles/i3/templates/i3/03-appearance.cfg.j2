@@ -8,14 +8,14 @@ hide_edge_borders both
 default_border pixel 2
 default_floating_border pixel 4
 
-set $background         {{ i3_color_scheme.background }}
-set $foreground         {{ i3_color_scheme.foreground }}
-set $active_workspace   {{ i3_color_scheme.active_workspace }}
-set $active_foreground   {{ i3_color_scheme.active_foreground }}
-set $inactive_workspace {{ i3_color_scheme.inactive_workspace }}
-set $inactive_foreground {{ i3_color_scheme.inactive_foreground }}
-set $urgent_workspace   {{ i3_color_scheme.urgent_workspace }}
-set $urgent_foreground   {{ i3_color_scheme.urgent_foreground }}
+set $background         {{ color_scheme.background }}
+set $foreground         {{ color_scheme.foreground }}
+set $active_workspace   {{ color_scheme.active_workspace }}
+set $active_foreground   {{ color_scheme.active_foreground }}
+set $inactive_workspace {{ color_scheme.inactive_workspace }}
+set $inactive_foreground {{ color_scheme.inactive_foreground }}
+set $urgent_workspace   {{ color_scheme.urgent_workspace }}
+set $urgent_foreground   {{ color_scheme.urgent_foreground }}
 
 client.focused          $active_workspace   $active_workspace   $active_foreground $active_workspace   $active_workspace
 client.focused_inactive $inactive_workspace $inactive_workspace $inactive_foreground $inactive_workspace $inactive_workspace

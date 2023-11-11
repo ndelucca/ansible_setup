@@ -9,7 +9,7 @@
     group: "{{ common_user_group }}"
 
 - name: Creating rofi configuration file
-  tags: rofi
+  tags: cfg,rofi
   ansible.builtin.template:
     src: "rofi/config.rasi.j2"
     dest: "{{ i3_rofi_config_file }}"
@@ -18,7 +18,7 @@
     group: "{{ common_user_group }}"
 
 - name: Creating rofi theme file
-  tags: rofi
+  tags: cfg,rofi
   ansible.builtin.template:
     src: "rofi/theme.rasi.j2"
     dest: "{{ i3_rofi_config_file | dirname }}/theme.rasi"

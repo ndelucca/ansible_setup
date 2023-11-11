@@ -13,6 +13,7 @@
     group: "{{ common_user_group }}"
 
 - name: Creating picom config file
+  tags: cfg
   ansible.builtin.template:
     src: picom/picom.conf.j2
     dest: "{{ common_picom_config_file }}"

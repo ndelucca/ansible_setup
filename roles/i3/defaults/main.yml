@@ -26,16 +26,3 @@ i3_deb_url: "http://ftp.debian.org/debian/pool/main/i/i3-wm/i3_{{ i3_version }}_
 # GTK Configuration
 i3_gtk2_config_dir: "{{ common_user_config_dir }}/gtk-2.0/"
 i3_gtk3_config_dir: "{{ common_user_config_dir }}/gtk-3.0/"
-
-i3_color_scheme:
-  background: "#0d1117d0"
-  foreground: "#e8e8e8"
-  active_workspace: "#6D4F37"
-  active_foreground: "#ffffff"
-  inactive_workspace: "#141414"
-  inactive_foreground: "#ffffff"
-  urgent_workspace: "#5f0b0b"
-  urgent_foreground: "#ffffff"
-  status_good: "#448575"
-  status_degraded: "#f0d050"
-  status_bad: "#ef3b3b"

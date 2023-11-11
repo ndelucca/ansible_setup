@@ -8,23 +8,22 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-config.color_scheme = 'Symfonic'
 config.colors = {
-  foreground = "#ffffff",
-  background = "#000000",
+  background = "{{ color_scheme.term_bg }}",
+  foreground = "{{ color_scheme.term_on_bg }}",
   -- Overrides the cell background color when the current cell is occupied by the
   -- cursor and the cursor style is set to Block
-  cursor_bg = "#ffffff",
+  cursor_bg = "{{ color_scheme.term_on_primary }}",
   -- Overrides the text color when the current cell is occupied by the cursor
-  cursor_fg = "#ffffff",
+  cursor_fg = "{{ color_scheme.term_on_primary }}",
   -- Specifies the border color of the cursor when the cursor style is set to Block,
   -- or the color of the vertical or horizontal bar when the cursor style is set to
   -- Bar or Underline.
-  cursor_border = "#ffffff",
+  cursor_border = "{{ color_scheme.term_on_primary }}",
   -- the foreground color of selected text
-  selection_fg = "#000000",
+  selection_fg = "{{ color_scheme.term_on_primary }}",
   -- the background color of selected text
-  selection_bg = "#073642",
+  selection_bg = "{{ color_scheme.term_primary }}",
   -- The color of the scrollbar "thumb"; the portion that represents the current viewport
   scrollbar_thumb = '#222222',
   -- The color of the split lines between panes
@@ -52,34 +51,34 @@ config.colors = {
   },
 
   tab_bar = {
-    background = "rgba(0,0,0,0.82)",
+    background = "{{ color_scheme.term_bg }}",
     active_tab = {
-      bg_color = 'rgba(100,80,50,0.85)',
-      fg_color = '#ffffff',
+      bg_color = '{{ color_scheme.term_secondary }}',
+      fg_color = '{{ color_scheme.term_on_secondary }}',
       intensity = 'Bold',
     },
     inactive_tab = {
-      bg_color = 'rgba(0,0,0,0.85)',
-      fg_color = '#808080',
+      bg_color = '{{ color_scheme.term_secondary_container }}',
+      fg_color = '{{ color_scheme.term_on_secondary_container }}',
     },
     inactive_tab_hover = {
-      bg_color = 'rgba(25,35,40,0.7)',
-      fg_color = '#bbbbbb',
+      bg_color = '{{ color_scheme.term_secondary_dimmed }}',
+      fg_color = '{{ color_scheme.term_on_secondary_dimmed }}',
     },
     new_tab = {
-      bg_color = 'rgba(0,0,0,0.85)',
-      fg_color = '#808080',
+      bg_color = '{{ color_scheme.term_secondary_container }}',
+      fg_color = '{{ color_scheme.term_on_secondary_container }}',
     },
     new_tab_hover = {
-      bg_color = 'rgba(35,30,25,0.8)',
-      fg_color = '#bbbbbb',
+      bg_color = '{{ color_scheme.term_secondary_dimmed }}',
+      fg_color = '{{ color_scheme.term_on_secondary_dimmed }}',
     },
   },
 }
 config.use_fancy_tab_bar = false
 -- BUG si se pone la barra abajo se pierde la opacidad
 -- config.tab_bar_at_bottom  = false
-config.window_background_opacity = 0.8
+{# config.window_background_opacity = 0.8 #}
 config.window_frame = {
 
   font = wezterm.font "JetBrains Mono Nerd Font Mono",

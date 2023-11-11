@@ -1,0 +1,60 @@
+---
+color_background_transparent: "#0d1117d0"
+color_background: "#141414"
+color_on_background: "#fafafa"
+
+color_primary: "#a03000"
+color_on_primary: "#ffffff"
+color_primary_container: "#202020"
+color_on_primary_container: "#ffffff"
+color_primary_dimmed: "#702000"
+color_on_primary_dimmed: "#bfbfbf"
+color_secondary: "#902011"
+color_on_secondary: "#ffffff"
+color_secondary_container: "#141414"
+color_on_secondary_container: "#ffffff"
+color_secondary_dimmed: "#601011"
+color_on_secondary_dimmed: "#bfbfbf"
+color_terciary:
+color_on_terciary:
+color_terciary_container:
+color_on_terciary_container:
+color_terciary_dimmed:
+color_on_terciary_dimmed:
+
+color_good: "#448575"
+color_on_good: "#eeeeee"
+color_warn: "#f0d050"
+color_on_warn: "#101010"
+color_bad: "#ef3b3b"
+color_on_bad: "#eeeeee"
+
+color_scheme:
+  # i3
+  background: "{{ color_background_transparent }}"
+  foreground: "{{ color_on_background }}"
+  active_workspace: "{{ color_primary }}"
+  active_foreground: "{{ color_on_primary }}"
+  inactive_workspace: "{{ color_primary_container }}"
+  inactive_foreground: "{{ color_on_primary_container }}"
+  urgent_workspace: "{{ color_secondary }}"
+  urgent_foreground: "{{ color_on_secondary }}"
+  status_good: "{{ color_good }}"
+  status_degraded: "{{ color_warn }}"
+  status_bad: "{{ color_bad }}"
+  # rofi
+  rofi_borders: "{{ color_secondary | hex_to_rgba }}"
+  rofi_background: "{{ color_background_transparent | hex_to_rgba }}"
+  rofi_text_active: "{{ color_on_background | hex_to_rgba }}"
+  rofi_text_default: "{{ color_on_background | hex_to_rgba }}"
+  # terminal
+  term_bg: "{{ color_background | hex_to_rgba }}"
+  term_on_bg: "{{ color_on_background | hex_to_rgba }}"
+  term_on_primary: "{{ color_on_primary | hex_to_rgba }}"
+  term_primary: "{{ color_primary | hex_to_rgba }}"
+  term_secondary: "{{ color_secondary | hex_to_rgba }}"
+  term_on_secondary: "{{ color_on_secondary | hex_to_rgba }}"
+  term_secondary_container: "{{ color_secondary_container | hex_to_rgba }}"
+  term_on_secondary_container: "{{ color_on_secondary_container | hex_to_rgba }}"
+  term_secondary_dimmed: "{{ color_secondary_dimmed | hex_to_rgba }}"
+  term_on_secondary_dimmed: "{{ color_on_secondary_dimmed | hex_to_rgba }}"
