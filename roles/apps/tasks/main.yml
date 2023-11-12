@@ -1,5 +1,5 @@
 ---
-- name: Deleting default packages
+- name: Deleting bloat packages and security risks
   tags: task_apt
   ansible.builtin.apt:
     state: absent
@@ -8,6 +8,9 @@
       - vlc
       - gimp
       - onboard
+      - celluloid
+      - hypnotix
+      - rhythmbox
       - mono-runtime-common # security risk
       - gnome-orca # security risk
       - orca # security risk
@@ -38,6 +41,7 @@
       - direnv
       - virt-manager
       - inkscape
+      - gpick # color picker from screen
       - cowsay
       - fortune-mod
       - shellcheck
