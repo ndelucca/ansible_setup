@@ -13,3 +13,5 @@ apps_autostart_dir: "{{ common_user_config_dir }}/autostart"
 
 apps_flameshot_config_file: "{{ common_user_config_dir }}/flameshot/flameshot.ini"
 apps_flameshot_screenshots_dir: "{{ common_user_home }}/Pictures/screenshots"
+
+apps_newsboat_config_dir: "{{ common_user_home }}/.newsboat"

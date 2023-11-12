@@ -73,3 +73,7 @@
 - name: Importing tasks
   ansible.builtin.import_tasks: fzf.yml
   tags: tasks_fzf
+
+- name: Importing tasks
+  ansible.builtin.import_tasks: newsboat.yml
+  tags: tasks_newsboat

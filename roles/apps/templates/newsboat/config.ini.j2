@@ -1,0 +1,38 @@
+# Set the maximum number of articles per feed
+max-items 100
+
+# Set the default browser
+browser "links"
+
+# Do not show feeds without unread articles
+show-read-feeds no
+
+# Unbind a key
+unbind-key R
+
+# Bind a new key
+bind-key ^R reload-all
+
+# Set the download path for podcasts
+download-path "~/mypodcasts/%n/%F"
+{% raw %}
+# Set the format for podcast filenames
+download-filename-format "{\%y}{%m}{%d}_{%H}{%M}_#h"
+{% endraw %}
+# Set the player for podcasts
+player "mpv"
+
+# Set the reload time (in minutes)
+reload-time 60
+
+# Set the ignore-mode
+ignore-mode "display"
+
+# Set the color scheme
+color background white black
+color listnormal white black
+color listfocus yellow blue bold
+color listnormal_unread magenta black
+color listfocus_unread magenta blue bold
+color info yellow blue bold
+color article white black
