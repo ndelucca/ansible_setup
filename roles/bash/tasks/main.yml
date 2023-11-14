@@ -22,6 +22,7 @@
   loop:
     - pulse
     - scrotlock
+    - screenswitcher
   loop_control:
     label: "{{ bash_scripts_dir }}/{{ item }}"
 

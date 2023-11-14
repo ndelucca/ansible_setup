@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Set monitors as a list
+mapfile -t MONITORS < <(xrandr --query | grep " connected" | cut -d" " -f1)
+
+# If there's only one monitor then don't do anything
+if [ ${#MONITORS[@]} -ne 2 ]; then
+  exit 0
+fi
+
+# Always prefer the HDMI monitor to be considered the primary
+# Probably won't work for multiple HDMI.
+for value in "${MONITORS[@]}"; do
+  if [[ $value =~ "HDMI-" ]]; then
+    PRIMARY="$value"
+  else
+    SECONDARY="$value"
+  fi
+done
+
+# The blackest magic to get the leftmost monitor
+# Using xrandr -q returns something like this:
+#
+# Screen 0: minimum 320 x 200, current 3840 x 1080, maximum 16384 x 16384
+# eDP-1 connected primary 1920x1080+0+0 (normal left inverted right x axis y axis) 344mm x 193mm
+#   1920x1080     60.05*+
+#   ...
+# HDMI-1 connected 1920x1080+1920+0 (normal left inverted right x axis y axis) 521mm x 293mm
+#   1920x1080     60.00*+
+#   ...
+#
+# A secondary monitor placed to the right of the primary one will have a positive
+# value in the x position, such as +1920
+IZQUIERDO=$(xrandr --query | awk -F'connected |+' '/connected/ {print $1, $3}' | sort -n -k 2 | awk 'NR==1 {print $1}')
+
+# Toggle the possition
+if [[ ${IZQUIERDO} =~ ${PRIMARY} ]]; then
+  xrandr --output "${PRIMARY}" --auto --primary --output "${SECONDARY}" --auto --left-of "${PRIMARY}"
+else
+  xrandr --output "${PRIMARY}" --auto --primary --output "${SECONDARY}" --auto --right-of "${PRIMARY}"
+fi
