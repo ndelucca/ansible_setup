@@ -16,7 +16,7 @@
       - numlockx
       - scrot
       - imagemagick
-      - xss-lock
+      - xautolock
     state: present
     cache_valid_time: 3600
     update_cache: true

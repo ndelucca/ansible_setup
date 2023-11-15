@@ -80,7 +80,7 @@ common_default_apps:
     icon: thunderbird
     launch_terminal: false
     startup: true
-    startup_delay: 4
+    startup_delay: 8
     flatpak: false
     flatpak_app:
 
@@ -102,7 +102,7 @@ common_default_apps:
     icon: md.obsidian.Obsidian
     launch_terminal: false
     startup: true
-    startup_delay: 5
+    startup_delay: 10
     flatpak: true
     flatpak_app: md.obsidian.Obsidian
 
@@ -112,8 +112,8 @@ common_default_apps:
     executable: "{{ common_user_bin_dir }}/spotify"
     icon: com.spotify.Client
     launch_terminal: false
-    startup: false
-    startup_delay: 10
+    startup: true
+    startup_delay: 15
     flatpak: true
     flatpak_app: com.spotify.Client
 
@@ -124,7 +124,7 @@ common_default_apps:
     icon: com.rtosta.zapzap
     launch_terminal: false
     startup: true
-    startup_delay: 10
+    startup_delay: 11
     flatpak: true
     flatpak_app: com.rtosta.zapzap
 
@@ -134,7 +134,7 @@ common_default_apps:
     executable: /usr/bin/dropbox
     icon: dropbox
     launch_terminal: false
-    startup: true
+    startup: false
     startup_delay: 1
     flatpak: false
     flatpak_app:
