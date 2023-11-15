@@ -4,20 +4,20 @@ blur_screenshot() {
   rm -f /tmp/screen.png
   scrot /tmp/screen.png
   convert /tmp/screen.png -brightness-contrast -10 -blur 0x8 /tmp/screen.png
-  i3lock -i /tmp/screen.png
+  i3lock -t -i /tmp/screen.png
 }
 
 pixel_screenshot() {
   rm -f /tmp/screen.png
   scrot /tmp/screen.png
   convert /tmp/screen.png -brightness-contrast -10 -scale 50% -scale 200% /tmp/screen.png
-  i3lock -i /tmp/screen.png
+  i3lock -t -i /tmp/screen.png
 }
 
 blur_image() {
   rm -f /tmp/screen.png
   convert "$1" -brightness-contrast -10 -blur 0x8 /tmp/screen.png
-  i3lock -i /tmp/screen.png
+  i3lock -t -i /tmp/screen.png
 }
 
 while getopts "bpi:" opt; do

@@ -7,7 +7,7 @@ local config = {}
 if wezterm.config_builder then
   config = wezterm.config_builder()
 end
-
+config.default_cursor_style = "BlinkingBar"
 config.colors = {
   background = "{{ color_scheme.term_bg }}",
   foreground = "{{ color_scheme.term_on_bg }}",
