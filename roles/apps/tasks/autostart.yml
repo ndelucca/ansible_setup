@@ -34,3 +34,4 @@
   loop: "{{ common_apps | selectattr('startup', 'equalto', false) | list }}"
   loop_control:
     label: "{{ apps_autostart_dir }}/{{ item.alias }}.desktop"
+  when: item.alias != "dropbox"
