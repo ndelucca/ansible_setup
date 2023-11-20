@@ -17,9 +17,9 @@ C_L_CYAN="\[\e[0;96m\]"
 C_ORANGE="\[\e[0;38;5;208m\]"
 M_END="\[\e[m\]"
 
-RUTA="${C_BROWN}\w${M_END}"
-FIRSTLINE="${C_BROWN} >${M_END}"
-SIMB="${C_ORANGE}☯${M_END}"
+RUTA="${C_BLUE}\w${M_END}"
+FIRSTLINE="${C_BLUE} >${M_END}"
+SIMB="${C_CYAN}☯${M_END}"
 
 # Git Prompt Configuration
 GIT_PS1_SHOWCONFLICTSTATE=1
@@ -27,7 +27,7 @@ GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUPSTREAM=1
-GITB="${C_ORANGE}\`__git_ps1\`${M_END}"
+GITB="${C_L_GREEN}\`__git_ps1\`${M_END}"
 
 export PS1="${RUTA}${GITB} ${FIRSTLINE}\n${SIMB} "
 export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa"
