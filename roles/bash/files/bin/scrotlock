@@ -16,7 +16,7 @@ pixel_screenshot() {
 
 blur_image() {
   rm -f /tmp/screen.png
-  convert "$1" -brightness-contrast -10 -blur 0x8 /tmp/screen.png
+  convert "$1" -brightness-contrast -10 /tmp/screen.png
   i3lock -t -i /tmp/screen.png
 }
 
