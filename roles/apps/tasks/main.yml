@@ -46,6 +46,13 @@
       - fortune-mod
       - shellcheck
 
+- name: Setting keyboard layout to latam
+  ansible.builtin.lineinfile:
+    path: /etc/default/keyboard
+    line: XKBLAYOUT="latam"
+    regexp: XKBLAYOUT=
+  tags: tasks_keyboard
+
 - name: Importing tasks
   ansible.builtin.import_tasks: flatpak.yml
   tags: tasks_flatpak
