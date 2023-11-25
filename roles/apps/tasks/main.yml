@@ -35,13 +35,13 @@
   tags: task_apt
   ansible.builtin.apt:
     name:
+      - nala
       - python3-pip
       - pipx
       - gawk
       - direnv
       - virt-manager
-      - inkscape
-      - gpick # color picker from screen
+      - gpick
       - cowsay
       - fortune-mod
       - shellcheck
