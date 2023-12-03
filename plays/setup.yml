@@ -20,3 +20,5 @@
       tags: role_i3
     - role: editors
       tags: role_editors
+    - role: golang
+      tags: role_golang

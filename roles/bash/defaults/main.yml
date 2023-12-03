@@ -13,3 +13,4 @@ bash_ps1_file: "{{ (bash_user_name == 'root') | ternary('02-ps1-root.sh', '02-ps
 bash_exported_paths:
   - ~/bin
   - ~/{{ bash_custom_scripts_dir | basename }}
+  - /usr/local/go/bin

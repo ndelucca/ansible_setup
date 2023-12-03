@@ -1,0 +1,12 @@
+---
+- name: Downloading golang...
+  ansible.builtin.get_url:
+    url: https://go.dev/dl/{{ golang_src_pkg }}
+    dest: /tmp/{{ golang_src_pkg }}
+    mode: "0644"
+
+- name: Installing golang binaries...
+  ansible.builtin.unarchive:
+    src: /tmp/{{ golang_src_pkg }}
+    dest: /usr/local
+    remote_src: false
