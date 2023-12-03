@@ -34,6 +34,7 @@
     - "{{ bash_ps1_file }}"
     - 03-greeting.sh
     - 04-work-aliases.sh
+    - 05-golang.sh
   loop_control:
     label: "{{ bash_scripts_dir }}/{{ item }}"
 
