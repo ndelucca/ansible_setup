@@ -17,7 +17,7 @@
         "editor.tabSize": 2,
         "editor.insertSpaces": true,
         "editor.codeActionsOnSave": {
-            "source.organizeImports": true,
+            "source.organizeImports": "explicit"
         },
         "editor.formatOnSave": true,
         "editor.rulers": [
@@ -54,7 +54,7 @@
             "editor.formatOnSave": true,
             "editor.tabSize": 4,
             "editor.codeActionsOnSave": {
-                "source.organizeImports": true,
+                "source.organizeImports": "explicit"
             }
         },
     },
