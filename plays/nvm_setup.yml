@@ -7,7 +7,7 @@
   tasks:
     - name: Creating .bashrc_custom file
       ansible.builtin.file:
-        path: "{{ common_user_home }}/.bashrc_custom"
+        path: "{{ common_user_home }}/scripts/06-nvm.sh"
         state: touch
         owner: "{{ common_user_name }}"
         group: "{{ common_user_group }}"
@@ -19,6 +19,6 @@
       vars:
         nvm_node_version: lts
         nvm_install_path: "{{ common_user_home }}/.nvm"
-        nvm_shell_init_file: "{{ common_user_home }}/.bashrc_custom"
+        nvm_shell_init_file: "{{ common_user_home }}/scripts/06-nvm.sh"
       environment:
         NVM_DIR: "{{ common_user_home }}/.nvm"
