@@ -2,7 +2,7 @@
 apps_mycli_user: "{{ common_user_name }}"
 apps_mycli_pass: "{{ common_user_passwd }}"
 
-apps_feh_wallpaper_chosen: genshin_impact_piano.jpg
+apps_feh_wallpaper_chosen: frieren_looking_back.jpg
 apps_feh_wallpaper_file: "{{ common_wallpaper_dir }}/{{ apps_feh_wallpaper_chosen }}"
 
 apps_lightdm_wallpaper_chosen: genshin_impact_piano.jpg
