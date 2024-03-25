@@ -19,10 +19,9 @@ i3_rofi_powermenu_file: "{{ i3_rofi_scripts_dir }}/{{ i3_rofi_powermenu }}"
 i3_rofi_selected_powermenu_file: "{{ i3_rofi_scripts_dir }}/i3_powermenu"
 
 # i3 Installation
-i3_version: 4.22-2
+i3_version: 4.23-1
 i3_wm_deb_url: "http://ftp.debian.org/debian/pool/main/i/i3-wm/i3-wm_{{ i3_version }}_amd64.deb"
 i3_deb_url: "http://ftp.debian.org/debian/pool/main/i/i3-wm/i3_{{ i3_version }}_amd64.deb"
-
 # GTK Configuration
 i3_gtk2_config_dir: "{{ common_user_config_dir }}/gtk-2.0/"
 i3_gtk3_config_dir: "{{ common_user_config_dir }}/gtk-3.0/"
