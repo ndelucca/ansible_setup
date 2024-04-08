@@ -15,6 +15,11 @@
       - gnome-orca # security risk
       - orca # security risk
 
+- name: Installing vscodium gpg
+  ansible.builtin.script:
+    cmd: vscodium.sh
+    creates: /etc/apt/sources.list.d/vscodium.list
+
 - name: Installing common apps
   ansible.builtin.apt:
     name: "{{ item.alias }}"

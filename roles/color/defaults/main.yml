@@ -1,6 +1,6 @@
 ---
 color_background_transparent: "#0d1117d0"
-color_background: "#040404"
+color_background: "#242424"
 color_on_background: "#fafafa"
 
 color_primary: "#536476"
@@ -31,7 +31,7 @@ color_on_bad: "#eeeeee"
 
 color_scheme:
   # i3
-  background: "{{ color_background_transparent }}"
+  background: "{{ color_background }}"
   foreground: "{{ color_on_background }}"
   active_workspace: "{{ color_primary }}"
   active_foreground: "{{ color_on_primary }}"

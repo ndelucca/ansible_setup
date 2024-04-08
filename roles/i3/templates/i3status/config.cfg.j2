@@ -11,20 +11,22 @@ general {
 order += "wireless _first_"
 order += "ethernet _first_"
 order += "battery all"
-order += "disk /"
+{# order += "disk /" #}
 order += "cpu_usage"
-order += "load"
+{# order += "load" #}
 order += "memory"
 order += "volume master"
 order += "tztime local"
 
 wireless _first_ {
-    format_up = " (%quality) %ip"
+    {# format_up = " (%quality) %ip" #}
+    format_up = "%quality"
     format_down = ""
 }
 
 ethernet _first_ {
-    format_up = " %ip"
+    {# format_up = " %ip" #}
+    format_up = ""
     format_down = ""
 }
 
@@ -53,8 +55,10 @@ load {
 }
 
 memory {
-    format = " %used"
-    format_degraded = " %used"
+    {# format = " %used" #}
+    {# format_degraded = " %used" #}
+    format = ""
+    format_degraded = ""
     threshold_degraded = "10%"
     threshold_critical = 5%
 }
@@ -65,11 +69,11 @@ volume master {
 }
 
 tztime local {
-    format = "%A %Y-%m-%d %H:%M"
+    format = "%A %m-%d %H:%M"
 }
 
 tztime arg {
     hide_if_equals_localtime = true
-    format = "🇦🇷 %A %Y-%m-%d %H:%M"
+    format = "🇦🇷 %A %m-%d %H:%M"
     timezone = "America/Argentina/Buenos_Aires"
 }
