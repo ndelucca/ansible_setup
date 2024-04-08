@@ -48,7 +48,7 @@ color_scheme:
   rofi_text_active: "{{ color_on_background | hex_to_rgba }}"
   rofi_text_default: "{{ color_on_background | hex_to_rgba }}"
   # terminal
-  term_bg: "{{ color_background | hex_to_rgba }}"
+  term_bg: "{{ '#010101' | hex_to_rgba }}"
   term_on_bg: "{{ color_on_background | hex_to_rgba }}"
   term_on_primary: "{{ color_on_primary | hex_to_rgba }}"
   term_primary: "{{ color_primary | hex_to_rgba }}"
