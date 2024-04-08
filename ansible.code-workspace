@@ -1,7 +1,7 @@
 {
     "folders": [
         {
-            "path": ".."
+            "path": "./"
         }
     ],
     "settings": {
@@ -48,7 +48,7 @@
         "ansible.validation.lint.enabled": true,
         "ansible.validation.enabled": true,
         "ansible.ansible.useFullyQualifiedCollectionNames": true,
-        "ansible.python.interpreterPath": ".venv/bin/python",
+        "ansible.python.interpreterPath": "./.venv/bin/python",
         "[python]": {
             "editor.defaultFormatter": "ms-python.black-formatter",
             "editor.formatOnSave": true,
