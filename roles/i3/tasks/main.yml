@@ -67,6 +67,19 @@
     label: "{{ i3_config_dir }}/{{ item }}"
   notify: Restart i3
 
+- name: Creating x11 configuration files
+  tags: cfg, i3cfg, x11
+  ansible.builtin.template:
+    src: x11/{{ item }}.j2
+    dest: /etc/X11/xorg.conf.d/{{ item }}
+    mode: "0644"
+  loop:
+    - 50-mouse-acceleration.conf
+    - 50-no-power-management.conf
+  loop_control:
+    label: /etc/X11/xorg.conf.d/{{ item }}
+  notify: Restart i3
+
 - name: Creating i3status configuration file
   tags: cfg, i3statuscfg
   ansible.builtin.template:
