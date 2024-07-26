@@ -10,18 +10,6 @@
     - "{{ bash_scripts_dir }}"
     - "{{ bash_custom_scripts_dir }}"
 
-- name: Creating environment files
-  ansible.builtin.template:
-    src: bash/{{ item }}.j2
-    dest: "{{ bash_scripts_dir }}/{{ item }}.sh"
-    mode: "0644"
-    owner: "{{ bash_user_name }}"
-    group: "{{ bash_user_group }}"
-  loop:
-    - 00-environment.sh
-  loop_control:
-    label: "{{ bash_scripts_dir }}/{{ item }}"
-
 - name: Creating bash files
   ansible.builtin.copy:
     src: "{{ item }}"

@@ -4,8 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-ansible = "==8.*"
-argcomplete = "==3.*"
+ansible = "*"
+argcomplete = "*"
 
 [dev-packages]
 molecule = "*"
