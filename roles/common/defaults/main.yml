@@ -62,16 +62,16 @@ common_default_apps:
     flatpak_app:
     deb: https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/wezterm-20240203-110809-5046fc22.Ubuntu22.04.deb
 
-  # - alias: code
-  #   name: Code
-  #   comment: Code editor
-  #   executable: /usr/bin/code
-  #   icon: visual-studio-code
-  #   launch_terminal: false
-  #   startup: true
-  #   startup_delay: 2
-  #   flatpak: false
-  #   flatpak_app:
+  - alias: code
+    name: Code
+    comment: Code editor
+    executable: /usr/bin/code
+    icon: visual-studio-code
+    launch_terminal: false
+    startup: true
+    startup_delay: 2
+    flatpak: false
+    flatpak_app:
 
   # - alias: thunderbird
   #   name: Thunderbird

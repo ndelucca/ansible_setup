@@ -1,9 +1,14 @@
 ---
 - name: Running vscode setup...
   ansible.builtin.template:
-    dest: "{{ common_user_home }}/.config/Code/User/settings.json"
-    src: vscode.json.j2
+    dest: "{{ item.dest }}"
+    src: "{{ item.src }}"
     force: true
     mode: "0644"
     owner: "{{ common_user_name }}"
     group: "{{ common_user_group }}"
+  loop:
+    - dest: "{{ common_user_home }}/.config/Code/User/settings.json"
+      src: vscode.json.j2
+    - dest: "{{ common_user_home }}/.config/Code/User/keybindings.json"
+      src: keybindings.json.j2
