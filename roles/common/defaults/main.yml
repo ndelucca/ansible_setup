@@ -62,82 +62,71 @@ common_default_apps:
     flatpak_app:
     deb: https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/wezterm-20240203-110809-5046fc22.Ubuntu22.04.deb
 
-  - alias: code
-    name: Code
-    comment: Code editor
-    executable: /usr/bin/code
-    icon: visual-studio-code
-    launch_terminal: false
-    startup: true
-    startup_delay: 2
-    flatpak: false
-    flatpak_app:
+  # - alias: code
+  #   name: Code
+  #   comment: Code editor
+  #   executable: /usr/bin/code
+  #   icon: visual-studio-code
+  #   launch_terminal: false
+  #   startup: true
+  #   startup_delay: 2
+  #   flatpak: false
+  #   flatpak_app:
 
-  - alias: thunderbird
-    name: Thunderbird
-    comment: Email client
-    executable: /usr/bin/thunderbird
-    icon: thunderbird
-    launch_terminal: false
-    startup: false
-    startup_delay: 8
-    flatpak: false
-    flatpak_app:
+  # - alias: thunderbird
+  #   name: Thunderbird
+  #   comment: Email client
+  #   executable: /usr/bin/thunderbird
+  #   icon: thunderbird
+  #   launch_terminal: false
+  #   startup: false
+  #   startup_delay: 8
+  #   flatpak: false
+  #   flatpak_app:
 
-  - alias: flatseal
-    name: Flatseal
-    comment: Configure Flatpak apps permissions
-    executable: "{{ common_user_bin_dir }}/flatseal"
-    icon: com.github.tchx84.Flatseal
-    launch_terminal: false
-    startup: false
-    startup_delay: 0
-    flatpak: true
-    flatpak_app: com.github.tchx84.Flatseal
+  # - alias: flatseal
+  #   name: Flatseal
+  #   comment: Configure Flatpak apps permissions
+  #   executable: "{{ common_user_bin_dir }}/flatseal"
+  #   icon: com.github.tchx84.Flatseal
+  #   launch_terminal: false
+  #   startup: false
+  #   startup_delay: 0
+  #   flatpak: true
+  #   flatpak_app: com.github.tchx84.Flatseal
 
-  - alias: obsidian
-    name: Obsidian
-    comment: Knowledge base that works on top of a local folder of plain text Markdown files
-    executable: "{{ common_user_bin_dir }}/obsidian"
-    icon: md.obsidian.Obsidian
-    launch_terminal: false
-    startup: true
-    startup_delay: 10
-    flatpak: true
-    flatpak_app: md.obsidian.Obsidian
+  # - alias: obsidian
+  #   name: Obsidian
+  #   comment: Knowledge base that works on top of a local folder of plain text Markdown files
+  #   executable: "{{ common_user_bin_dir }}/obsidian"
+  #   icon: md.obsidian.Obsidian
+  #   launch_terminal: false
+  #   startup: true
+  #   startup_delay: 10
+  #   flatpak: true
+  #   flatpak_app: md.obsidian.Obsidian
 
-  - alias: spotify
-    name: Spotify
-    comment: Listen to music
-    executable: "{{ common_user_bin_dir }}/spotify"
-    icon: com.spotify.Client
-    launch_terminal: false
-    startup: true
-    startup_delay: 15
-    flatpak: true
-    flatpak_app: com.spotify.Client
+  # - alias: spotify
+  #   name: Spotify
+  #   comment: Listen to music
+  #   executable: "{{ common_user_bin_dir }}/spotify"
+  #   icon: com.spotify.Client
+  #   launch_terminal: false
+  #   startup: true
+  #   startup_delay: 15
+  #   flatpak: true
+  #   flatpak_app: com.spotify.Client
 
-  - alias: zapzap
-    name: ZapZap
-    comment: A simple and secure chat app
-    executable: "{{ common_user_bin_dir }}/zapzap"
-    icon: com.rtosta.zapzap
-    launch_terminal: false
-    startup: true
-    startup_delay: 11
-    flatpak: true
-    flatpak_app: com.rtosta.zapzap
-
-  - alias: dropbox
-    name: Dropbox
-    comment: Sync your files across computers and to the web
-    executable: /usr/bin/dropbox
-    icon: dropbox
-    launch_terminal: false
-    startup: false
-    startup_delay: 1
-    flatpak: false
-    flatpak_app:
+  # - alias: zapzap
+  #   name: ZapZap
+  #   comment: A simple and secure chat app
+  #   executable: "{{ common_user_bin_dir }}/zapzap"
+  #   icon: com.rtosta.zapzap
+  #   launch_terminal: false
+  #   startup: true
+  #   startup_delay: 11
+  #   flatpak: true
+  #   flatpak_app: com.rtosta.zapzap
 
 # Expand on each host
 common_host_apps: []

@@ -26,12 +26,3 @@
   loop: "{{ common_apps | selectattr('startup', 'equalto', true) | list }}"
   loop_control:
     label: "{{ apps_autostart_dir }}/{{ app_alias }}.desktop"
-
-- name: Deleting autostart desktop files
-  ansible.builtin.file:
-    path: "{{ apps_autostart_dir }}/{{ item.alias }}.desktop"
-    state: absent
-  loop: "{{ common_apps | selectattr('startup', 'equalto', false) | list }}"
-  loop_control:
-    label: "{{ apps_autostart_dir }}/{{ item.alias }}.desktop"
-  when: item.alias != "dropbox"
