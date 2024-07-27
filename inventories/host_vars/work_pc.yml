@@ -33,16 +33,16 @@ common_host_apps:
     flatpak: true
     flatpak_app: com.microsoft.Edge
 
-  - alias: skype
-    name: Skype
-    comment: Crap messaging app
-    executable: "{{ common_user_bin_dir }}/skype"
-    icon: com.skype.Client
+  - alias: thunderbird
+    name: Thunderbird
+    comment: Email client
+    executable: /usr/bin/thunderbird
+    icon: thunderbird
     launch_terminal: false
-    startup: true
+    startup: false
     startup_delay: 8
-    flatpak: true
-    flatpak_app: com.skype.Client
+    flatpak: false
+    flatpak_app:
 
   - alias: dbeaver
     name: DBeaver
