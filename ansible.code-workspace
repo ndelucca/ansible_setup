@@ -1,61 +1,55 @@
 {
-    "folders": [
-        {
-            "path": "./"
-        }
-    ],
-    "settings": {
-        "files.associations": {
-            "*.yml": "ansible",
-            "*.rasi.j2": "jinja"
-        },
-        "files.insertFinalNewline": true,
-        "files.trimTrailingWhitespace": true,
-        "files.eol": "\n",
-        "files.encoding": "utf8",
-        "editor.renderWhitespace": "all",
-        "editor.tabSize": 2,
-        "editor.insertSpaces": true,
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": "explicit"
-        },
-        "editor.formatOnSave": true,
-        "editor.rulers": [
-            80,
-            120
-        ],
-        "workbench.colorCustomizations": {
-            "titleBar.activeBackground": "#132936"
-        },
-        "yaml.format.enable": true,
-        "yaml.format.singleQuote": true,
-        "yaml.format.bracketSpacing": true,
-        "yaml.validate": true,
-        "yaml.hover": true,
-        "yaml.completion": true,
-        "yaml.customTags": [
-            "!encrypted/pkcs1-oaep scalar",
-            "!vault scalar"
-        ],
-        "[ansible]": {
-            "editor.autoIndent": "advanced",
-            "editor.quickSuggestions": {
-                "other": true,
-                "comments": false,
-                "strings": true
-            }
-        },
-        "ansible.validation.lint.enabled": true,
-        "ansible.validation.enabled": true,
-        "ansible.ansible.useFullyQualifiedCollectionNames": true,
-        "ansible.python.interpreterPath": "./.venv/bin/python",
-        "[python]": {
-            "editor.defaultFormatter": "charliermarsh.ruff",
-            "editor.formatOnSave": true,
-            "editor.tabSize": 4,
-            "editor.codeActionsOnSave": {
-                "source.organizeImports": "explicit"
-            }
-        },
+  "folders": [
+    {
+      "path": "./"
+    }
+  ],
+  "settings": {
+    "files.associations": {
+      "*.yml": "ansible",
+      "*.rasi.j2": "jinja"
     },
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "files.eol": "\n",
+    "files.encoding": "utf8",
+    "editor.renderWhitespace": "all",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    },
+    "editor.formatOnSave": true,
+    "editor.rulers": [80, 120],
+    "workbench.colorCustomizations": {
+      "titleBar.activeBackground": "#132936"
+    },
+    "yaml.format.enable": true,
+    "yaml.format.singleQuote": true,
+    "yaml.format.bracketSpacing": true,
+    "yaml.validate": true,
+    "yaml.hover": true,
+    "yaml.completion": true,
+    "yaml.customTags": ["!encrypted/pkcs1-oaep scalar", "!vault scalar"],
+    "[ansible]": {
+      "editor.autoIndent": "advanced",
+      "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": true
+      }
+    },
+    "ansible.validation.lint.enabled": true,
+    "ansible.validation.enabled": true,
+    "ansible.ansible.useFullyQualifiedCollectionNames": true,
+    "ansible.python.interpreterPath": "/home/ndelucca/dev/ansible_setup/.venv/bin/python",
+    "[python]": {
+      "editor.defaultFormatter": "charliermarsh.ruff",
+      "editor.formatOnSave": true,
+      "editor.tabSize": 4,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+      }
+    }
+  }
 }
