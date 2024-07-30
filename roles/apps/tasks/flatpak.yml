@@ -1,5 +1,6 @@
 ---
 - name: Installing flatpaks
+  tags: flatpak
   community.general.flatpak:
     name: "{{ item.flatpak_app }}"
     state: present
@@ -10,6 +11,7 @@
   become_user: "{{ common_user_name }}"
 
 - name: Creating local executable
+  tags: flatpak
   ansible.builtin.template:
     src: flatpak/app.sh.j2
     dest: "{{ item.executable }}"

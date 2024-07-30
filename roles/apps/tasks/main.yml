@@ -41,7 +41,6 @@
       - gawk
       - direnv
       - virt-manager
-      - gpick
       - cowsay
       - fortune-mod
       - shellcheck
