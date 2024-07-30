@@ -1,4 +1,13 @@
 ---
+
+- name: Creating user directory...
+  ansible.builtin.file:
+    path: "{{ common_user_home }}/.config/Code/User"
+    state: directory
+    mode: "0755"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+
 - name: Running vscode setup...
   ansible.builtin.template:
     dest: "{{ item.dest }}"
