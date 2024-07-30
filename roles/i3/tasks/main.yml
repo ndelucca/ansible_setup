@@ -95,7 +95,7 @@
   notify: Restart i3
 
 - name: Creating gtk configuration files
-  tags: cfg
+  tags: cfg,gtk
   ansible.builtin.template:
     src: "{{ item.gtk_version }}/{{ item.gtk_file }}.j2"
     dest: "{{ common_user_config_dir }}/{{ item.gtk_version }}/{{ item.gtk_file }}"
