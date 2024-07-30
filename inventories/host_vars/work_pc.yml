@@ -33,6 +33,17 @@ common_host_apps:
     flatpak: true
     flatpak_app: com.microsoft.Edge
 
+  - alias: chrome
+    name: Chrome
+    comment: Chrome browser
+    executable: "{{ common_user_bin_dir }}/chrome"
+    icon: com.google.Chrome
+    launch_terminal: false
+    startup: "{{ common_chrome_startup | bool }}"
+    startup_delay: 1
+    flatpak: true
+    flatpak_app: com.google.Chrome
+
   - alias: thunderbird
     name: Thunderbird
     comment: Email client

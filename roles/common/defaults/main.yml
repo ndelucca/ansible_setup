@@ -52,17 +52,6 @@ common_default_apps:
     flatpak: false
     flatpak_app:
 
-  - alias: chrome
-    name: Chrome
-    comment: Chrome browser
-    executable: "{{ common_user_bin_dir }}/chrome"
-    icon: com.google.Chrome
-    launch_terminal: false
-    startup: "{{ common_chrome_startup | bool }}"
-    startup_delay: 1
-    flatpak: true
-    flatpak_app: com.google.Chrome
-
   - alias: code
     name: Code
     comment: Code editor
