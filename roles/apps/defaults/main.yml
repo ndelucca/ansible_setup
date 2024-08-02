@@ -15,3 +15,5 @@ apps_flameshot_config_file: "{{ common_user_config_dir }}/flameshot/flameshot.in
 apps_flameshot_screenshots_dir: "{{ common_user_home }}/Pictures/screenshots"
 
 apps_newsboat_config_dir: "{{ common_user_config_dir }}/newsboat"
+
+apps_picom_backend: glx

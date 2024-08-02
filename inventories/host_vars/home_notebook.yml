@@ -17,6 +17,8 @@ common_user_passwd: "{{ ansible_become_pass }}"
 
 i3_main_screen: LVDS-1
 i3_secondary_screen: LVDS-1
+i3_default_terminal: gnome-terminal
+apps_picom_backend: xrender
 
 common_firefox_startup: true
 common_chrome_startup: false
