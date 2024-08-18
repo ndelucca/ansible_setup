@@ -2,4 +2,4 @@
 
 - name: Update grub
   become: true
-  ansible.builtin.cmd: update-grub
+  ansible.builtin.command: update-grub
