@@ -1,12 +1,12 @@
 ---
-- name: Installing feh
+- name: Installing fzf
   ansible.builtin.apt:
     name:
       - fd-find
       - fzf
     state: present
 
-- name: Creating slick-greeter config
+- name: Creating fzf config
   ansible.builtin.template:
     dest: "{{ common_user_home }}/.ignore"
     src: fzf/ignore.j2
