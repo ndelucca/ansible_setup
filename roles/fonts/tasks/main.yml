@@ -8,6 +8,7 @@
     group: "{{ common_user_group }}"
 
 - name: Running mscorefonts terms and conditions hack
+  when: ansible_distribution == "Linux Mint"
   ansible.builtin.debconf:
     name: ttf-mscorefonts-installer
     question: msttcorefonts/accepted-mscorefonts-eula
@@ -15,18 +16,27 @@
     vtype: select
 
 - name: Running mscorefonts terms and conditions hack
+  when: ansible_distribution == "Linux Mint"
   ansible.builtin.debconf:
     name: ttf-mscorefonts-installer
     question: msttcorefonts/present-mscorefonts-eula
     value: ""
     vtype: select
 
+- name: Installing apt mscorefonts
+  when: ansible_distribution == "Linux Mint"
+  ansible.builtin.apt:
+    name: "{{ font_pkg }}"
+  loop:
+    - ttf-mscorefonts-installer
+  loop_control:
+    loop_var: font_pkg
+
 - name: Installing apt fonts
   ansible.builtin.apt:
     name: "{{ font_pkg }}"
   loop:
     - fonts-font-awesome
-    - ttf-mscorefonts-installer
   loop_control:
     loop_var: font_pkg
 

@@ -1,0 +1,5 @@
+---
+
+- name: Selecting installation method based on OS...
+  tags: task_firefox
+  ansible.builtin.include_tasks: "{{ ansible_distribution }}.yml"

@@ -1,0 +1,8 @@
+---
+
+- name: Installing Firefox...
+  tags: task_firefox
+  become: true
+  ansible.builtin.script: /root/install_firefox.sh
+  args:
+    creates: /etc/apt/preferences.d/mozilla

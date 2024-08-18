@@ -1,6 +1,7 @@
 ---
 - name: Main PC setup
   hosts: my_machines
+  gather_facts: true
   become: true
 
   roles:
