@@ -1,0 +1,4 @@
+---
+
+grub_bg_image: frieren_darker.png
+grub_bg_image_location: /usr/share/wallpapers/ndelucca/{{ grub_bg_image }}

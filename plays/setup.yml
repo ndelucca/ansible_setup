@@ -6,6 +6,8 @@
   roles:
     - role: git
       tags: role_git
+    - role: grub
+      tags: role_grub
     - role: apps
       tags: role_apps
     - role: fonts

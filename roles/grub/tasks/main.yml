@@ -1,0 +1,20 @@
+---
+
+- name: Assuring shared images directory...
+  ansible.builtin.file:
+    path: "{{ grub_bg_image_location | dirname }}"
+    state: directory
+    mode: "0755"
+
+- name: Copying grub background image...
+  ansible.builtin.copy:
+    src: "{{ grub_bg_image }}"
+    dest: "{{ grub_bg_image_location }}"
+    mode: "0644"
+
+- name: Configuring grub...
+  ansible.builtin.lineinfile:
+    path: /etc/default/grub
+    regexp: '^GRUB_BACKGROUND'
+    line: GRUB_BACKGROUND={{ grub_bg_image_location }}
+  notify: Update grub
