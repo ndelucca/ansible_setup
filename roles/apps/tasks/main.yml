@@ -72,8 +72,8 @@
   tags: tasks_picom
 
 - name: Importing tasks
-  ansible.builtin.import_tasks: lightdm.yml
-  tags: tasks_lightdm
+  ansible.builtin.import_tasks: display_manager.yml
+  tags: tasks_display_manager
 
 - name: Importing tasks
   ansible.builtin.import_tasks: feh.yml

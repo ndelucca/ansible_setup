@@ -1,13 +1,15 @@
 ---
 - name: Installing lightdm
+  tags: tasks_display_manager
   ansible.builtin.apt:
     name: lightdm
     state: present
 
 - name: Creating slick-greeter config
+  tags: tasks_display_manager
   ansible.builtin.template:
     dest: /etc/lightdm/slick-greeter.conf
-    src: lightdm/slick-greeter.conf.j2
+    src: slick-greeter.conf.j2
     force: true
     mode: "0644"
     owner: root
