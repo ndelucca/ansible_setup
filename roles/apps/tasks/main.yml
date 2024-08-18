@@ -35,6 +35,8 @@
   tags: task_apt
   ansible.builtin.apt:
     name:
+      - unzip
+      - locales-all
       - nala
       - python3-pip
       - pipx

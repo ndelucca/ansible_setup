@@ -15,10 +15,23 @@ common_user_home: /home/ndelucca
 common_user_email: nazadelucca@gmail.com
 common_user_passwd: "{{ ansible_become_pass }}"
 
+i3_version: 4.22-2g
 i3_main_screen: LVDS-1
 i3_secondary_screen: LVDS-1
-i3_default_terminal: gnome-terminal
+i3_default_terminal: terminator
 apps_picom_backend: xrender
 
 common_firefox_startup: true
 common_chrome_startup: false
+
+common_default_apps:
+  - alias: terminator
+    name: terminator
+    comment: Terminal app
+    executable: /usr/bin/terminator
+    icon: utilities-terminal
+    launch_terminal: false
+    startup: true
+    startup_delay: 0
+    flatpak: false
+    flatpak_app:
