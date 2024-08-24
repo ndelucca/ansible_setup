@@ -20,7 +20,7 @@ order += "tztime local"
 
 wireless _first_ {
     {# format_up = " (%quality) %ip" #}
-    format_up = "%quality"
+    format_up = " %quality"
     format_down = ""
 }
 
@@ -64,8 +64,8 @@ memory {
 }
 
 volume master {
-    format = "🕪 %volume"
-    format_muted = "🕨 %volume"
+    format = " %volume"
+    format_muted = " %volume"
 }
 
 tztime local {
@@ -74,6 +74,6 @@ tztime local {
 
 tztime arg {
     hide_if_equals_localtime = true
-    format = "🇦🇷 %A %m-%d %H:%M"
+    format = "AR %A %m-%d %H:%M"
     timezone = "America/Argentina/Buenos_Aires"
 }
