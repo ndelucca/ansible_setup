@@ -64,6 +64,10 @@
   tags: tasks_flatpak
 
 - name: Importing tasks
+  ansible.builtin.import_tasks: flameshot.yml
+  tags: tasks_flameshot
+
+- name: Importing tasks
   ansible.builtin.import_tasks: autostart.yml
   tags: tasks_autostart
 
