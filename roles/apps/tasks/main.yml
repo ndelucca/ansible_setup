@@ -5,6 +5,7 @@
     state: absent
     name:
       - vim.tiny
+      - vim
       - vlc
       - gimp
       - onboard
@@ -51,6 +52,8 @@
       - cowsay
       - fortune-mod
       - shellcheck
+      - neovim
+      - curl
 
 - name: Setting keyboard layout to latam
   ansible.builtin.lineinfile:
