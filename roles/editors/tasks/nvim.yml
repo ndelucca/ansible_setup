@@ -1,0 +1,7 @@
+---
+
+- name: Installing nvim
+  ansible.builtin.script:
+    cmd: install_nvim.sh
+  become: true
+  tags: never, install_nvim

@@ -1,3 +1,7 @@
 ---
 - name: Importing tasks...
   ansible.builtin.import_tasks: vscode.yml
+
+- name: Importing tasks...
+  ansible.builtin.import_tasks: nvim.yml
+
