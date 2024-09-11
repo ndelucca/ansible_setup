@@ -4,4 +4,11 @@
   ansible.builtin.script:
     cmd: install_nvim.sh
   become: true
-  tags: never, install_nvim
+  when: editors_install_nvim is defined
+
+- name: Fetching nvim configuration
+  ansible.builtin.git:
+    repo: git@github.com:ndelucca/nvim.git
+    dest: "{{ common_user_home }}/.config/nvim"
+  become: true
+  become_user: "{{ common_user_name }}"
