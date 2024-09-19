@@ -52,8 +52,8 @@
       - cowsay
       - fortune-mod
       - shellcheck
-      - neovim
       - curl
+      - ripgrep
 
 - name: Setting keyboard layout to latam
   ansible.builtin.lineinfile:
