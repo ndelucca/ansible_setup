@@ -15,5 +15,13 @@ SIMB="${C_SIMB}☯${M_END}"
 
 GITB="${C_GITB}\`__git_ps1\`${M_END}"
 
+# Activate VI mode
+# bind 'set editing-mode vi'
+# bind 'set keymap vi-command'
+# bind 'set show-mode-in-prompt on'
+# bind 'set vi-cmd-mode-string ":"'
+# bind "set vi-ins-mode-string ☯"
+# export PS1="${RUTA}${GITB} ${FIRSTLINE} "
+
 export PS1="${RUTA}${GITB} ${FIRSTLINE}${SIMB} "
 export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa"
