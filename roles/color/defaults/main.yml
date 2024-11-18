@@ -3,24 +3,18 @@ color_background_transparent: "#0d1117d0"
 color_background: "#242424"
 color_on_background: "#fafafa"
 
-color_primary: "#536476"
+color_primary: "#4B356D"
 color_on_primary: "#ffffff"
 color_primary_container: "#202020"
 color_on_primary_container: "#ffffff"
-color_primary_dimmed: "#234456"
+color_primary_dimmed: "#4B356D"
 color_on_primary_dimmed: "#bfbfbf"
-color_secondary: "#537486"
+color_secondary: "#4B356D"
 color_on_secondary: "#ffffff"
 color_secondary_container: "#141414"
 color_on_secondary_container: "#ffffff"
-color_secondary_dimmed: "#233446"
+color_secondary_dimmed: "#4B356D"
 color_on_secondary_dimmed: "#bfbfbf"
-color_terciary:
-color_on_terciary:
-color_terciary_container:
-color_on_terciary_container:
-color_terciary_dimmed:
-color_on_terciary_dimmed:
 
 color_good: "#448575"
 color_on_good: "#eeeeee"

@@ -112,8 +112,6 @@
   loop:
     - gtk_file: settings.ini
       gtk_version: gtk-3.0
-    # - gtk_file: settings.ini
-    #   gtk_version: gtk-2.0
   loop_control:
     label: "{{ common_user_config_dir }}/{{ item.gtk_version }}/{{ item.gtk_file }}"
   notify: Restart i3
