@@ -1,0 +1,6 @@
+---
+
+- name: Installing Chrome...
+  tags: task_chrome
+  become: true
+  ansible.builtin.script: install_chrome.sh
