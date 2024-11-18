@@ -24,9 +24,6 @@ common_fehbg_file: "{{ common_user_home }}/.fehbg"
 # Terminal config
 common_picom_config_file: "{{ common_user_config_dir }}/picom/picom.conf"
 
-common_firefox_startup: true
-common_chrome_startup: false
-
 common_default_apps:
 
   - alias: wezterm
@@ -40,28 +37,6 @@ common_default_apps:
     flatpak: false
     flatpak_app:
     deb: https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/wezterm-20240203-110809-5046fc22.Ubuntu22.04.deb
-
-  - alias: firefox
-    name: Firefox
-    comment: Firefox browser
-    executable: /usr/bin/firefox
-    icon: firefox
-    launch_terminal: false
-    startup: "{{ common_firefox_startup | bool }}"
-    startup_delay: 1
-    flatpak: false
-    flatpak_app:
-
-  - alias: code
-    name: Code
-    comment: Code editor
-    executable: /usr/bin/code
-    icon: visual-studio-code
-    launch_terminal: false
-    startup: true
-    startup_delay: 2
-    flatpak: false
-    flatpak_app:
 
 # Expand on each host
 common_host_apps: []

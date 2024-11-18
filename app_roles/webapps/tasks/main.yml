@@ -1,0 +1,19 @@
+---
+
+- name: Creating webapp executables
+  tags: task_webapps
+  ansible.builtin.template:
+    src: webapp.sh.j2
+    dest: "{{ common_user_home }}/.local/bin/{{ item.webapp_name }}"
+    mode: "0774"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+  loop:
+    - webapp_name: spotify
+      webapp_url: https://open.spotify.com/
+    - webapp_name: skype
+      webapp_url: https://web.skype.com/
+    - webapp_name: discord
+      webapp_url: https://discord.com/channels/@me
+    - webapp_name: whatsapp
+      webapp_url: https://web.whatsapp.com/

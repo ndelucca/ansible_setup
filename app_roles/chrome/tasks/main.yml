@@ -4,3 +4,5 @@
   tags: task_chrome
   become: true
   ansible.builtin.script: install_chrome.sh
+  args:
+    creates: /usr/bin/google-chrome

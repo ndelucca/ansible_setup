@@ -16,10 +16,15 @@
       - gnome-orca # security risk
       - orca # security risk
 
-- name: Including firefox role
-  tags: task_firefox
+- name: Including chrome role
+  tags: task_chrome
   ansible.builtin.include_role:
-    name: firefox
+    name: chrome
+
+- name: Including firefox role
+  tags: task_webapps
+  ansible.builtin.include_role:
+    name: webapps
 
 - name: Installing common apps
   ansible.builtin.apt:

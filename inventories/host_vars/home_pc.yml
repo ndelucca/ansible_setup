@@ -18,5 +18,3 @@ common_user_passwd: "{{ ansible_become_pass }}"
 i3_main_screen: HDMI-0
 i3_secondary_screen: HDMI-0
 
-common_firefox_startup: true
-common_chrome_startup: false
