@@ -23,4 +23,9 @@
     "key": "ctrl+[Comma]",
     "command": "-workbench.action.openSettings"
   },
+  {
+    "key": "ctrl+d",
+    "command": "-vscode-neovim.send",
+    "when": "editorTextFocus && neovim.ctrlKeysInsert.d && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+  },
 ]
