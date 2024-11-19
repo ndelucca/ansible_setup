@@ -1,7 +1,0 @@
----
-terminal_chosen: wezterm
-terminal_alacritty_config_file: "{{ common_user_home }}/.config/alacritty/alacritty.toml"
-terminal_kitty_config_file: "{{ common_user_home }}/.config/kitty/kitty.conf"
-terminal_kitty_theme: jetbrains_darcula
-
-terminal_wezterm_config_file: "{{ common_user_home }}/.config/wezterm/wezterm.lua"

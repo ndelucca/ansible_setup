@@ -1,0 +1,3 @@
+---
+terminal_emulator: wezterm
+terminal_wezterm_config_file: "{{ common_user_home }}/.config/wezterm/wezterm.lua"

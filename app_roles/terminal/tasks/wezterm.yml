@@ -1,19 +1,13 @@
 ---
-- name: Install dependencies
-  ansible.builtin.apt:
-    name:
-      - kitty
-    state: present
-
 - name: Creating configuration directory
   ansible.builtin.file:
-    path: "{{ terminal_kitty_config_file | dirname }}"
+    path: "{{ terminal_wezterm_config_file | dirname }}"
     state: directory
     mode: "0755"
     owner: "{{ common_user_name }}"
     group: "{{ common_user_group }}"
 
-- name: Configuring Kitty
+- name: Configuring Wezterm
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -21,5 +15,12 @@
     owner: "{{ common_user_name }}"
     group: "{{ common_user_group }}"
   loop:
-    - src: kitty.cfg.j2
-      dest: "{{ terminal_kitty_config_file }}"
+    - src: wezterm.lua.j2
+      dest: "{{ terminal_wezterm_config_file }}"
+
+- name: Installing Wezterm...
+  tags: task_terminal
+  become: true
+  ansible.builtin.script: install_wezterm.sh
+  args:
+    creates: /usr/bin/wezterm

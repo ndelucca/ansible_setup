@@ -1,0 +1,4 @@
+---
+
+- name: Including terminal emulator tasks
+  ansible.builtin.include_tasks: "{{ terminal_emulator }}.yml"

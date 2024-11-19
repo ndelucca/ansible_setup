@@ -1,3 +1,0 @@
----
-- name: Importing tasks
-  ansible.builtin.import_tasks: "{{ terminal_chosen }}.yml"

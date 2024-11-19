@@ -5,18 +5,12 @@
   become: true
 
   roles:
-    - role: git
-      tags: role_git
-    - role: grub
-      tags: role_grub
     - role: apps
       tags: role_apps
     - role: fonts
       tags: role_fonts
     - role: bash
       tags: role_bash
-    - role: terminal
-      tags: role_terminal
     - role: wallpapers
       tags: role_wallpapers
     - role: i3

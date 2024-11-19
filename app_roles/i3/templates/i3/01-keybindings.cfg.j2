@@ -86,3 +86,59 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
+# Lock - Reboot - Shutdown mode
+set $mode_system (e) Logout | (r) Reboot | (CTRL+s) Shutdown
+
+bindsym $mod+BackSpace mode "$mode_system"
+
+mode "$mode_system" {
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Ctrl+s exec --no-startup-id systemctl poweroff -i, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Settings and configurations mode
+set $mode_settings Settings (s) | Audio (a) | Drivers (d)
+
+bindsym $mod+exclamdown mode "$mode_settings"
+
+mode "$mode_settings" {
+    bindsym s exec --no-startup-id cinnamon-settings, mode "default"
+    bindsym a exec --no-startup-id cinnamon-settings sound, mode "default"
+    bindsym d exec --no-startup-id cinnamon-settings driver-manager, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+set $resize Resize
+
+bindsym $mod+r mode "$resize"
+
+mode "$resize" {
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym ntilde resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+

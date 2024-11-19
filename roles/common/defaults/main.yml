@@ -23,30 +23,3 @@ common_fehbg_file: "{{ common_user_home }}/.fehbg"
 
 # Terminal config
 common_picom_config_file: "{{ common_user_config_dir }}/picom/picom.conf"
-
-common_default_apps:
-
-  - alias: wezterm
-    name: wezterm
-    comment: Terminal app
-    executable: /usr/bin/wezterm
-    icon: utilities-terminal
-    launch_terminal: false
-    startup: true
-    startup_delay: 0
-    flatpak: false
-    flatpak_app:
-    deb: https://github.com/wez/wezterm/releases/download/20240203-110809-5046fc22/wezterm-20240203-110809-5046fc22.Ubuntu22.04.deb
-
-# Expand on each host
-common_host_apps: []
-common_apps: "{{ common_default_apps + common_host_apps }}"
-
-# Apps a instalarse por APT
-common_apt_apps: "{{ common_apps | selectattr('flatpak', 'equalto', false) | list }}"
-# Apps a instalarse por APT estándar
-common_apt_source_apps: "{{ common_apt_apps | rejectattr('deb', 'defined') | list }}"
-# Apps a instalarse por APT mediante un paquete .deb
-common_apt_deb_apps: "{{ common_apt_apps | selectattr('deb', 'defined') | list }}"
-# Apps a instalarse por FLATPAK
-common_flatpak_apps: "{{ common_apps | selectattr('flatpak', 'equalto', true) | list }}"
