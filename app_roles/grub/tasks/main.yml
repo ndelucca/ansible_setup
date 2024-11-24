@@ -15,6 +15,13 @@
 - name: Configuring grub...
   ansible.builtin.lineinfile:
     path: /etc/default/grub
-    regexp: '^GRUB_BACKGROUND'
-    line: GRUB_BACKGROUND={{ grub_bg_image_location }}
+    regexp: "{{ item.regex }}"
+    line: "{{ item.line }}"
+  loop:
+    - regex: ^GRUB_BACKGROUND
+      line: GRUB_BACKGROUND={{ grub_bg_image_location }}
+    - regex: ^GRUB_CMDLINE_LINUX_DEFAULT
+      line: GRUB_CMDLINE_LINUX_DEFAULT="quiet"
+    - regex: ^GRUB_TIMEOUT
+      line: GRUB_TIMEOUT=2
   notify: Update grub
