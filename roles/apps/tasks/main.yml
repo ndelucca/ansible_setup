@@ -33,6 +33,8 @@
       - shellcheck
       - curl
       - ripgrep
+      - ffmpeg
+      - mpv
 
 - name: Setting keyboard layout to latam
   ansible.builtin.lineinfile:
