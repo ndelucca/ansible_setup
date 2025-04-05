@@ -45,6 +45,10 @@
     "**/*.egg-info": true,
     "**/*.pyc": true
   },
+  "vscode-neovim.afterInitConfig": [
+    "set iskeyword-=:"
+  ],
+  "vscode-neovim.neovimInitVimPaths.linux": "/home/educativa/.config/nvim/init.lua",
   "redhat.telemetry.enabled": false,
   "json.maxItemsComputed": 10000,
   "window.titleBarStyle": "custom",
@@ -55,5 +59,26 @@
   "extensions.autoCheckUpdates": false,
   "workbench.colorTheme": "GitHub Dark Default",
   "git.openRepositoryInParentFolders": "never",
-  "workbench.activityBar.location": "top"
+  "workbench.activityBar.location": "top",
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "[django-html]": {
+    "editor.defaultFormatter": "monosans.djlint"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "zenMode.centerLayout": false,
+  "zenMode.hideLineNumbers": false
 }
+
