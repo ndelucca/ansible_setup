@@ -1,0 +1,10 @@
+---
+sway_config_dir: "{{ common_user_config_dir }}/sway"
+sway_config_font: "{{ common_main_font }}"
+sway_config_mod: Mod4
+
+sway_default_terminal: wezterm
+
+sway_status_dir: "{{ common_user_config_dir }}/i3status"
+
+sway_gtk3_config_dir: "{{ common_user_config_dir }}/gtk-3.0/"

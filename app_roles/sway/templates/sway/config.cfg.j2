@@ -1,0 +1,97 @@
+{{ ansible_managed | comment }}
+
+set $mod {{ sway_config_mod }}
+
+font pango:{{ sway_font_name }} {{ sway_font_size }}
+
+gaps inner 10
+gaps outer 0
+smart_gaps on
+
+# To find your display name, run `swaymsg -t get_outputs`
+{% if outputs is defined %}
+{% for output in outputs %}
+output {{ output }} bg {{ common_wallpaper_dir }}/eva1.png fill
+{% endfor %}
+{% endif %}
+exec_always swaybg -i {{ common_wallpaper_dir }}/eva1.png -m fill
+
+bindsym $mod+Return exec {{ sway_default_terminal }}
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+bindsym $mod+d exec wofi --show drun
+
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+# --- WORKSPACES ---
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# Lock screen (using grim and swaylock for a blurred effect)
+# Requires grim and imagemagick installed.
+bindsym $mod+Shift+l exec grim - | convert - -scale 10% -scale 1000% - | swaylock
+
+# Take a screenshot of the whole screen
+bindsym Print exec grim $HOME/Pictures/screenshots/$(date +%s_grim.png)
+
+# Take a screenshot of a selected region
+# Requires grim and slurp installed.
+bindsym $mod+Shift+p exec grim -g "$(slurp)" $HOME/Pictures/screenshots/$(date +%s_grim_sel.png)
+
+# Restart Sway
+bindsym $mod+Shift+r reload
+
+# Exit Sway
+bindsym $mod+Shift+e exit
+
+# Toggle floating for a window
+bindsym $mod+f floating toggle
+
+# Focus parent/child
+bindsym $mod+a focus parent
+bindsym $mod+c focus child
+
+#
+# Bar configuration
+#
+# Sway comes with a built-in bar similar to i3bar
+# For more advanced functionality, consider using `waybar` and adjusting this section.
+bar {
+    position top
+    status_command i3status
+    colors {
+        statusline #ffffff
+        background #333333
+        inactive_workspace #333333 #333333 #888888
+        active_workspace #333333 #333333 #ffffff
+    }
+}

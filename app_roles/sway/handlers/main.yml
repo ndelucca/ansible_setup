@@ -1,0 +1,4 @@
+---
+- name: Restart sway
+  ansible.builtin.command: sway restart
+  changed_when: false

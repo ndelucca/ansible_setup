@@ -1,0 +1,73 @@
+---
+
+- name: Installing sway complement apps
+  tags: apt
+  ansible.builtin.apt:
+    name:
+      - sway
+      - wofi
+      - swaylock
+      - swaybg
+      - grim
+      - slurp
+      - i3status
+      - imagemagick
+    state: present
+    cache_valid_time: 3600
+    update_cache: true
+    autoremove: true
+    autoclean: true
+
+- name: Creating custom scripts dir
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+  loop:
+    - "{{ sway_config_dir }}"
+    - "{{ sway_status_dir }}"
+
+- name: Creating sway configuration file
+  tags: cfg, swaycfg
+  ansible.builtin.template:
+    src: "sway/config.cfg.j2"
+    dest: "{{ sway_config_dir }}/{{ item }}"
+    mode: "0644"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+  loop:
+    - config
+  loop_control:
+    label: "{{ sway_config_dir }}/{{ item }}"
+  notify: Restart sway
+
+- name: Creating i3status configuration file
+  tags: cfg, i3statuscfg
+  ansible.builtin.template:
+    src: "i3status/config.cfg.j2"
+    dest: "{{ sway_status_dir }}/{{ item }}"
+    mode: "0644"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+  loop:
+    - config
+  loop_control:
+    label: "{{ sway_config_dir }}/{{ item }}"
+  notify: Restart sway
+
+- name: Creating gtk configuration files
+  tags: cfg,gtk
+  ansible.builtin.template:
+    src: "{{ item.gtk_version }}/{{ item.gtk_file }}.j2"
+    dest: "{{ common_user_config_dir }}/{{ item.gtk_version }}/{{ item.gtk_file }}"
+    mode: "0664"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+  loop:
+    - gtk_file: settings.ini
+      gtk_version: gtk-3.0
+  loop_control:
+    label: "{{ common_user_config_dir }}/{{ item.gtk_version }}/{{ item.gtk_file }}"
+  notify: Restart sway

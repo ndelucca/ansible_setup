@@ -1,15 +1,5 @@
 ---
 
-- name: Adding i3 to .xinitrc
-  tags: tasks_display_manager
-  ansible.builtin.blockinfile:
-    path: "{{ common_user_home }}/.xinitrc"
-    mode: "0644"
-    owner: "{{ common_user_name }}"
-    group: "{{ common_user_group }}"
-    content: |
-      exec i3
-
 - name: Adding auto-launch to user profile
   tags: tasks_display_manager
   ansible.builtin.blockinfile:
@@ -18,6 +8,6 @@
     owner: "{{ common_user_name }}"
     group: "{{ common_user_group }}"
     content: |
-      if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-        startx
+      if [ -z "$DISPLAY" ] && [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+          exec sway
       fi
