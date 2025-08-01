@@ -1,0 +1,23 @@
+[Unit]
+Description=Start Sway Wayland session
+ConditionEnvironment=!SSH_CONNECTION
+ConditionEnvironment=!REMOTEHOST
+ConditionEnvironment=!DISPLAY
+After=graphical.target
+
+[Service]
+ExecStart=/usr/bin/sway
+Restart=always
+Environment=PATH=/usr/local/bin:/usr/bin:/bin
+Environment=XDG_RUNTIME_DIR=/run/user/%U
+WorkingDirectory=%h
+# Por ahora queda para la notebook vieja
+Environment=WLR_NO_HARDWARE_CURSORS=1
+Environment=XCURSOR_THEME=Adwaita
+Environment=XCURSOR_SIZE=24
+
+[Install]
+# La directiva WantedBy=default.target es lo que hace que el servicio se inicie automáticamente.
+# Para usar un gestor de pantalla, es mejor desactivar esto.
+# WantedBy=default.target
+WantedBy=graphical-session.target

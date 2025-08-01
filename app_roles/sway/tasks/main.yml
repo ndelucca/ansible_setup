@@ -1,4 +1,32 @@
 ---
+- name: Installing wayland
+  tags: apt
+  ansible.builtin.apt:
+    name:
+      - wl-clipboard
+      - wayland-utils
+      - xwayland
+      - foot
+      - dbus-user-session
+      - seatd
+      - systemd-container
+      - xdg-user-dirs
+      - mesa-vulkan-drivers
+    state: present
+    cache_valid_time: 3600
+    update_cache: true
+    autoremove: true
+    autoclean: true
+  notify: Start seatd
+
+- name: Add user to render group
+  ansible.builtin.user:
+    name: "{{ common_user_name }}"
+    groups: render
+    append: true
+
+- name: Allow user lingering
+  ansible.builtin.command: loginctl enable-linger {{ common_user_name }}
 
 - name: Installing sway complement apps
   tags: apt
@@ -8,8 +36,6 @@
       - wofi
       - swaylock
       - swaybg
-      - grim
-      - slurp
       - i3status
       - imagemagick
     state: present
@@ -57,3 +83,22 @@
     label: "{{ sway_config_dir }}/{{ item }}"
   notify: Restart sway
 
+- name: Creating user systemd directory
+  ansible.builtin.file:
+    path: "{{ common_user_config_dir }}/systemd/user/"
+    state: directory
+    mode: "0755"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+
+- name: Creating sway-session.service file
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "0644"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+  loop:
+    - src: systemd/sway-session.service.j2
+      dest: "{{ common_user_config_dir }}/systemd/user/sway-session.service"
+  notify: Restart sway

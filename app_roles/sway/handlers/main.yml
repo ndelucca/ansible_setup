@@ -1,4 +1,14 @@
 ---
 - name: Restart sway
-  ansible.builtin.command: sway restart
+  ansible.builtin.command: systemctl --user restart sway-session.service
   changed_when: false
+  # become: true
+  become_user: "{{ common_user_name }}"
+  environment:
+    XDG_RUNTIME_DIR: "/run/user/1000" # Es muy poco probable que el usuario sea otro uid
+
+- name: Start seatd
+  ansible.builtin.systemd:
+    name: seatd.service
+    enabled: true
+    state: started
