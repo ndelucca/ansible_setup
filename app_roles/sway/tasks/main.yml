@@ -57,17 +57,3 @@
     label: "{{ sway_config_dir }}/{{ item }}"
   notify: Restart sway
 
-- name: Creating gtk configuration files
-  tags: cfg,gtk
-  ansible.builtin.template:
-    src: "{{ item.gtk_version }}/{{ item.gtk_file }}.j2"
-    dest: "{{ common_user_config_dir }}/{{ item.gtk_version }}/{{ item.gtk_file }}"
-    mode: "0664"
-    owner: "{{ common_user_name }}"
-    group: "{{ common_user_group }}"
-  loop:
-    - gtk_file: settings.ini
-      gtk_version: gtk-3.0
-  loop_control:
-    label: "{{ common_user_config_dir }}/{{ item.gtk_version }}/{{ item.gtk_file }}"
-  notify: Restart sway

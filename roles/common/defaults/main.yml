@@ -11,7 +11,9 @@ common_user_config_dir: "{{ common_user_home }}/.config"
 common_user_bin_dir: "{{ common_user_local_dir }}/bin"
 common_utilities_dir: "{{ common_user_home }}/utilities"
 
-common_main_font: JetBrainsMono Nerd Font 10
+common_main_font_name: JetBrainsMono Nerd Font
+common_main_font_size: 10
+common_main_font: "{{ common_main_font_name }} {{ common_main_font_size }}"
 
 common_gtk_theme_name: Mint-Y-Dark
 common_gtk_icon_theme_name: Mint-Y
