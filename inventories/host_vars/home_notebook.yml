@@ -20,4 +20,3 @@ terminal_emulator: terminator
 sway_main_screen: LVDS-1
 sway_secondary_screen: LVDS-1
 sway_default_terminal: "{{ terminal_emulator }}"
-
