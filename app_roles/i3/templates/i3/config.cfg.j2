@@ -1,11 +1,255 @@
 {{ ansible_managed | comment }}
 
-set $mod {{ i3_config_mod }}
-
-set $screen_main {{ i3_main_screen }}
-# set $screen_main {{ i3_secondary_screen }}
+set $mod             {{ i3_config_mod }}
+set $screen_main     {{ i3_main_screen }}
 set $screen_notebook {{ i3_secondary_screen }}
+set $terminal        {{ i3_default_terminal }}
 
-set $terminal {{ i3_default_terminal }}
+# --- KEYBINDS ---
 
-include {{ i3_config_subdir }}/*.cfg
+# Use pactl to adjust volume in PulseAudio.
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@   toggle
+bindsym XF86AudioMicMute     exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym $mod+Ctrl+Left       exec --no-startup-id pulse tmute
+bindsym $mod+Ctrl+Right      exec --no-startup-id pulse next-sink
+bindsym $mod+Ctrl+Up         exec --no-startup-id pulse vup
+bindsym $mod+Ctrl+Down       exec --no-startup-id pulse vdown
+
+bindsym $mod+Ctrl+l exec --no-startup-id scrotlock -i {{ common_wallpaper_dir }}/eva1.png
+
+# Custom script to toggle the screen location.
+bindsym $mod+m exec --no-startup-id screenswitcher
+
+# Flameshot for screenshots
+bindsym $mod+Print exec --no-startup-id flameshot gui
+bindsym $mod+Shift+Print exec --no-startup-id flameshot full
+
+# start a terminal
+bindsym $mod+Return exec $terminal
+
+# kill focused window
+bindsym $mod+q kill
+
+# Rofi
+bindsym $mod+d exec --no-startup-id rofi -config {{ i3_rofi_config_file }} -show drun
+bindsym $mod+Shift+d exec --no-startup-id rofi -config {{ i3_rofi_config_file }} -show run
+bindsym $mod+Shift+s exec --no-startup-id rofi -config {{ i3_rofi_config_file }} -show ssh
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+ntilde move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+# bindsym $mod+h split h
+
+# split in vertical orientation
+# bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+# bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# Lock - Reboot - Shutdown mode
+set $mode_system (e) Logout | (r) Reboot | (CTRL+s) Shutdown
+
+bindsym $mod+BackSpace mode "$mode_system"
+
+mode "$mode_system" {
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Ctrl+s exec --no-startup-id systemctl poweroff -i, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Settings and configurations mode
+set $mode_settings Settings (s) | Audio (a) | Drivers (d)
+
+bindsym $mod+exclamdown mode "$mode_settings"
+
+mode "$mode_settings" {
+    bindsym s exec --no-startup-id cinnamon-settings, mode "default"
+    bindsym a exec --no-startup-id cinnamon-settings sound, mode "default"
+    bindsym d exec --no-startup-id cinnamon-settings driver-manager, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
+
+# --- WORKSPACES ---
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+set $ws1 "1 "
+set $ws2 "2 "
+set $ws3 "3 "
+set $ws4 "4 "
+set $ws5 "5 "
+set $ws6 "6 "
+set $ws7 "7 "
+set $ws8 "8 "
+set $ws9 "9 "
+set $ws10 "0 "
+
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+exec --no-startup-id "/usr/bin/xrandr --output $screen_main --primary --right-of $screen_notebook"
+
+# Screens
+workspace $ws1 output $screen_main
+workspace $ws2 output $screen_main
+workspace $ws3 output $screen_main
+workspace $ws4 output $screen_main
+workspace $ws5 output $screen_main
+workspace $ws6 output $screen_main
+workspace $ws7 output $screen_notebook
+workspace $ws8 output $screen_main
+workspace $ws9 output $screen_main
+workspace $ws10 output $screen_notebook
+
+assign [instance=".*(?i)discord.*"] $ws7
+assign [instance=".*(?i)skype.*"] $ws8
+assign [instance=".*(?i)whatsapp.*"] $ws9
+assign [instance=".*(?i)spotify.*"] $ws6
+
+assign [class=$terminal] $ws1
+assign [window_role="^browser$"] $ws2
+assign [class="Code"] $ws3
+assign [class="thunderbird"] $ws7
+
+# --- STYLES ---
+
+#for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [class="*"] focus
+font pango:{{ i3_config_font }}
+workspace_auto_back_and_forth yes
+gaps inner 5
+smart_gaps on
+hide_edge_borders smart
+
+default_border pixel 2
+default_floating_border pixel 4
+
+set $background          {{ color_scheme.background }}
+set $foreground          {{ color_scheme.foreground }}
+set $active_workspace    {{ color_scheme.active_workspace }}
+set $active_foreground   {{ color_scheme.active_foreground }}
+set $inactive_workspace  {{ color_scheme.inactive_workspace }}
+set $inactive_foreground {{ color_scheme.inactive_foreground }}
+set $urgent_workspace    {{ color_scheme.urgent_workspace }}
+set $urgent_foreground   {{ color_scheme.urgent_foreground }}
+
+client.focused          $active_workspace   $active_workspace   $active_foreground $active_workspace   $active_workspace
+client.focused_inactive $inactive_workspace $inactive_workspace $inactive_foreground $inactive_workspace $inactive_workspace
+client.unfocused        $inactive_workspace $inactive_workspace $inactive_foreground $inactive_workspace $inactive_workspace
+client.urgent           $urgent_workspace   $urgent_workspace   $urgent_foreground $urgent_workspace   $urgent_workspace
+
+bar {
+    i3bar_command i3bar
+    output $screen_main
+    output $screen_notebook
+    status_command i3status
+    position bottom
+    tray_output primary
+    tray_padding 2px
+    separator_symbol " | "
+    workspace_min_width 70
+
+    colors {
+        background $background
+        statusline $foreground
+        focused_workspace  $active_workspace   $active_workspace   $active_foreground
+        inactive_workspace $inactive_workspace $inactive_workspace $inactive_foreground
+        urgent_workspace   $urgent_workspace   $urgent_workspace   $urgent_foreground
+    }
+}
+
+# --- STARTUP ---
+
+# Start XDG autostart .desktop files using dex. See also
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+exec --no-startup-id dex --autostart --environment i3
+
+exec --no-startup-id xset dpms 0 0 0
+exec --no-startup-id xautolock -time 25 -locker "scrotlock -i /usr/share/backgrounds/nd_wallpapers/guts.jpg"
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id mintupdate-launcher
+
+# feh background
+exec --no-startup-id "/usr/bin/sh {{ common_fehbg_file }}"
+# picom transparency
+exec --no-startup-id "/usr/bin/picom -b --experimental-backends --config {{ common_picom_config_file }}"
+

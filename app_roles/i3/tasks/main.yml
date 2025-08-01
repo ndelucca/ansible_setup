@@ -39,7 +39,6 @@
     group: "{{ common_user_group }}"
   loop:
     - "{{ i3_config_dir }}"
-    - "{{ i3_config_subdir }}"
     - "{{ i3_status_dir }}"
 
 - name: Creating i3 configuration file
@@ -52,23 +51,6 @@
     group: "{{ common_user_group }}"
   loop:
     - config
-  loop_control:
-    label: "{{ i3_config_dir }}/{{ item }}"
-  notify: Restart i3
-
-- name: Creating i3 configuration files
-  tags: cfg, i3cfg
-  ansible.builtin.template:
-    src: "i3/{{ item }}.j2"
-    dest: "{{ i3_config_subdir }}/{{ item }}"
-    mode: "0644"
-    owner: "{{ common_user_name }}"
-    group: "{{ common_user_group }}"
-  loop:
-    - 01-keybindings.cfg
-    - 02-workspaces.cfg
-    - 03-appearance.cfg
-    - 04-exec.cfg
   loop_control:
     label: "{{ i3_config_dir }}/{{ item }}"
   notify: Restart i3

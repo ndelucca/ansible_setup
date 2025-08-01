@@ -1,6 +1,5 @@
 ---
 i3_config_dir: "{{ common_user_config_dir }}/i3"
-i3_config_subdir: "{{ i3_config_dir }}/config.d"
 i3_config_font: "{{ common_main_font }}"
 i3_config_mod: Mod4
 
