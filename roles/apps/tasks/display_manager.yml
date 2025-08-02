@@ -6,6 +6,12 @@
   ansible.builtin.include_role:
     name: lightdm
 
+- name: Importing Linux Mint display_manager
+  tags: tasks_display_manager
+  when: ansible_distribution == "Debian"
+  ansible.builtin.include_role:
+    name: greetd
+
 - name: Adding auto-launch to user profile
   tags: tasks_display_manager
   when: ansible_distribution == "Debian"
