@@ -5,3 +5,12 @@
   ansible.builtin.apt:
     name: foot
     state: present
+
+- name: Creating foot.ini
+  tags: apt
+  ansible.builtin.template:
+    src: foot.ini.j2
+    dest: "{{ common_user_config_dir }}/foot/foot.ini"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+    mode: "0644"
