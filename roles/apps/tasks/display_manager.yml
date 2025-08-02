@@ -12,14 +12,3 @@
   ansible.builtin.include_role:
     name: greetd
 
-- name: Adding auto-launch to user profile
-  tags: tasks_display_manager
-  when: ansible_distribution == "Debian"
-  ansible.builtin.blockinfile:
-    path: "{{ common_user_home }}/.profile"
-    mode: "0644"
-    owner: "{{ common_user_name }}"
-    group: "{{ common_user_group }}"
-    content: |
-      systemctl --user enable sway-session.service 2>/dev/null || true
-

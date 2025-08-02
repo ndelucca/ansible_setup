@@ -67,6 +67,15 @@ bindsym Print exec grim $HOME/Pictures/screenshots/$(date +%s_grim.png)
 # Requires grim and slurp installed.
 bindsym $mod+Shift+p exec grim -g "$(slurp)" $HOME/Pictures/screenshots/$(date +%s_grim_sel.png)
 
+input type:keyboard {
+    xkb_layout latam
+}
+
+input type:touchpad {
+    accel_profile flat
+    pointer_accel 0.7
+}
+
 # Restart Sway
 bindsym $mod+Shift+r reload
 

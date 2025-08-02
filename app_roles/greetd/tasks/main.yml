@@ -38,16 +38,15 @@
     mode: '0644'
     content: |
       [terminal]
-      vt = 1
+      vt = 7
 
       [default_session]
-      command = "agreety --cmd sway-start"
-      user = "root"
+      command = "/usr/sbin/agreety --cmd /usr/local/bin/sway-session-start"
+      user = "_greetd"
 
 - name: Install sway-start script
-  become: yes
   copy:
-    dest: /usr/local/bin/sway-start
+    dest: /usr/local/bin/sway-session-start
     owner: root
     group: root
     mode: '0755'
