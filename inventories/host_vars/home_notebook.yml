@@ -15,7 +15,7 @@ common_user_home: /home/ndelucca
 common_user_email: nazadelucca@gmail.com
 common_user_passwd: "{{ ansible_become_pass }}"
 
-terminal_emulator: terminator
+terminal_emulator: foot
 
 sway_main_screen: LVDS-1
 sway_secondary_screen: LVDS-1

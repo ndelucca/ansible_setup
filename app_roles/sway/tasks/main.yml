@@ -5,8 +5,6 @@
     name:
       - wl-clipboard
       - wayland-utils
-      - xwayland
-      - foot
       - dbus-user-session
       - seatd
       - systemd-container

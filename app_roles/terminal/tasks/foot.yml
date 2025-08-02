@@ -1,0 +1,7 @@
+---
+
+- name: Installing foot
+  tags: apt
+  ansible.builtin.apt:
+    name: foot
+    state: present
