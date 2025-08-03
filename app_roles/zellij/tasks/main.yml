@@ -1,0 +1,28 @@
+---
+
+- name: Install zellij
+  ansible.builtin.apt:
+    name: cargo
+    state: present
+
+- name: Install zellij
+  community.general.cargo:
+    name: zellij
+    state: present
+
+- name: Create zellij config directory
+  ansible.builtin.file:
+    path: "{{ common_user_config_dir }}/zellij"
+    mode: "0755"
+    state: directory
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+
+- name: Create zellij config file
+  ansible.builtin.template:
+    src: zellij/config.kdl.j2
+    dest: "{{ common_user_config_dir }}/zellij/config.kdl"
+    mode: "0644"
+    state: directory
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"

@@ -6,8 +6,9 @@
   ansible.builtin.include_role:
     name: lightdm
 
-- name: Importing Debian display_manager
+- name: Importing Linux Mint display_manager
   tags: tasks_display_manager
   when: ansible_distribution == "Debian"
   ansible.builtin.include_role:
-    name: startx
+    name: greetd
+

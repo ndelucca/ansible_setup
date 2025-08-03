@@ -15,10 +15,8 @@ common_user_home: /home/ndelucca
 common_user_email: nazadelucca@gmail.com
 common_user_passwd: "{{ ansible_become_pass }}"
 
-terminal_emulator: terminator
+terminal_emulator: foot
 
-i3_main_screen: LVDS-1
-i3_secondary_screen: LVDS-1
-i3_default_terminal: "{{ terminal_emulator }}"
-
-apps_picom_backend: xrender
+sway_main_screen: LVDS-1
+sway_secondary_screen: LVDS-1
+sway_default_terminal: "{{ terminal_emulator }}"

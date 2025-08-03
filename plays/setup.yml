@@ -14,7 +14,11 @@
     - role: wallpapers
       tags: role_wallpapers
     - role: i3
+      when: ansible_distribution == "Linux Mint"
       tags: role_i3
+    - role: sway
+      when: ansible_distribution == "Debian"
+      tags: role_sway
     - role: editors
       tags: role_editors
     - role: golang

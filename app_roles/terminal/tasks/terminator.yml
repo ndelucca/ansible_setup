@@ -1,0 +1,7 @@
+---
+
+- name: Installing terminator
+  tags: apt
+  ansible.builtin.apt:
+    name: terminator
+    state: present

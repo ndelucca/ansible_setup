@@ -1,0 +1,56 @@
+---
+
+- name: Install greetd and dependencies
+  ansible.builtin.apt:
+    name:
+      - greetd
+    state: present
+
+- name: Disable other display managers
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    enabled: false
+    state: stopped
+  loop:
+    - gdm
+    - lightdm
+    - sddm
+  ignore_errors: true
+
+- name: Enable greetd service
+  ansible.builtin.systemd:
+    name: greetd
+    enabled: true
+    state: started
+
+- name: Ensure graphical.target is default
+  file:
+    src: /lib/systemd/system/graphical.target
+    dest: /etc/systemd/system/default.target
+    state: link
+    force: true
+
+- name: Configure greetd with agreety
+  copy:
+    dest: /etc/greetd/config.toml
+    owner: root
+    group: root
+    mode: '0644'
+    content: |
+      [terminal]
+      vt = 7
+
+      [default_session]
+      command = "/usr/sbin/agreety --cmd /usr/local/bin/sway-session-start"
+      user = "_greetd"
+
+- name: Install sway-start script
+  copy:
+    dest: /usr/local/bin/sway-session-start
+    owner: root
+    group: root
+    mode: '0755'
+    content: |
+      #!/bin/sh
+      exec systemctl --user start sway-session.service
+
