@@ -36,6 +36,11 @@ color_scheme:
   status_good: "{{ color_good }}"
   status_degraded: "{{ color_warn }}"
   status_bad: "{{ color_bad }}"
+  # wofi
+  wofi_borders: "{{ color_secondary | hex_to_rgba }}"
+  wofi_background: "{{ color_background_transparent | hex_to_rgba }}"
+  wofi_text_active: "{{ color_on_background | hex_to_rgba }}"
+  wofi_text_default: "{{ color_on_background | hex_to_rgba }}"
   # rofi
   rofi_borders: "{{ color_secondary | hex_to_rgba }}"
   rofi_background: "{{ color_background_transparent | hex_to_rgba }}"

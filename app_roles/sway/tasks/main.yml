@@ -100,3 +100,6 @@
     - src: systemd/sway-session.service.j2
       dest: "{{ common_user_config_dir }}/systemd/user/sway-session.service"
   notify: Restart sway
+
+- name: Importing tasks
+  ansible.builtin.import_tasks: wofi.yml

@@ -1,0 +1,49 @@
+window {
+  font-family: {{ common_main_font }};
+  font-size: 14px;
+
+  background-color: {{ color_scheme.wofi_background }};
+  border: 2px solid {{ color_scheme.wofi_borders }};
+  border-radius: 12px;
+  padding: 0;
+  margin: 0;
+  color: {{ color_scheme.wofi_text_default }};
+}
+
+#input {
+  background-color: transparent;
+  color: {{ color_scheme.wofi_text_active }};
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+}
+
+#input::placeholder {
+  color: {{ color_scheme.wofi_text_default }};
+  content: " Search";
+}
+
+#entry {
+  background-color: transparent;
+  color: {{ color_scheme.wofi_text_default }};
+  padding: 10px 10px;
+  border-radius: 10px;
+}
+
+#entry:selected {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: {{ color_scheme.wofi_text_active }};
+}
+
+#entry image {
+  background-color: transparent;
+  margin-right: 10px;
+}
+
+#text {
+  color: inherit;
+  background-color: transparent;
+  vertical-align: middle;
+  horizontal-align: left;
+}
+

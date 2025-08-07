@@ -1,0 +1,27 @@
+---
+- name: Creating wofi configuration directory
+  tags: wofi
+  ansible.builtin.file:
+    path: "{{ common_user_config_dir }}/wofi"
+    state: directory
+    mode: "0755"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+
+- name: Creating wofi configuration file
+  tags: cfg,wofi
+  ansible.builtin.template:
+    src: "wofi/config.j2"
+    dest: "{{ common_user_config_dir }}/wofi/config"
+    mode: "0644"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+
+- name: Creating wofi theme file
+  tags: cfg,wofi
+  ansible.builtin.template:
+    src: "wofi/style.css.j2"
+    dest: "{{ common_user_config_dir }}/wofi/style.css"
+    mode: "0644"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
