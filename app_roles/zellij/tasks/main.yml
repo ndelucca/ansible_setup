@@ -1,14 +1,24 @@
 ---
 
-- name: Install zellij
-  ansible.builtin.apt:
-    name: cargo
-    state: present
+- name: Downloading zellij tar.gz
+  ansible.builtin.get_url:
+    url: https://github.com/zellij-org/zellij/releases/download/v0.43.0/zellij-x86_64-unknown-linux-musl.tar.gz
+    dest: "/tmp/zellij.tar.gz"
 
-- name: Install zellij
-  community.general.cargo:
-    name: zellij
-    state: present
+- name: Unarchive zellij
+  ansible.builtin.unarchive:
+    src: "/tmp/zellij.tar.gz"
+    dest: "/tmp"
+    remote_src: true
+
+- name: Creating zellij binary
+  ansible.builtin.copy:
+    src: "/tmp/zellij"
+    dest: "{{ common_user_home }}/.local/bin/zellij"
+    remote_src: true
+    mode: "0755"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
 
 - name: Create zellij config directory
   ansible.builtin.file:
@@ -20,9 +30,8 @@
 
 - name: Create zellij config file
   ansible.builtin.template:
-    src: zellij/config.kdl.j2
+    src: config.kdl.j2
     dest: "{{ common_user_config_dir }}/zellij/config.kdl"
     mode: "0644"
-    state: directory
     owner: "{{ common_user_name }}"
     group: "{{ common_user_group }}"

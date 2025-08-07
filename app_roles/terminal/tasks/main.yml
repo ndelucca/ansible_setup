@@ -2,3 +2,7 @@
 
 - name: Including terminal emulator tasks
   ansible.builtin.include_tasks: "{{ terminal_emulator }}.yml"
+
+- name: Including zellij tasks
+  ansible.builtin.include_role:
+    name: zellij

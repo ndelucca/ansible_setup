@@ -1,4 +1,4 @@
 # Run direnv hooks
 eval "$(direnv hook bash)"
 
-fortune | cowsay -pn
+/usr/games/fortune | /usr/games/cowsay -pn
