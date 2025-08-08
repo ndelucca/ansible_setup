@@ -51,6 +51,7 @@
     owner: "{{ common_user_name }}"
     group: "{{ common_user_group }}"
   loop:
+    - "{{ common_user_config_dir }}/systemd/user/"
     - "{{ sway_config_dir }}"
     - "{{ sway_status_dir }}"
     - "{{ common_user_config_dir }}/swaync"
@@ -64,34 +65,17 @@
     owner: "{{ common_user_name }}"
     group: "{{ common_user_group }}"
   loop:
-    - src: "sway/config.cfg.j2"
+    - src: systemd/sway-session.service.j2
+      dest: "{{ common_user_config_dir }}/systemd/user/sway-session.service"
+    - src: sway/config.cfg.j2
       dest: "{{ sway_config_dir }}/config"
-    - src: "i3status/config.cfg.j2"
+    - src: i3status/config.cfg.j2
       dest: "{{ sway_status_dir }}/config"
-    - src: "swaync/config.json.j2"
+    - src: swaync/config.json.j2
       dest: "{{ common_user_config_dir }}/swaync/config.json"
-    - src: "swaync/styles.css.j2"
+    - src: swaync/styles.css.j2
       dest: "{{ common_user_config_dir }}/swaync/styles.css"
   loop_control:
     label: "{{ sway_config_dir }}/{{ item }}"
   notify: Restart sway
 
-- name: Creating user systemd directory
-  ansible.builtin.file:
-    path: "{{ common_user_config_dir }}/systemd/user/"
-    state: directory
-    mode: "0755"
-    owner: "{{ common_user_name }}"
-    group: "{{ common_user_group }}"
-
-- name: Creating sway-session.service file
-  ansible.builtin.template:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
-    mode: "0644"
-    owner: "{{ common_user_name }}"
-    group: "{{ common_user_group }}"
-  loop:
-    - src: systemd/sway-session.service.j2
-      dest: "{{ common_user_config_dir }}/systemd/user/sway-session.service"
-  notify: Restart sway

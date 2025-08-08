@@ -69,17 +69,18 @@
     name: terminal
 
 - name: Importing tasks
+  ansible.builtin.import_tasks: display_manager.yml
+  tags: tasks_display_manager
+
+- name: Importing tasks
   ansible.builtin.import_tasks: flameshot.yml
+  when: ansible_distribution == "Linux Mint"
   tags: tasks_flameshot
 
 - name: Importing tasks
   ansible.builtin.import_tasks: picom.yml
   when: ansible_distribution == "Linux Mint"
   tags: tasks_picom
-
-- name: Importing tasks
-  ansible.builtin.import_tasks: display_manager.yml
-  tags: tasks_display_manager
 
 - name: Importing tasks
   ansible.builtin.import_tasks: feh.yml
