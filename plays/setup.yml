@@ -13,10 +13,10 @@
       tags: role_bash
     - role: wallpapers
       tags: role_wallpapers
-    - role: i3
+    - role: xorg/i3
       when: ansible_distribution == "Linux Mint"
       tags: role_i3
-    - role: sway
+    - role: wayland/sway
       when: ansible_distribution == "Debian"
       tags: role_sway
     - role: editors

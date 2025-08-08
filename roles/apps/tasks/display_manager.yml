@@ -4,11 +4,11 @@
   tags: tasks_display_manager
   when: ansible_distribution == "Linux Mint"
   ansible.builtin.include_role:
-    name: lightdm
+    name: xorg/lightdm
 
 - name: Importing Linux Mint display_manager
   tags: tasks_display_manager
   when: ansible_distribution == "Debian"
   ansible.builtin.include_role:
-    name: greetd
+    name: wayland/greetd
 
