@@ -67,12 +67,12 @@ mode "$mode_system" {
 }
 
 # Settings and configurations mode
-set $mode_settings Settings (s) | Audio (a) | Drivers (d)
+set $mode_settings (n) Notifications
 bindsym $mod+exclamdown mode "$mode_settings"
+bindsym $mod+questiondown mode "$mode_settings"
 mode "$mode_settings" {
-    bindsym s exec --no-startup-id cinnamon-settings, mode "default"
-    bindsym a exec --no-startup-id cinnamon-settings sound, mode "default"
-    bindsym d exec --no-startup-id cinnamon-settings driver-manager, mode "default"
+    bindsym n exec --no-startup-id swaync-client -t -sw, mode "default"
+
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -180,3 +180,6 @@ bar {
         urgent_workspace   $urgent_workspace   $urgent_workspace   $urgent_foreground
     }
 }
+
+# Notification Daemon
+exec swaync

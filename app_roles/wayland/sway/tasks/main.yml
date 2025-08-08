@@ -31,10 +31,11 @@
   ansible.builtin.apt:
     name:
       - sway
-      - wofi
       - swaylock
       - swaybg
+      - sway-notification-center
       - i3status
+      - wofi
       - imagemagick
     state: present
     cache_valid_time: 3600
@@ -42,7 +43,7 @@
     autoremove: true
     autoclean: true
 
-- name: Creating custom scripts dir
+- name: Creating configuration directories
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
@@ -52,31 +53,25 @@
   loop:
     - "{{ sway_config_dir }}"
     - "{{ sway_status_dir }}"
+    - "{{ common_user_config_dir }}/swaync"
 
-- name: Creating sway configuration file
+- name: Creating configuration files
   tags: cfg, swaycfg
   ansible.builtin.template:
-    src: "sway/config.cfg.j2"
-    dest: "{{ sway_config_dir }}/{{ item }}"
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
     mode: "0644"
     owner: "{{ common_user_name }}"
     group: "{{ common_user_group }}"
   loop:
-    - config
-  loop_control:
-    label: "{{ sway_config_dir }}/{{ item }}"
-  notify: Restart sway
-
-- name: Creating i3status configuration file
-  tags: cfg, i3statuscfg
-  ansible.builtin.template:
-    src: "i3status/config.cfg.j2"
-    dest: "{{ sway_status_dir }}/{{ item }}"
-    mode: "0644"
-    owner: "{{ common_user_name }}"
-    group: "{{ common_user_group }}"
-  loop:
-    - config
+    - src: "sway/config.cfg.j2"
+      dest: "{{ sway_config_dir }}/config"
+    - src: "i3status/config.cfg.j2"
+      dest: "{{ sway_status_dir }}/config"
+    - src: "swaync/config.json.j2"
+      dest: "{{ common_user_config_dir }}/swaync/config.json"
+    - src: "swaync/styles.css.j2"
+      dest: "{{ common_user_config_dir }}/swaync/styles.css"
   loop_control:
     label: "{{ sway_config_dir }}/{{ item }}"
   notify: Restart sway
