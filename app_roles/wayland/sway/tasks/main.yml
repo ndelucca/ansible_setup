@@ -42,14 +42,17 @@
     autoremove: true
     autoclean: true
 
-- name: Installing wofi
+- name: Installing wofi and swappy
   tags: apt
   ansible.builtin.copy:
-    src: wofi
-    dest: "{{ common_user_home }}/.local/bin/wofi"
+    src: "{{ item }}"
+    dest: "{{ common_user_home }}/.local/bin/{{ item }}"
     mode: "0755"
     owner: "{{ common_user_name }}"
     group: "{{ common_user_group }}"
+  loop:
+    - wofi
+    - swappy
 
 - name: Creating configuration directories
   ansible.builtin.file:

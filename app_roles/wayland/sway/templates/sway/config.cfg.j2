@@ -15,9 +15,9 @@ bindsym $mod+Return exec {{ sway_default_terminal }}
 bindsym $mod+d exec wofi
 bindsym $mod+Shift+d exec wofi --show run
 
-# Flameshot for screenshots
-# bindsym $mod+Print exec --no-startup-id flameshot gui
-# bindsym $mod+Shift+Print exec --no-startup-id flameshot full
+bindsym Print exec grim - | swappy -f -
+bindsym Shift+Print exec grim -g "$(slurp)" - | wl-copy
+bindsym $mod+Shift+Print exec grim -g "$(slurp)" - | swappy -f -
 
 bindsym $mod+q kill
 
