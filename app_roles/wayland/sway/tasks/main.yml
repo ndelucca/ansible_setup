@@ -35,13 +35,21 @@
       - swaybg
       - sway-notification-center
       - i3status
-      - wofi
       - imagemagick
     state: present
     cache_valid_time: 3600
     update_cache: true
     autoremove: true
     autoclean: true
+
+- name: Installing wofi
+  tags: apt
+  ansible.builtin.copy:
+    src: wofi
+    dest: "{{ common_user_home }}/.local/bin/wofi"
+    mode: "0755"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
 
 - name: Creating configuration directories
   ansible.builtin.file:
@@ -78,8 +86,8 @@
       dest: "{{ common_user_config_dir }}/swaync/styles.css"
     - src: wofi/config.j2
       dest: "{{ common_user_config_dir }}/wofi/config"
-    - src: wofi/styles.css.j2
-      dest: "{{ common_user_config_dir }}/wofi/styles.css"
+    - src: wofi/style.css.j2
+      dest: "{{ common_user_config_dir }}/wofi/style.css"
   loop_control:
     label: "{{ sway_config_dir }}/{{ item }}"
   notify: Restart sway
