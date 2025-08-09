@@ -12,7 +12,8 @@ bindsym XF86AudioMicMute     exec --no-startup-id pactl set-source-mute @DEFAULT
 
 bindsym $mod+Return exec {{ sway_default_terminal }}
 
-bindsym $mod+d exec wofi --show drun
+bindsym $mod+d exec wofi
+bindsym $mod+Shift+d exec wofi --show run
 
 # Flameshot for screenshots
 # bindsym $mod+Print exec --no-startup-id flameshot gui

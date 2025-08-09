@@ -55,6 +55,7 @@
     - "{{ sway_config_dir }}"
     - "{{ sway_status_dir }}"
     - "{{ common_user_config_dir }}/swaync"
+    - "{{ common_user_config_dir }}/wofi"
 
 - name: Creating configuration files
   tags: cfg, swaycfg
@@ -75,6 +76,10 @@
       dest: "{{ common_user_config_dir }}/swaync/config.json"
     - src: swaync/styles.css.j2
       dest: "{{ common_user_config_dir }}/swaync/styles.css"
+    - src: wofi/config.j2
+      dest: "{{ common_user_config_dir }}/wofi/config"
+    - src: wofi/styles.css.j2
+      dest: "{{ common_user_config_dir }}/wofi/styles.css"
   loop_control:
     label: "{{ sway_config_dir }}/{{ item }}"
   notify: Restart sway
