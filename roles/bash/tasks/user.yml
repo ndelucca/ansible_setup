@@ -1,4 +1,9 @@
 ---
+- name: Installing tmux
+  ansible.builtin.apt:
+    name: tmux
+    state: present
+
 - name: Creating bash directories
   ansible.builtin.file:
     path: "{{ item }}"
@@ -23,7 +28,7 @@
     - 03-greeting.sh
     - 04-work-aliases.sh
     - 05-golang.sh
-    - 06-zellij.sh
+    - 06-tmux.sh
   loop_control:
     label: "{{ bash_scripts_dir }}/{{ item }}"
 
