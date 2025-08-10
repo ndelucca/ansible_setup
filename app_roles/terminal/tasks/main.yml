@@ -3,3 +3,10 @@
 - name: Including terminal emulator tasks
   ansible.builtin.include_tasks: "{{ terminal_emulator }}.yml"
 
+- name: Configuring tmux
+  ansible.builtin.copy:
+    src: tmux.conf
+    dest: "{{ common_user_config_dir }}/tmux/tmux.conf"
+    owner: "{{ common_user_name }}"
+    group: "{{ common_user_group }}"
+    mode: "0644"
