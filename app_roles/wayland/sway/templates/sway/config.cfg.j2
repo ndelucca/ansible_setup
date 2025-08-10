@@ -79,6 +79,7 @@ assign [app_id=".*firefox.*"] 2
 assign [app_id=".*chrom.*"]   2
 assign [app_id="code"]        3
 
+for_window [app_id=$terminal] border none
 for_window [window_type="dialog"]  floating enable
 for_window [window_type="utility"] floating enable
 for_window [window_type="toolbar"] floating enable
